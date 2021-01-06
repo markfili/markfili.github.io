@@ -9,23 +9,25 @@ body {
     padding-bottom: 60px;
 }
 
-
 .img-footer {
     max-height: 150px;
     height: 150px;
 }
 
+
 @media (min-width: 576px) { 
     body {
         padding-top: 4em;
+        background-image: url('../../assets/images/home_background.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
     }
 
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-
+	.footer {
+	    position: absolute !important;
+	}
+	
     .img-footer {
         height: 90px;
         max-height: 90px;
@@ -33,9 +35,16 @@ body {
 }
 
 @media (min-width: 1200px) {
-	footer>.container {
+
+
+	.footer>.container {
 	    max-width: 1140px;
 	}
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
 }
 
 .landing-page-background {
