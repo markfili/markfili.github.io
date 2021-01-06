@@ -1,7 +1,6 @@
 html {
     position: relative;
     min-height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -17,6 +16,9 @@ body {
 
 
 @media (min-width: 576px) { 
+    html {
+        overflow: hidden;
+    }
     body {
         padding-top: 4em;
         background-image: url('../../assets/images/home_background.jpg');
