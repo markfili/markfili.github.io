@@ -10,8 +10,8 @@ body {
 }
 
 .img-footer {
-    max-height: 150px;
-    height: 150px;
+    height: 70px;
+    width: 50px;
 }
 
 
@@ -30,11 +30,6 @@ body {
 	.footer {
 	    position: absolute !important;
 	}
-	
-    .img-footer {
-        height: 90px;
-        max-height: 90px;
-    }
 }
 
 @media (min-width: 1200px) {
