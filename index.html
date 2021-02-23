@@ -3,266 +3,114 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf8_general_ci">
     
-
-
-<script src="./Geodetski planinarski portal_files/leaflet.js" type="text/javascript"></script><script data-dapp-detection="">!function(){let e=!1;function n(){if(!e){const n=document.createElement("meta");n.name="dapp-detected",document.head.appendChild(n),e=!0}}if(window.hasOwnProperty("ethereum")){if(window.__disableDappDetectionInsertion=!0,void 0===window.ethereum)return;n()}else{var t=window.ethereum;Object.defineProperty(window,"ethereum",{configurable:!0,enumerable:!1,set:function(e){window.__disableDappDetectionInsertion||n(),t=e},get:function(){if(!window.__disableDappDetectionInsertion){const e=arguments.callee;e&&e.caller&&e.caller.toString&&-1!==e.caller.toString().indexOf("getOwnPropertyNames")||n()}return t}})}}();</script>
-
-
-
-<script src="./Geodetski planinarski portal_files/leaflet.extras.js" type="text/javascript"></script>
-<script type="text/javascript">
+    <script src="./Geodetski planinarski portal_files/leaflet.js" type="text/javascript"></script><script data-dapp-detection="">!function(){let e=!1;function n(){if(!e){const n=document.createElement("meta");n.name="dapp-detected",document.head.appendChild(n),e=!0}}if(window.hasOwnProperty("ethereum")){if(window.__disableDappDetectionInsertion=!0,void 0===window.ethereum)return;n()}else{var t=window.ethereum;Object.defineProperty(window,"ethereum",{configurable:!0,enumerable:!1,set:function(e){window.__disableDappDetectionInsertion||n(),t=e},get:function(){if(!window.__disableDappDetectionInsertion){const e=arguments.callee;e&&e.caller&&e.caller.toString&&-1!==e.caller.toString().indexOf("getOwnPropertyNames")||n()}return t}})}}();</script>
+    <script src="./Geodetski planinarski portal_files/leaflet.extras.js" type="text/javascript"></script>
+    <script type="text/javascript">
     
     L.Control.ResetView.TITLE = "Reset view";
     L.Control.ResetView.ICON = "url(/static/leaflet/images/reset-view.png)";
     
-</script>
-
+    </script>
     
-<link rel="stylesheet" href="./Geodetski planinarski portal_files/leaflet.css">
-<!--[if lte IE 8]>
+    <link rel="stylesheet" href="./Geodetski planinarski portal_files/leaflet.css">
+    <!--[if lte IE 8]>
     <link rel="stylesheet" href="/static/leaflet/leaflet.ie.css" />
-<![endif]-->
-<style>.leaflet-container-default {min-height: 300px;}</style>
-
-
+    <![endif]-->
+    <style>.leaflet-container-default {min-height: 300px;}</style>
     <title>Geodetski planinarski portal</title>
-
-
-
-<link rel="stylesheet" href="./Geodetski planinarski portal_files/bootstrap.min.css">
-<script src="./Geodetski planinarski portal_files/jquery-3.2.1.min.js"></script>
-<script src="./Geodetski planinarski portal_files/bootstrap.min.js"></script>
-
-<style>
-
-
-
-    body{
-        margin-right: 0px;
-        font-family: calibri;
-    }
-
-    .navbar{
-        border-radius: 0;
-        border-bottom-width: 0px;
-        border-bottom-color: darkred;
-        background-color: #F1F1F3;
-        margin: 0px;
-        padding: 0px;
-        border-bottom: 1px solid #E2E0E0;
-    }
-
-
-    #cadaver {
-        background-color: white;
-
-         /* border-top: 1px solid #aa0000; */
-        /*border-bottom: 1px solid #aa0000; */
-
-
-        margin-right: 0px
-    }
-
-
-    #centar {
-        background-color: white;
-
-
-
-        padding: 10px
-    }
-
-    .row {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display:         flex;
-        flex-wrap: wrap;
-    }
-
-    .row > [class*='col-'] {
-        display: flex;
-        flex-direction: column;
-    }
-
-    #rightbar {
-        padding: 0px;
-        margin: 0px;
-    }
-
-    html,body
-    {
-        width: 100%;
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-        overflow-x: hidden; 
-    }
-
-    .btn-danger {
-        background-color: #ffffff !important;
-        border-color: #aa0000 !important;
-        color: #aa0000 !important;
-    }
-
-    .btn-danger:hover {
-        background-color: #aa0000 !important;
-        border-color: #aa0000 !important;
-        color: #ffffff !important;
-    }
-
-
-
-</style>
-
-
-
-<link rel="apple-touch-icon" sizes="57x57" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="https://geopp.planinarski-portal.org/media/favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://geopp.planinarski-portal.org/media/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="https://geopp.planinarski-portal.org/media/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://geopp.planinarski-portal.org/media/favicon/favicon-16x16.png">
-<link rel="manifest" href="https://geopp.planinarski-portal.org/media/favicon/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/media/favicon/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
-
-
-
-
-
-
+    <link rel="stylesheet" href="./Geodetski planinarski portal_files/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="./Geodetski planinarski portal_files/jquery-3.2.1.min.js"></script>
+    <script src="./Geodetski planinarski portal_files/bootstrap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://geopp.planinarski-portal.org/media/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://geopp.planinarski-portal.org/media/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://geopp.planinarski-portal.org/media/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://geopp.planinarski-portal.org/media/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://geopp.planinarski-portal.org/media/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/media/favicon/ms-icon-144x144.png">
 </head>
-
 <body>
-
     <div id="cadaver">
-
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="container">
-
                     <div class="navbar-header visible-sm visible-xs">
-
                         <a href="https://geopp.planinarski-portal.org/" style="color: #aa0000; text-decoration: none;">
                             <h2 style="margin-bottom: 4px"><b>GEODETSKI PLANINARSKI PORTAL</b></h2>
                             <h4 style="margin-top: 5px; margin-bottom: 15px">TRIGONOMETRIJSKE TOČKE I. REDA U HRVATSKOJ</h4>
                         </a>
-                
+                        
                         <ul class="nav navbar-nav navbar-right" style="padding:12px">
-
-
-
                             <a href="https://geopp.planinarski-portal.org/" style="text-decoration: none; margin-right: 20px;">
                                 <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; POČETNA</span>
                             </a>
-            
-    
-    
-    
-    
-                                <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
-                                    <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;TEMATSKA PODRUČJA
-                                        <span class="caret"></span>
-                                    </span>
-                                        <ul class="dropdown-menu" style="z-index: 10000; background-color: #F1F1F3">
-                                            <li><a href="https://geopp.planinarski-portal.org/kt-gpo/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske točke</span></a></li>
-                                            <li><a href="https://geopp.planinarski-portal.org/karta/"><span style="font-size:1.2em; color:#aa0000">Karta</span></a></li>
-                                            <hr class="hidden-xs">
-                                            <li><a href="https://geopp.planinarski-portal.org/trigonometrijske-izmjere/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske izmjere</span></a></li>
-                                            <li><a href="https://geopp.planinarski-portal.org/geodezija/"><span style="font-size:1.2em; color:#aa0000">Geodezija</span></a></li>
-                                            <li><a href="https://geopp.planinarski-portal.org/rjecnik/"><span style="font-size:1.2em; color:#aa0000">Tematski rječnik</span></a></li>
-                                            <hr class="hidden-xs">
-                                            <li><a href="https://geopp.planinarski-portal.org/info/"><span style="font-size:1.2em; color:#aa0000">O portalu / Zahvale</span></a></li>
-                                            <hr class="hidden-xs">
-                                            <li><a href="https://gpo-dnevnik.planinarski-portal.org/" target="_blank"><span style="font-size:1.2em; color:#aa0000">e-Dnevnik GPO</span></a></li>
-                                            <!--<li><a href="/zahvale/"><span style="font-size:1.2em; color:#aa0000">Zahvale</span></a></li>-->
-                                        </ul>
-                                </span>
-                
-    
-    
-                                <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
-                                    <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp; 
-                                        KORISNIČKA PODRŠKA
-                                        <span class="caret"></span>
-                                    </span>
-                                        <ul class="dropdown-menu" style="z-index: 10000; background-color: #F1F1F3">
-                                            <li><a><span style="font-size:1.2em; color:#aa0000">Brzi vodič</span></a></li>
-                                            <li><a><span style="font-size:1.2em; color:#aa0000">Pitanja i odgovori</span></a></li>
-                                        </ul>
-                                </span>
-    
-
-
-
-
-                    <!--
-                        <a href="/kt-gpo/" style="text-decoration: none; margin-right: 20px;">
-                            <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-record" aria-hidden="true"></span> <b>Trig. točke</b></span>
-                        </a>
-
-                        <a href="/karta/" style="text-decoration: none; margin-right: 20px;">
-                            <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp; <b>Karta</b></span>
-                        </a>
-
-                        <span class="dropdown">
-                            <span style="color:#aa0000; font-size:1.2em; cursor:pointer; margin-right: 20px" type="button" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp; <b>Info</b>
-                                <span class="caret"></span>
-                            </span>
-                            <ul class="dropdown-menu" style="z-index: 10000; background-color: #dfdfdf">
-                                <li><a href="/geodezija/"><span style="font-size:1.2em; color:#aa0000">Geodezija</span></a></li>
-                                <li><a href="/trigonometrijske-izmjere/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske izmjere</span></a></li>
-                                <li><a href="/rjecnik/"><span style="font-size:1.2em; color:#aa0000">Tematski rječnik i skraćenice</span></a></li>
-                                <hr class="hidden-xs">
-                                <li><a href="/info/"><span style="font-size:1.2em; color:#aa0000">O portalu / Zahvale</span></a></li>
-                                <li><a href="/zahvale/"><span style="font-size:1.2em; color:#aa0000">Zahvale</span></a></li>
-                            </ul>
-                        </span>
-
-                        <a href="https://gpo-dnevnik.planinarski-portal.org/" style="text-decoration: none; margin-right: 20px; margin-left: -15px" target="_blank" class="hidden-xs">
-                            <span style="color:#aa0000; font-size:1.2em;">&nbsp;&nbsp;&nbsp; <b>e-Dnevnik GPO</b></span>
-                        </a>-->
-
-                <br><br>
-            <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/registracija/" class="btn btn-danger" style="margin-top: -8px; margin-left: 15px"><span style="font-size:1.2em;">Registracija</span></a></div></li>
-            <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/prijava/" class="btn btn-danger" style="margin-top: -8px; margin-left: 30px"><span style="font-size:1.2em;">Prijava</span></a></div></li>
-            
-                </ul>
-                       
-
-                </div>
-
-
-                                <div class="navbar-header visible-lg visible-md">
-                	<div class="collapse navbar-collapse navHeaderCollapse" style="float: right; padding-top: 15px">
-                <ul class="nav navbar-nav navbar-right" style="padding-left: 10px; padding-top: 20px">
-
-
-                        <a href="https://geopp.planinarski-portal.org/" style="text-decoration: none; margin-right: 20px;">
-                            <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; POČETNA</span>
-                        </a>
-        
-
-
-
-
+                            
+                            
+                            
+                            
+                            
                             <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
                                 <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;TEMATSKA PODRUČJA
                                     <span class="caret"></span>
                                 </span>
+                                <ul class="dropdown-menu" style="z-index: 10000; background-color: #F1F1F3">
+                                    <li><a href="https://geopp.planinarski-portal.org/kt-gpo/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske točke</span></a></li>
+                                    <li><a href="https://geopp.planinarski-portal.org/karta/"><span style="font-size:1.2em; color:#aa0000">Karta</span></a></li>
+                                    <hr class="hidden-xs">
+                                    <li><a href="https://geopp.planinarski-portal.org/trigonometrijske-izmjere/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske izmjere</span></a></li>
+                                    <li><a href="https://geopp.planinarski-portal.org/geodezija/"><span style="font-size:1.2em; color:#aa0000">Geodezija</span></a></li>
+                                    <li><a href="https://geopp.planinarski-portal.org/rjecnik/"><span style="font-size:1.2em; color:#aa0000">Tematski rječnik</span></a></li>
+                                    <hr class="hidden-xs">
+                                    <li><a href="https://geopp.planinarski-portal.org/info/"><span style="font-size:1.2em; color:#aa0000">O portalu / Zahvale</span></a></li>
+                                    <hr class="hidden-xs">
+                                    <li><a href="https://gpo-dnevnik.planinarski-portal.org/" target="_blank"><span style="font-size:1.2em; color:#aa0000">e-Dnevnik GPO</span></a></li>
+                                    <!--<li><a href="/zahvale/"><span style="font-size:1.2em; color:#aa0000">Zahvale</span></a></li>-->
+                                </ul>
+                            </span>
+                            
+                            
+                            
+                            <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
+                                <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+                                    KORISNIČKA PODRŠKA
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" style="z-index: 10000; background-color: #F1F1F3">
+                                    <li><a><span style="font-size:1.2em; color:#aa0000">Brzi vodič</span></a></li>
+                                    <li><a><span style="font-size:1.2em; color:#aa0000">Pitanja i odgovori</span></a></li>
+                                </ul>
+                            </span>
+                            
+                            <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/registracija/" class="btn btn-danger" style="margin-top: -8px; margin-left: 15px"><span style="font-size:1.2em;">Registracija</span></a></div></li>
+                            <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/prijava/" class="btn btn-danger" style="margin-top: -8px; margin-left: 30px"><span style="font-size:1.2em;">Prijava</span></a></div></li>
+                            
+                        </ul>
+                        
+                    </div>
+                    <div class="navbar-header visible-lg visible-md">
+                        <div class="collapse navbar-collapse navHeaderCollapse" style="float: right; padding-top: 15px">
+                            <ul class="nav navbar-nav navbar-right" style="padding-left: 10px; padding-top: 20px">
+                                <a href="https://geopp.planinarski-portal.org/" style="text-decoration: none; margin-right: 20px;">
+                                    <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; POČETNA</span>
+                                </a>
+                                
+                                <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
+                                    <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;TEMATSKA PODRUČJA
+                                        <span class="caret"></span>
+                                    </span>
                                     <ul class="dropdown-menu" style="z-index: 10000; background-color: #E8E8E8">
                                         <li><a href="https://geopp.planinarski-portal.org/kt-gpo/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske točke</span></a></li>
                                         <li><a href="https://geopp.planinarski-portal.org/karta/"><span style="font-size:1.2em; color:#aa0000">Karta</span></a></li>
@@ -276,264 +124,162 @@
                                         <li><a href="https://gpo-dnevnik.planinarski-portal.org/" target="_blank"><span style="font-size:1.2em; color:#aa0000">e-Dnevnik GPO</span></a></li>
                                         <!--<li><a href="/zahvale/"><span style="font-size:1.2em; color:#aa0000">Zahvale</span></a></li>-->
                                     </ul>
-                            </span>
-            
-
-
-                            <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
-                                <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp; 
-                                    KORISNIČKA PODRŠKA
-                                    <span class="caret"></span>
                                 </span>
+                                
+                                <span class="dropdown" style="text-decoration: none; margin-right: 20px;">
+                                    <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+                                        KORISNIČKA PODRŠKA
+                                        <span class="caret"></span>
+                                    </span>
                                     <ul class="dropdown-menu" style="z-index: 10000; background-color: #E8E8E8">
                                         <li><a href="https://geopp.planinarski-portal.org/vodic/"><span style="font-size:1.2em; color:#aa0000">Brzi vodič</span></a></li>
                                         <li><a href="https://geopp.planinarski-portal.org/pitanja/"><span style="font-size:1.2em; color:#aa0000">Pitanja i odgovori</span></a></li>
                                     </ul>
-                            </span>
-
-
-
-
-
-<!--
-                    
-                    <a href="/kt-gpo/" style="text-decoration: none; margin-right: 20px;">
-                        <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-record" aria-hidden="true"></span> <b>Trig. točke</b></span>
-                    </a>
-                
-                    <a href="/karta/" style="text-decoration: none; margin-right: 20px;">
-                        <span style="color:#aa0000; font-size:1.2em;"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp; <b>Karta</b></span>
-                    </a>
--->
- <!--                   <span class="dropdown">
-                        <span style="color:#aa0000; font-size:1.2em; cursor:pointer;" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp; <b>Info</b>
-                            <span class="caret"></span></span>
-                        <ul class="dropdown-menu" style="z-index: 10000; background-color: #dfdfdf">
-                            <li><a href="/geodezija/"><span style="font-size:1.2em; color:#aa0000">Geodezija</span></a></li>
-                            <li><a href="/trigonometrijske-izmjere/"><span style="font-size:1.2em; color:#aa0000">Trigonometrijske izmjere</span></a></li>
-                            <li><a href="/rjecnik/"><span style="font-size:1.2em; color:#aa0000">Tematski rječnik i skraćenice</span></a></li>
-                            <hr class="hidden-xs">
-                            <li><a href="/info/"><span style="font-size:1.2em; color:#aa0000">O portalu / Zahvale</span></a></li>
-                            <li><a href="/zahvale/"><span style="font-size:1.2em; color:#aa0000">Zahvale</span></a></li>
-                        </ul>
-                    </span>
-                    <a href="https://gpo-dnevnik.planinarski-portal.org/" style="text-decoration: none; margin-right: 20px;" target="_blank" class="hidden-xs hidden-sm hidden-md">
-                        <span style="color:#aa0000; font-size:1.2em; margin-left: 5px; margin-right: -10px">&nbsp;&nbsp;&nbsp; <b>e-Dnevnik GPO</b></span>
-                    </a>-->
-
-                
-                    <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/registracija/" class="btn btn-danger" style="margin-top: -8px; margin-left: 15px"><span style="font-size:1.2em;">Registracija</span></a></div></li>
-                    <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/prijava/" class="btn btn-danger" style="margin-top: -8px; margin-left: 30px"><span style="font-size:1.2em;">Prijava</span></a></div></li>
-           
-                
-
-
-
-            
-
-                </ul>
-
-
-                
-            </div><table><tbody><tr>
-            		<td align="left" width="50%">
-
-                    <a href="https://geopp.planinarski-portal.org/" style="color: #aa0000; text-decoration: none;"><h3 style="margin-bottom: 4px"><b>GEODETSKI PLANINARSKI PORTAL</b></h3>
-                    
-
-                    <h4 style="margin-top: 0px; margin-bottom: 22px">TRIGONOMETRIJSKE TOČKE I. REDA U HRVATSKOJ</h4></a></td>
-
-
-                        
-
-        </tr>
-
-
-    </tbody></table>
-
-
-
-</div>
-
-
-
-
-
-
+                                </span>
+                                <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/registracija/" class="btn btn-danger" style="margin-top: -8px; margin-left: 15px"><span style="font-size:1.2em;">Registracija</span></a></div></li>
+                                <li style="float:right"><div><a href="https://geopp.planinarski-portal.org/prijava/" class="btn btn-danger" style="margin-top: -8px; margin-left: 30px"><span style="font-size:1.2em;">Prijava</span></a></div></li>
+                            </ul>
+                        </div><table><tbody><tr>
+                        <td align="left" width="50%">
+                            <a href="https://geopp.planinarski-portal.org/" style="color: #aa0000; text-decoration: none;"><h3 style="margin-bottom: 4px"><b>GEODETSKI PLANINARSKI PORTAL</b></h3>
+                                
+                            <h4 style="margin-top: 0px; margin-bottom: 22px">TRIGONOMETRIJSKE TOČKE I. REDA U HRVATSKOJ</h4></a></td>
+                            
+                        </tr>
+                    </tbody></table>
+                </div>
             </div>
         </div>
     </nav>
-
-
     <div class="container" id="centar">
         
         
-
-<style>
-    #centar.container
-    {
+        <style>
+        #centar.container
+        {
         margin: 0px;
         width: 100%;
         padding: 0px;
-    }
-</style>
-
-
-
-<!--<div id="myCarousel" class="carousel slide" data-interval="10000" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="item active"><center>
-            <img src="/media/mozaici/KOLAZ1.jpg" alt="Los Angeles"></center>
-        </div>
-  
-        <div class="item"><center>
-            <img src="/media/mozaici/KOLAZ2.jpg" alt="Chicago"></center>
-        </div>
-  
-        <div class="item"><center>
-            <img src="/media/mozaici/KOLAZ3.jpg" alt="New York"></center>
-        </div>
-
-        <div class="item"><center>
-            <img src="/media/mozaici/KOLAZ4.jpg" alt="New York"></center>
-        </div>
-
-        <div class="item"><center>
-            <img src="/media/mozaici/KOLAZ5.jpg" alt="New York"></center>
-        </div>
-    </div>
-</div>-->
-
-
-
-<div class="container" style="margin-top:10px; margin-bottom:10px">
-<div class="row">
-    
-        <div class="col-sm-3 hidden-xs hidden-sm">
-            
-                <div class="well well-sm" style="background-color: white; margin-bottom: 0px; margin-top: 45px; border: 0">
-                    <img src="./Geodetski planinarski portal_files/piramida_drvena.jpg" width="100%" align="right">
+        }
+        </style>
+        <!--<div id="myCarousel" class="carousel slide" data-interval="10000" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active"><center>
+                    <img src="/media/mozaici/KOLAZ1.jpg" alt="Los Angeles"></center>
                 </div>
-            
-        </div>
-
-
-       <!--<div class="col-sm-6 hidden-xs hidden-sm"> ilustracija hrvatske iskljucena za pam tel 23 2 21 -->
-    
-        <div class="col-sm-6">
-            <a href="https://geopp.planinarski-portal.org/karta/">
-                <div class="well well-sm" style="background-color: white; margin-bottom: 0px">
-                    <img src="./Geodetski planinarski portal_files/hrvatska.png" alt="karta" width="100%" align="middle">
+                
+                <div class="item"><center>
+                    <img src="/media/mozaici/KOLAZ2.jpg" alt="Chicago"></center>
                 </div>
-            </a>
-        </div>
-
-
-
-
- <div class="col-sm-3 hidden-xs hidden-sm">
-            
-                <div class="well well-sm" style="background-color: white; margin-bottom: 0px; margin-top: 45px; border: 0">
-                    <img src="./Geodetski planinarski portal_files/piramida_zidana.jpg" width="100%" align="left">
+                
+                <div class="item"><center>
+                    <img src="/media/mozaici/KOLAZ3.jpg" alt="New York"></center>
                 </div>
-            
-        </div>
-
-
-  <!--  
-        <div class="col-lg-3 col-md-3 col-sm-6 hidden-xs" style="margin-top:0px; margin-bottom:0px">
-            <img src="/media/images/trig_izmjere.jpg" width="85%"  style="border: 1px solid #e3e3e3;">
-
-
-
-
-
-            <div id="myCarousel" class="carousel slide hidden-xs" data-interval="10000" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
+                <div class="item"><center>
+                    <img src="/media/mozaici/KOLAZ4.jpg" alt="New York"></center>
+                </div>
+                <div class="item"><center>
+                    <img src="/media/mozaici/KOLAZ5.jpg" alt="New York"></center>
+                </div>
+            </div>
+        </div>-->
+        <div class="container" style="margin-top:10px; margin-bottom:10px">
+            <div class="row">
+                
+                <div class="col-sm-3 hidden-xs hidden-sm">
+                    
+                    <div class="well well-sm" style="background-color: white; margin-bottom: 0px; margin-top: 45px; border: 0">
+                        <img src="./Geodetski planinarski portal_files/piramida_drvena.jpg" width="100%" align="right">
+                    </div>
+                    
+                </div>
+                <!--<div class="col-sm-6 hidden-xs hidden-sm"> ilustracija hrvatske iskljucena za pam tel 23 2 21 -->
+                
+                <div class="col-sm-6">
+                    <a href="https://geopp.planinarski-portal.org/karta/">
+                        <div class="well well-sm" style="background-color: white; margin-bottom: 0px">
+                            <img src="./Geodetski planinarski portal_files/hrvatska.png" alt="karta" width="100%" align="middle">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3 hidden-xs hidden-sm">
+                    
+                    <div class="well well-sm" style="background-color: white; margin-bottom: 0px; margin-top: 45px; border: 0">
+                        <img src="./Geodetski planinarski portal_files/piramida_zidana.jpg" width="100%" align="left">
+                    </div>
+                    
+                </div>
+                <!--
+                <div class="col-lg-3 col-md-3 col-sm-6 hidden-xs" style="margin-top:0px; margin-bottom:0px">
+                    <img src="/media/images/trig_izmjere.jpg" width="85%"  style="border: 1px solid #e3e3e3;">
+                    <div id="myCarousel" class="carousel slide hidden-xs" data-interval="10000" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
                                 <a href="/trigonometrijske-izmjere/" style="color: #aa0000"><h4 style="text-align: center; color: #aa0000"><b>Državna izmjera</b></h4></a>
                                 <p>
-                                        Geodetska izmjera kojoj je svrha određivanje elemenata za izradu suvremenog geo-informacijskog sustava države za cjelinu njezina teritorija do pojedine katastarske čestice i objekata na njoj. Poslovi državne izmjere obuhvaćaju 
-                                        osnovne geodetske radove, topografsku izmjeru i izradu državnih karata, izmjeru i označivanje državne granice na kopnu.<!--<br><br>
-                                        <i>(Frančula, Lapaine:<br> Geodetsko-geoinformatički rječnik)</i>
-                                        <a href="/geodezija/" style="color: #aa0000">(više...)</a>
+                                    Geodetska izmjera kojoj je svrha određivanje elemenata za izradu suvremenog geo-informacijskog sustava države za cjelinu njezina teritorija do pojedine katastarske čestice i objekata na njoj. Poslovi državne izmjere obuhvaćaju
+                                    osnovne geodetske radove, topografsku izmjeru i izradu državnih karata, izmjeru i označivanje državne granice na kopnu.<!--<br><br>
+                                    <i>(Frančula, Lapaine:<br> Geodetsko-geoinformatički rječnik)</i>
+                                    <a href="/geodezija/" style="color: #aa0000">(više...)</a>
                                 </p>
-                        </div>
-                  
-                        <div class="item">
+                            </div>
+                            
+                            <div class="item">
                                 <a href="/trigonometrijske-izmjere/" style="color: #aa0000"><h4 style="text-align: center; color: #aa0000"><b>Topografska izmjera</b></h4></a>
                                 <p>
-                                        Geodetska izmjera topografskih objekata, koji se mogu pridružiti nekoj objektnoj cjelini (naselja, prometnice, vode, vegetacija, reljef i područja, prostorno ih geometrijski jednoznačno odrediti, atributima kvantitativno i 
-                                        kvalitativno pobliže opisati i imenovati. Svrha je te izmjere izrada topografskih karata i baza podataka. 
-                                        <!--<br><br>
-                                        <i>(Frančula, Lapaine:<br> Geodetsko-geoinformatički rječnik)</i>
-                                        <a href="/geodezija/" style="color: #aa0000">(više...)</a>
+                                    Geodetska izmjera topografskih objekata, koji se mogu pridružiti nekoj objektnoj cjelini (naselja, prometnice, vode, vegetacija, reljef i područja, prostorno ih geometrijski jednoznačno odrediti, atributima kvantitativno i
+                                    kvalitativno pobliže opisati i imenovati. Svrha je te izmjere izrada topografskih karata i baza podataka.
+                                    <!--<br><br>
+                                    <i>(Frančula, Lapaine:<br> Geodetsko-geoinformatički rječnik)</i>
+                                    <a href="/geodezija/" style="color: #aa0000">(više...)</a>
                                 </p>
-                        </div>
-
-                        <div class="item">
+                            </div>
+                            <div class="item">
                                 <a href="/trigonometrijske-izmjere/" style="color: #aa0000"><h4 style="text-align: center; color: #aa0000"><b>Trigonometrijska (triangulacijska) izmjera</b></h4></a>
                                 <p>
-                                        Mjerenje kutova u mreži međusobno povezanih trokuta i određivanje računom duljina izabranih stranica ili osnovica radi određivanja položaja točaka u mreži.<!--<br><br>
-                                        <i>(Frančula, Lapaine:<br> Geodetsko-geoinformatički rječnik)</i>
-                                        <a href="/geodezija/" style="color: #aa0000">(više...)</a>
+                                    Mjerenje kutova u mreži međusobno povezanih trokuta i određivanje računom duljina izabranih stranica ili osnovica radi određivanja položaja točaka u mreži.<!--<br><br>
+                                    <i>(Frančula, Lapaine:<br> Geodetsko-geoinformatički rječnik)</i>
+                                    <a href="/geodezija/" style="color: #aa0000">(više...)</a>
                                 </p>
+                            </div>
                         </div>
-
-
-
                     </div>
                 </div>
-
-        </div>    
-  -->      
-    </div>
-</div>
-
-
-
-
-
+                -->
+            </div>
+        </div>
         
     </div>
-
-
     <footer class="container-fluid" style="background-color: #F1F1F3; border-top: 0px solid #aa0000; padding: 10px; font-size: 13px">
-
         <!--<div class="container">
             <div class="row">
-
                 <div class="col-sm-3">
-                        <h4>Naši partneri</h4>
-                        <a href="https://www.dgu.hr" target="_blank"><img alt="image-link" height="60" src="https://gpo-dnevnik.planinarski-portal.org/static/images/logo-dgu.png" /></a>
+                    <h4>Naši partneri</h4>
+                    <a href="https://www.dgu.hr" target="_blank"><img alt="image-link" height="60" src="https://gpo-dnevnik.planinarski-portal.org/static/images/logo-dgu.png" /></a>
                 </div>
-
                 <div class="col-sm-6">
                     <h4>Korisni linkovi</h4>
                     <div class="row">
-                            <div class="col-sm-2">
-                                <a href="https://www.gss.hr/" target="_blank"><img alt="image-link" width="63" src="https://gpo-dnevnik.planinarski-portal.org/static/images/hgss.svg" /></a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="https://www.hps.hr/" target="_blank"><img alt="image-link" width="40" style="margin-left: 15px" src="https://gpo-dnevnik.planinarski-portal.org/static/images/hps.svg" /></a>
-                            </div>
-                            <!--<div class="col-sm-3">
-                               <a href="https://hpo.hps.hr/" target="_blank"><img alt="image-link" width="121" style="margin-left: 15px; margin-top: -5px" src="https://gpo-dnevnik.planinarski-portal.org/static/images/dnevnik_hpo.svg" /></a>
-                            </div>
-                            <div class="col-sm-5">
-                                <a href="https://hpk.planinarski-portal.org/" target="_blank"><img alt="image-link" width="128" style="margin-left: 15px; margin-top: -4px" src="https://gpo-dnevnik.planinarski-portal.org/static/images/dnevnik_hpk.svg" /></a>
-                            </div>
+                        <div class="col-sm-2">
+                            <a href="https://www.gss.hr/" target="_blank"><img alt="image-link" width="63" src="https://gpo-dnevnik.planinarski-portal.org/static/images/hgss.svg" /></a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="https://www.hps.hr/" target="_blank"><img alt="image-link" width="40" style="margin-left: 15px" src="https://gpo-dnevnik.planinarski-portal.org/static/images/hps.svg" /></a>
+                        </div>
+                        <!--<div class="col-sm-3">
+                            <a href="https://hpo.hps.hr/" target="_blank"><img alt="image-link" width="121" style="margin-left: 15px; margin-top: -5px" src="https://gpo-dnevnik.planinarski-portal.org/static/images/dnevnik_hpo.svg" /></a>
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="https://hpk.planinarski-portal.org/" target="_blank"><img alt="image-link" width="128" style="margin-left: 15px; margin-top: -4px" src="https://gpo-dnevnik.planinarski-portal.org/static/images/dnevnik_hpk.svg" /></a>
+                        </div>
                     </div>
                 </div>
-
                 <div class="col-sm-3">
                     <h4>Kontakt</h4>
                     <div class="row">
                         <div class="col-sm-4">
                             <img alt="image-link" height="60" style="margin-top: -5px;" src="https://gpo-dnevnik.planinarski-portal.org/static/images/LOGO_100.png"/>
-
-
                         </div>
                         <div class="col-sm-8"><div style="margin-top: -15px;">
                             <a href="https://www.geof.unizg.hr/" target="_blank" style="color:black;">Geodetski fakultet<br>Kačićeva 26, Zagreb</a><br>
@@ -542,138 +288,98 @@
                         </div>
                     </div>
                 </div>
-            </div>               
+            </div>
         </div>-->
-
-
-      <div class="container">
-        <div class="row">
-
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-              
-          <div class="row visible-lg">
-
-
-
-
-<h4 style="color:#aa0000;">&nbsp;&nbsp;&nbsp;&nbsp;Partneri</h4>
-
-<div class="col-sm-3 visible-lg">
-
-              
-              <a href="https://dgu.gov.hr/" target="_blank"><img alt="image-link" height="48" src="./Geodetski planinarski portal_files/logo_dgu.png"></a>              
-              </div>
-
-<div class="col-sm-3 visible-lg">
-    
-                        
+                    <div class="row visible-lg">
+                        <h4 style="color:#aa0000;">&nbsp;&nbsp;&nbsp;&nbsp;Partneri</h4>
+                        <div class="col-sm-3 visible-lg">
+                            
+                            <a href="https://dgu.gov.hr/" target="_blank"><img alt="image-link" height="48" src="./Geodetski planinarski portal_files/logo_dgu.png"></a>
+                        </div>
+                        <div class="col-sm-3 visible-lg">
+                            
+                            
                             <a href="https://www.hgd1952.hr/" target="_blank"><img alt="image-link" height="48" style="margin-left:20px;" src="./Geodetski planinarski portal_files/logo_hgd.png"></a>
                         </div>
-
-
-                                                      
-              </div>
-
-
-
-          <div class="row visible-sm visible-xs visible-md">
-          <h4 style="color:#aa0000;">&nbsp;&nbsp;&nbsp;Partneri</h4>
-              <div class="col-lg-3">
-              <div style="margin-top:0px">
-               <a style="color:#aa0000;" href="https://dgu.gov.hr/" target="_blank">DGU</a><br>
-               <a style="color:#aa0000;" href="https://www.hgd1952.hr/" target="_blank">HGD</a>
+                        
+                    </div>
+                    <div class="row visible-sm visible-xs visible-md">
+                        <h4 style="color:#aa0000;">&nbsp;&nbsp;&nbsp;Partneri</h4>
+                        <div class="col-lg-3">
+                            <div style="margin-top:0px">
+                                <a style="color:#aa0000;" href="https://dgu.gov.hr/" target="_blank">DGU</a><br>
+                                <a style="color:#aa0000;" href="https://www.hgd1952.hr/" target="_blank">HGD</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-                </div>
-                </div>
-
-
-          <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4">
-           
-          <div class="row hidden-xs hidden-sm hidden-md">
-          
-          <h4 style="color:#aa0000;">Suradnici</h4>
-         
-          
-   
-
-                    <div class="row" style="margin-top: 40px">
+                <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4">
+                    
+                    <div class="row hidden-xs hidden-sm hidden-md">
+                        
+                        <h4 style="color:#aa0000;">Suradnici</h4>
+                        
+                        
+                        
+                        <div class="row" style="margin-top: 40px">
                             
-
                             <div class="col-sm-4">
                                 <a href="https://www.garmin.com/hr-HR/" target="_blank"><img alt="image-link" width="110" style="margin-left: -40px;" src="./Geodetski planinarski portal_files/garmin.png"></a>
                             </div>
                             
-                       <!-- <div class="col-sm-5">
+                            <!-- <div class="col-sm-5">
                                 <a href="https://hpk.planinarski-portal.org/" target="_blank"><img alt="image-link" width="128" style="margin-left: 20px; margin-top: -4px" src="/static/images/dnevnik_hpk.svg" /></a>
                             </div>  -->
                             
-
+                        </div>
                     </div>
-
-
-
-
-          </div>
-          
-
-
-            <div class="col-lg-10">
-            <div style="margin-top:0px;" class="row visible-md">
-            <h4 style="color:#aa0000;">Suradnici</h4>               
-              
-
-
-
-              <a style="color:#aa0000;" href="https://www.garmin.com/hr-HR/" target="_blank">Garmin</a><br>
-                                          
-            </div>
-          </div>
-          <div class="row col-lg-10">
-            <div class="visible-sm visible-xs">
-            <h4 style="color:#aa0000;">Suradnici</h4>
-              <a style="color:#aa0000;" href="https://www.garmin.com/hr-HR/" target="_blank">Garmin</a><br>
-              
-            </div>
-          </div>
-
-            <br>
-          </div>
+                    
+                    <div class="col-lg-10">
+                        <div style="margin-top:0px;" class="row visible-md">
+                            <h4 style="color:#aa0000;">Suradnici</h4>
+                            
+                            <a style="color:#aa0000;" href="https://www.garmin.com/hr-HR/" target="_blank">Garmin</a><br>
+                            
+                        </div>
+                    </div>
+                    <div class="row col-lg-10">
+                        <div class="visible-sm visible-xs">
+                            <h4 style="color:#aa0000;">Suradnici</h4>
+                            <a style="color:#aa0000;" href="https://www.garmin.com/hr-HR/" target="_blank">Garmin</a><br>
+                            
+                        </div>
+                    </div>
+                    <br>
+                </div>
                 <div class="col-sm-3">
                     <h4 style="color:#aa0000;">Kontakt</h4>
                     <div class="row">
                         <div class="col-sm-4 visible-lg">
                             <img alt="image-link" height="60" style="margin-top: -5px;" src="./Geodetski planinarski portal_files/gfaks.png">
-
-
                         </div>
                         <div class="col-sm-8 visible-lg"><div style="margin-top: -15px;">
                             <a href="https://www.geof.unizg.hr/" target="_blank" style="color:black;">Geodetski fakultet<br>Kačićeva 26, Zagreb</a><br>
                             tel.: +385 1 4639 350<br>
                             e-pošta: <a href="mailto:dragspoljaric@gmail.com" style="color: #aa0000;">GeoPP</a></div>
                         </div>
-
-                        <div class="hidden-lg" style="margin-left: 15px;&gt; 
-              &lt;a href=" https:="" www.geof.unizg.hr="" "="">Geodetski fakultet<br>Kačićeva 26, Zagreb<br>
-                   tel.: +385 1 4639 350<br>
-                   e-pošta: <a href="mailto:dragspoljaric@gmail.com" style="color: #aa0000;">GeoPP</a>
-
-              </div>
+                        <div class="hidden-lg" style="margin-left: 15px;&gt;
+                            &lt;a href=" https:="" www.geof.unizg.hr="" "="">Geodetski fakultet<br>Kačićeva 26, Zagreb<br>
+                            tel.: +385 1 4639 350<br>
+                            e-pošta: <a href="mailto:dragspoljaric@gmail.com" style="color: #aa0000;">GeoPP</a>
+                        </div>
                     </div><br>
                 </div>
-
-                         
-          </div>
+                
+            </div>
         </div>
-      </footer></div>
+    </footer></div>
     
-
-
-   <!-- <footer class="container-fluid text-center" style="background-color: #cccccc; font-size:1.0em">
+    <!-- <footer class="container-fluid text-center" style="background-color: #cccccc; font-size:1.0em">
         <p style="margin-bottom: 12px; margin-top: 12px">Usklađeno s podacima Državne geodetske uprave</p>
     </footer> -->
-
-
-
 </body></html>
