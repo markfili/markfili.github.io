@@ -2,28 +2,40 @@ html, body {
     font-family: calibri;
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 .navbar{
     background-color: transparent;
+}
+
+.btn-bg-white {
+    background-color: white;
+}
+
+.dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.dropdown:hover .dropdown-menu {display: block;}
+
+.cadaver {
+    height: 100%;
+    background-image: url('assets/images/188 OSOR.JPG');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: 0px;
+}
+
+#centar.container {
     margin: 0px;
+    width: 100%;
     padding: 0px;
-    border-color: white;
-    border-width: 3px;
-}
-
-#cadaver {
-    background-color: white;
-    margin-right: 0px
-}
-
-
-#centar {
-    background-color: white;
-    padding: 10px
 }
 
 .row {
