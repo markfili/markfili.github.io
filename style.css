@@ -5,6 +5,10 @@ html, body {
     overflow-x: hidden;
 }
 
+footer {
+    background-color: #ffffff70;
+}
+
 .navbar{
     background-color: transparent;
 }
