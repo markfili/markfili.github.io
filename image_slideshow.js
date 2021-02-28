@@ -21,13 +21,21 @@ var locations = [
 ];
 
 var baseUrl = "assets/images/";
+var intervalId = 0;
 function startImagesSlideShow() {
 	var cadaver = document.getElementsByClassName("cadaver")[0];
-	locations.forEach(function (location) { 
+	var trigPointName = document.getElementById("trig-point-name");
+	var index = 0;
+	intervalId = setInterval(function() {
+		var location = locations[index];
 		var url = baseUrl + location + ".JPG";
 		cadaver.style.backgroundImage = 'url("'+ url + '")';
-		document.getElementById("trig-point-name").innerText = location;
-	});
+		trigPointName.innerText = location;
+		index++;
+		if (index >= locations.length) {
+			index = 0;
+		}
+	}, 5000);
 }
 
 startImagesSlideShow();
