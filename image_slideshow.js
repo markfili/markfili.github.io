@@ -20,21 +20,27 @@ var locations = [
 	'403 BREŽIĆ',
 ];
 
+
+function setBackground(index) {
+	var cadaver = document.getElementsByClassName("cadaver")[0];
+	var trigPointName = document.getElementById("trig-point-name");
+	var location = locations[index];
+	var url = baseUrl + location + ".JPG";
+	cadaver.style.backgroundImage = 'url("'+ url + '")';
+	trigPointName.innerText = location;
+}
+
 var baseUrl = "assets/images/";
 var intervalId = 0;
 function startImagesSlideShow() {
-	var cadaver = document.getElementsByClassName("cadaver")[0];
-	var trigPointName = document.getElementById("trig-point-name");
 	var index = 0;
+	setBackground(index);
 	intervalId = setInterval(function() {
-		var location = locations[index];
-		var url = baseUrl + location + ".JPG";
-		cadaver.style.backgroundImage = 'url("'+ url + '")';
-		trigPointName.innerText = location;
 		index++;
 		if (index >= locations.length) {
 			index = 0;
 		}
+		setBackground(index);
 	}, 5000);
 }
 
