@@ -29,28 +29,28 @@ footer {
 
 .cadaver {
     height: 100%;
-    background-image: url('assets/images/188 OSOR');
-    background-image: url('assets/images/189 VELI VRH');
-    background-image: url('assets/images/191 GOLA PLJESIVICA');
-    background-image: url('assets/images/222 KALNIK');
-    background-image: url('assets/images/226 NEPROBIĆ');
-    background-image: url('assets/images/248 KAPAVAC');
-    background-image: url('assets/images/259 KAMENJAK');
-    background-image: url('assets/images/283 STRAZICA');
-    background-image: url('assets/images/289 KREMEN');
-    background-image: url('assets/images/290 CRNOPAC');
-    background-image: url('assets/images/293 DINARA');
-    background-image: url('assets/images/300 MOSOR');
-    background-image: url('assets/images/301 PRAPATNICA');
-    background-image: url('assets/images/312 SV IVAN');
-    background-image: url('assets/images/384 BRUSNIK');
-    background-image: url('assets/images/391 NOVOSELSKO BRDO');
-    background-image: url('assets/images/403 BREŽIĆ');
+    background-image: url('assets/images/188 OSOR.JPG');
+    background-image: url('assets/images/189 VELI VRH.JPG');
+    background-image: url('assets/images/191 GOLA PLJESIVICA.JPG');
+    background-image: url('assets/images/222 KALNIK.JPG');
+    background-image: url('assets/images/226 NEPROBIĆ.JPG');
+    background-image: url('assets/images/248 KAPAVAC.JPG');
+    background-image: url('assets/images/259 KAMENJAK.JPG');
+    background-image: url('assets/images/283 STRAZICA.JPG');
+    background-image: url('assets/images/289 KREMEN.JPG');
+    background-image: url('assets/images/290 CRNOPAC.JPG');
+    background-image: url('assets/images/293 DINARA.JPG');
+    background-image: url('assets/images/300 MOSOR.JPG');
+    background-image: url('assets/images/301 PRAPATNICA.JPG');
+    background-image: url('assets/images/312 SV IVAN.JPG');
+    background-image: url('assets/images/384 BRUSNIK.JPG');
+    background-image: url('assets/images/391 NOVOSELSKO BRDO.JPG');
+    background-image: url('assets/images/403 BREŽIĆ.JPG');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     margin-bottom: 0px;
-    transition: background 1s linear;
+    transition: background 2s linear;
 }
 
 #centar.container {
