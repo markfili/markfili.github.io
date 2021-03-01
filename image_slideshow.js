@@ -1,5 +1,7 @@
 console.log("Image slideshow started!");
-
+window.onload = function() {
+    document.getElementsByTagName("body")[0].classList.remove("preload");
+};
 var locations = [
 	'188 OSOR',
 	'189 VELI VRH',
@@ -25,7 +27,7 @@ function setBackground(index) {
 	var cadaver = document.getElementsByClassName("cadaver")[0];
 	var trigPointName = document.getElementById("trig-point-name");
 	var location = locations[index];
-	var url = baseUrl + location + ".JPG";
+	var url = baseUrl + location.split(" ")[0] + ".jpg";
 	cadaver.style.backgroundImage = 'url("'+ url + '")';
 	trigPointName.innerText = location;
 }
