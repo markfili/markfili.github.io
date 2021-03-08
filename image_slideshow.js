@@ -26,10 +26,13 @@ var locations = [
 function setBackground(index) {
 	var cadaver = document.getElementsByClassName("cadaver")[0];
 	var trigPointName = document.getElementById("trig-point-name");
+	var trigPointLink = document.getElementById("trig-point-link");
 	var location = locations[index];
-	var url = baseUrl + location.split(" ")[0] + ".jpg";
+	var locationId =  location.split(" ")[0];
+	var url = baseUrl + locationId + ".jpg";
 	cadaver.style.backgroundImage = 'url("'+ url + '")';
 	trigPointName.innerText = location;
+	trigPointLink.href = "https://geopp.planinarski-portal.org/kt-gpo/" + locationId; // {% /kt-gpo/id %}
 }
 
 var baseUrl = "assets/images/";
