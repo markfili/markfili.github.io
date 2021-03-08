@@ -14,6 +14,24 @@ body::after {
   content:  url('assets/images/188.jpg') url('assets/images/189.jpg') url('assets/images/191.jpg') url('assets/images/222.jpg') url('assets/images/226.jpg') url('assets/images/248.jpg') url('assets/images/259.jpg') url('assets/images/283.jpg') url('assets/images/289.jpg') url('assets/images/290.jpg') url('assets/images/293.jpg') url('assets/images/300.jpg') url('assets/images/301.jpg') url('assets/images/312.jpg') url('assets/images/384.jpg') url('assets/images/391.jpg') url('assets/images/403.jpg');
 }
 
+/* change the brand and text color */
+.navbar-dark .navbar-toggler-icon {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgb(255,255,255);
+} 
+
+address {
+  font-size: 15px;
+  line-height: 17px;
+}
+
+#geodetski-fakultet {
+  font-size: 17px;
+}
+
 footer {
     background-color: #F1F1F363;
 }
