@@ -11,7 +11,7 @@ body::after {
   height: 0;
   overflow: hidden;
   z-index: -1;
-  content:  url('images/188.jpg') url('images/189.jpg') url('images/191.jpg') url('images/222.jpg') url('images/226.jpg') url('images/248.jpg') url('images/259.jpg') url('images/283.jpg') url('images/289.jpg') url('images/290.jpg') url('images/293.jpg') url('images/300.jpg') url('images/301.jpg') url('images/312.jpg') url('images/384.jpg') url('images/391.jpg') url('images/403.jpg');
+  content:  url('assets/images/188.jpg') url('assets/images/189.jpg') url('assets/images/191.jpg') url('assets/images/222.jpg') url('assets/images/226.jpg') url('assets/images/248.jpg') url('assets/images/259.jpg') url('assets/images/283.jpg') url('assets/images/289.jpg') url('assets/images/290.jpg') url('assets/images/293.jpg') url('assets/images/300.jpg') url('assets/images/301.jpg') url('assets/images/312.jpg') url('assets/images/384.jpg') url('assets/images/391.jpg') url('assets/images/403.jpg');
 }
 
 footer {
