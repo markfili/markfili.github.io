@@ -5,15 +5,6 @@ html, body {
     overflow-x: hidden;
 }
 
-body::after {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  z-index: -1;
-  content:  url('assets/images/188.jpg') url('assets/images/189.jpg') url('assets/images/191.jpg') url('assets/images/222.jpg') url('assets/images/226.jpg') url('assets/images/248.jpg') url('assets/images/259.jpg') url('assets/images/283.jpg') url('assets/images/289.jpg') url('assets/images/290.jpg') url('assets/images/293.jpg') url('assets/images/300.jpg') url('assets/images/301.jpg') url('assets/images/312.jpg') url('assets/images/384.jpg') url('assets/images/391.jpg') url('assets/images/403.jpg');
-}
-
 /* change the brand and text color */
 .navbar-dark .navbar-toggler-icon {
 background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -51,22 +42,14 @@ footer {
     background-color: white;
 }
 
-.dropdown-menu-center {
-    right: auto;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
-}
-
-.dropdown:hover .dropdown-menu {display: block;}
 
 .cadaver {
     height: 100%;
-    background-image: url('assets/images/188.JPG');
+    background-image: url('images/188.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    background-color: #678fd5;
     margin-bottom: 0px;
     transition: background 2s linear;
     -webkit-transition: background 2s linear;

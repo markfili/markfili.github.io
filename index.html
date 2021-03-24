@@ -1,57 +1,59 @@
+<!-- DEV/HTML/HPS/GPO/GEOPP -->
 <!DOCTYPE html>
 <!-- saved from url=(0037)/ -->
 <html lang="en">
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <meta charset="utf8_general_ci">
-        <script src="./Geodetski planinarski portal_files/leaflet.js" type="text/javascript"></script><script data-dapp-detection="">!function(){let e=!1;function n(){if(!e){const n=document.createElement("meta");n.name="dapp-detected",document.head.appendChild(n),e=!0}}if(window.hasOwnProperty("ethereum")){if(window.__disableDappDetectionInsertion=!0,void 0===window.ethereum)return;n()}else{var t=window.ethereum;Object.defineProperty(window,"ethereum",{configurable:!0,enumerable:!1,set:function(e){window.__disableDappDetectionInsertion||n(),t=e},get:function(){if(!window.__disableDappDetectionInsertion){const e=arguments.callee;e&&e.caller&&e.caller.toString&&-1!==e.caller.toString().indexOf("getOwnPropertyNames")||n()}return t}})}}();</script>
-        <script src="./Geodetski planinarski portal_files/leaflet.extras.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        L.Control.ResetView.TITLE = "Reset view";
-        L.Control.ResetView.ICON = "url(/static/leaflet/images/reset-view.png)";
         
-        </script>
-        <link rel="stylesheet" href="./Geodetski planinarski portal_files/leaflet.css">
-        <!--[if lte IE 8]>
-        <link rel="stylesheet" href="/static/leaflet/leaflet.ie.css" />
-        <![endif]-->
-        <style>.leaflet-container-default {min-height: 300px;}</style>
         <title>Geodetski planinarski portal</title>
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css?v4">
-        <link rel="apple-touch-icon" sizes="57x57" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="https://geopp.planinarski-portal.org/media/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="https://geopp.planinarski-portal.org/media/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://geopp.planinarski-portal.org/media/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="https://geopp.planinarski-portal.org/media/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://geopp.planinarski-portal.org/media/favicon/favicon-16x16.png">
-        <link rel="manifest" href="https://geopp.planinarski-portal.org/media/favicon/manifest.json">
+        <link rel="stylesheet" href="static/naslovnica.css?v5"/>
+        <link rel="apple-touch-icon" sizes="57x57" href="/media/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/media/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/media/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/media/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/media/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/media/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/media/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/media/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/media/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/media/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/media/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/media/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
     </head>
     <body class="preload">
         <div id="main" class="container-fluid d-flex flex-column vh-100 overflow-hidden p-0">
             <div class="cadaver container-fluid" onload="fadeIn(this)">
-                <nav class="navbar navbar-dark navbar-expand-lg border-bottom border-white">
-                    <a class="navbar-brand" href="#"><span class="mb-0 h1">GEODETSKI PLANINARSKI PORTAL</span></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    </button>
+                <nav class="navbar navbar-custom navbar-dark navbar-expand-lg border-bottom border-white">
+                    <div class="row flex-nowrap pt-3 px-3">
+                        <a class="navbar-brand text-wrap" href="/"><span class="mb-0 h1">GEODETSKI PLANINARSKI PORTAL</span></a>
+                        <div class="my-auto">
+                            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-nav nav-fill nav-justified container-fluid pl-5">
+                        <div class="navbar-nav nav-fill nav-justified container-fluid">
+                            <div class="nav-item"></div> <!-- empty item for justified padding -->
                             <div class="nav-item">
                                 <a class="nav-link" href="/">
-                                    <span class="h5 mb-0 text-white">POČETNA</span>
+                                    <span class="h5 mb-0 text-white px-lg-2">POČETNA</span>
                                 </a>
                             </div>
                             <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="regionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white px-lg-4" href="#" id="regionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="h5 mb-0 text-white">TEMATSKA PODRUČJA</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-center" aria-labelledby="regionsDropdown">
@@ -79,12 +81,12 @@
                                 </div>
                             </div>
                             <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="supportDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white px-lg-4" href="#" id="supportDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="h5 mb-0 text-white">KORISNIČKA PODRŠKA</span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-center" aria-labelledby="supportDropdown">
-                                    <a class="dropdown-item">Brzi vodič</a>
-                                    <a class="dropdown-item">Pitanja i odgovori</a>
+                                <div class="dropdown-menu" aria-labelledby="supportDropdown">
+                                    <a href="/vodic/" class="dropdown-item">Brzi vodič</a>
+                                    <a href="/pitanja/" class="dropdown-item">Pitanja i odgovori</a>
                                 </div>
                             </div>
                             <div class="nav-item">
@@ -100,51 +102,49 @@
                 </nav>
                 <!-- center region -->
                 <div>
-                    <h4 class="pl-3 pt-3"><a id="trig-point-link" class="text-white">TRIGONOMETRIJSKE TOČKE I. REDA U HRVATSKOJ - <span id="trig-point-name">188 OSOR</span></a></h4>
+            <h4 class="pl-3 pt-3"><a id="trig-point-link" class="text-white">TRIGONOMETRIJSKE TOČKE I. REDA U HRVATSKOJ - <span id="trig-point-name">188 OSOR</span></a></h4>
                 </div>
-                <footer class="fixed-bottom container-fluid p-2">
-                    <div class="container w-75">
+                <footer class="fixed-bottom container-fluid p-2 pb-4">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-4">
-                                <div class="col">
-                                    <h5>Partneri</h5>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="https://dgu.gov.hr/" target="_blank">
-                                                <img alt="image-link" class="img-fluid" src="./Geodetski planinarski portal_files/logo_dgu.png">
-                                            </a>
-                                        </div>
-                                        <div class="col-3">
-                                            <a href="https://www.hgd1952.hr/" target="_blank">
-                                                <img alt="image-link" class="img-fluid" src="./Geodetski planinarski portal_files/logo_hgd.png">
-                                            </a>
-                                        </div>
+                                <h5>Partneri</h5>
+                                <div class="row">
+                                    <div class="col col-lg-3">
+                                        <a href="https://dgu.gov.hr/" target="_blank">
+                                            <img alt="image-link" class="img-fluid" src="static/images/logo_dgu.png">
+                                        </a>
+                                    </div>
+                                    <div class="col col-lg-2">
+                                        <a href="https://www.hgd1952.hr/" target="_blank">
+                                            <img alt="image-link" class="img-fluid" src="static/images/logo_hgd.png">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
-                                <div class="col">
-                                    <h5>Suradnici</h5>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <a href="https://www.garmin.com/hr-HR/" target="_blank">
-                                                <img class="img-fluid" alt="image-link" src="./Geodetski planinarski portal_files/garmin.png">
-                                            </a>
-                                        </div>
+                                <h5>Suradnici</h5>
+                                <div class="row">
+                                    <div class="col col-lg-4">
+                                        <a href="https://www.garmin.com/hr-HR/" target="_blank">
+                                            <img class="img-fluid" alt="image-link" src="static/images/garmin.png">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <h5>Kontakt</h5>
                                 <div class="row">
-                                    <div class="col-3">
-                                        <img alt="image-link" class="img-fluid" src="./Geodetski planinarski portal_files/gfaks.png">
+                                    <div class="col col-lg-2 p-0">
+                                        <img alt="image-link" class="img-fluid" src="static/images/gfaks.png">
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col col-lg-10">
                                         <address class="mb-1">
                                                 <a href="https://www.geof.unizg.hr/" target="_blank" class="text-dark">
-                                                    <span id="geodetski-fakultet">Geodetski fakultet</span><br>
-                                                    Kačićeva 26, Zagreb<br>
+                            <span id="geodetski-fakultet">
+                                Geodetski fakultet<br>
+                                Kačićeva 26, Zagreb<br>
+                            </span>
                                                 </a>
                                                 e-pošta: 
                                                 <a href="mailto:dragspoljaric@gmail.com" class="text-danger">
@@ -158,7 +158,7 @@
                     </footer>
                 </div>
             </div>
-            <script src="image_slideshow.js?v4" async defer></script>
+            <script src="static/image_slideshow.js?v5" async defer></script>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
