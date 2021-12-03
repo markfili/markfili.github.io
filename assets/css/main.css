@@ -3,24 +3,25 @@ html {
     min-height: 100%;
 }
 
-body {
-    padding-top: 6em;
-    margin-bottom: 60px;
-    padding-bottom: 60px;
-}
 
 .img-footer {
     height: 70px;
-    width: 50px;
 }
 
+.navbar-text {
+    font-weight: bold;
+    color: #086FA1 !important;
+}
+
+.navbar-background {
+    background-color: #ABCCED;
+}
 
 @media (min-width: 576px) { 
     html {
         overflow: hidden;
     }
     body {
-        padding-top: 4em;
         background-image: url('../../assets/images/home_background.jpg');
         background-repeat: no-repeat;
         background-position: center center;
