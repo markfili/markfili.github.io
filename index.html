@@ -10,19 +10,19 @@
 
         <title>e-Dnevnik HPO</title>
     </head>
-    <body class="d-flex flex-column">
-        <nav class="navbar sticky-top navbar-expand-md navbar-light navbar-background">
-            <div class="container">
+    <body class="preload d-flex flex-column">
+        <nav class="navbar sticky-top navbar-expand-md navbar-background navbar-dark pb-0">
+            <div class="container-fluid col-xl-11 border-bottom border-white pb-2">
                 <a href="index.html" class="navbar-brand navbar-text">
-                    <h3 class="mb-0"><em>e</em>-Dnevnik HPO</h3>
-                    <h6>fotografije obilaznika na KT</h6>
+                    <h3 class="mb-0"><em>e</em>-Dnevnik</h3>
+                    <h6>HRVATSKE PLANINARSKE OBILAZNICE</h6>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-                    <ul class="navbar-nav nav-justified ml-auto">
-                        <li class="nav-item dropdown text-sm-center text-right">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle navbar-text" href="#" id="journalNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span>Dnevnik</span>
                             </a>
@@ -51,12 +51,12 @@
                                 </a>
                             </div>
                         </li>
-                        <li class="nav-item text-sm-center text-right">
+                        <li class="nav-item">
                             <a class="nav-link navbar-text" href="https://hpo.hps.hr/karta/">
                                 <span>Karta</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown text-sm-center text-right">
+                        <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle navbar-text" id="infoNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span>Info</span>
                             </a>
@@ -72,23 +72,32 @@
                                 </a>
                             </div>
                         </li>
+                        <li class="text-sm-center text-right d-md-block d-none">
+                            <a href="https://hpo.hps.hr/prijava/" class="btn btn-light mr-2"><span>Prijava</span></a>
+                        </li>
+                        <li class="text-sm-center text-right d-md-block d-none">
+                            <a href="https://hpo.hps.hr/registracija/" class="btn btn-light"><span>Registracija</span></a>
+                        </li>
                     </ul>
-                    <div class="navbar-nav text-center d-none d-sm-block">
-                        <a href="https://hpo.hps.hr/prijava/" class="btn btn-primary mr-1"><span>Prijava</span></a>
-                        <a href="https://hpo.hps.hr/registracija/" class="btn btn-primary"><span>Registracija</span></a>
+                    <div class="navbar-nav text-center d-block d-md-none">
+                        <a href="https://hpo.hps.hr/prijava/" class="btn btn-light mr-2"><span>Prijava</span></a>
+                        <a href="https://hpo.hps.hr/registracija/" class="btn btn-light"><span>Registracija</span></a>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid d-flex justify-content-center d-block d-sm-none pt-2 pb-1">
-                <a href="https://hpo.hps.hr/prijava/" class="btn btn-primary mr-2"><span>Prijava</span></a>
-                <a href="https://hpo.hps.hr/registracija/" class="btn btn-primary"><span>Registracija</span></a>
-            </div>
         </nav>
-        <main class="container-fluid p-0 col-12">
-            <img class="d-block img-fluid d-sm-none w-100" src="assets/images/dnevnik_hpo.jpg"/>
+        <main role="main" class="container-fluid p-0 col-12 flex-fill">
+            <div class="background-image d-none d-sm-block">
+                <div class="container-fluid col-xl-11">
+                    <h4 class="p-3">
+                        <span id="point-name" class="text-white">188 OSOR</span>
+                    </h4>
+                </div>
+            </div>
+            <img class="img-fluid d-sm-none d-block w-100" src="assets/images/dnevnik_hpo.jpg"/>
         </main>
-        <footer class="footer mt-auto bg-light text-dark">
-            <div class="container">
+        <footer class="footer mt-auto navbar-background text-white">
+            <div class="container-fluid col-xl-11">
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-2 pb-3">
                         <h6>Hrvatski planinarski savez</h6>
@@ -97,7 +106,7 @@
                                 <img class="img-footer" alt="image-link" src="assets/images/hps.png"/>
                             </div>
                             <div class="col-9 pl-2">
-                                <a href="https://www.hps.hr/planinarski-putovi/" target="_blank" class="text-secondary align-middle w-50">Komisija za planinarske putove</a>
+                                <a href="https://www.hps.hr/planinarski-putovi/" target="_blank" class="align-middle w-50 text-white">Komisija za planinarske putove</a>
                             </div>
                         </div>
                     </div>
@@ -121,13 +130,13 @@
                             <div class="col-9 pl-2">
                                 <address class="mb-1">
                                     <a href="https://www.geof.unizg.hr/" target="_blank" class="text-dark">
-                                    <span id="geodetski-fakultet">
+                                    <span id="geodetski-fakultet" class="text-white">
                                         Geodetski fakultet<br>
                                         Kačićeva 26, Zagreb<br>
                                     </span>
                                     </a>
                                     e-pošta: 
-                                    <a href="mailto:dragspoljaric@gmail.com">
+                                    <a href="mailto:dragspoljaric@gmail.com" class="text-white">
                                         e-Dnevnik HPO
                                     </a>
                                 </address>
@@ -141,5 +150,7 @@
         <!-- Bootstrap JS scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="assets/scripts/images.js"></script>
+        <script type="text/javascript" src="assets/scripts/slideshow.js"></script>
     </body>
 </html>
