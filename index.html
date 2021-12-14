@@ -20,11 +20,11 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav justify-content-end container-fluid">
+                        <li class="nav-item dropdown col-md-2">
                             <a class="nav-link dropdown-toggle navbar-text" href="#" id="journalNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>Dnevnik</span>
+                                <span class="h5 mb-0 text-white px-lg-2">Dnevnik</span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="journalNavbarDropdown">
                                 <a class="dropdown-item" href="https://hpo.hps.hr/korisnici/">
@@ -41,24 +41,22 @@
                                 <a class="dropdown-item" href="http://www.hps.hr/info/hrvatska-planinarska-obilaznica/" target="_blank">
                                     <span><i class="fa fa-fw fa-globe"></i> Dokazivanje obilaska i priznanja</span>
                                 </a>
-                            
                                 <a class="dropdown-item" href="http://www.hps.hr/info/hrvatska-planinarska-obilaznica/obilaznici-hpo/" target="_blank">
                                     <span><i class="fa fa-fw fa-globe"></i> HPS-ova evidencija obilaznika</span>
                                 </a>
-                            
                                 <a class="dropdown-item" href="https://hpo.hps.hr/cesta_pitanja/">
                                     <span><i class="fa fa-fw fa-question-circle"></i> Često postavljana pitanja</span>
                                 </a>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item col-md-2">
                             <a class="nav-link navbar-text" href="https://hpo.hps.hr/karta/">
-                                <span>Karta</span>
+                                <span class="h5 mb-0 text-white px-lg-2">Karta</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown col-md-2">
                             <a href="#" class="nav-link dropdown-toggle navbar-text" id="infoNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>Info</span>
+                                <span class="h5 mb-0 text-white px-lg-2">Info</span>
                             </a>
                             <div class="dropdown-menu" aria-labelled-by="infoNavbarDropdown">
                                 <a class="dropdown-item" href="https://hpo.hps.hr/o_planinarskom_dnevniku/">
@@ -79,7 +77,7 @@
                             <a href="https://hpo.hps.hr/registracija/" class="btn btn-light"><span>Registracija</span></a>
                         </li>
                     </ul>
-                    <div class="navbar-nav text-center d-block d-md-none">
+                    <div class="navbar-nav text-center d-block d-md-none p-2">
                         <a href="https://hpo.hps.hr/prijava/" class="btn btn-light mr-2"><span>Prijava</span></a>
                         <a href="https://hpo.hps.hr/registracija/" class="btn btn-light"><span>Registracija</span></a>
                     </div>
@@ -96,44 +94,37 @@
             </div>
             <img class="img-fluid d-sm-none d-block w-100" src="assets/images/dnevnik_hpo.jpg"/>
         </main>
-        <footer class="footer mt-auto navbar-background text-white">
-            <div class="container-fluid col-xl-11">
+        <footer class="footer navbar-background text-white p-2 pb-4 container-fluid">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 pt-2 pb-3">
-                        <h6>Hrvatski planinarski savez</h6>
-                        <div class="row">
-                            <div class="col-3 text-center">
-                                <img class="img-footer" alt="image-link" src="assets/images/hps.png"/>
-                            </div>
-                            <div class="col-9 pl-2">
-                                <a href="https://www.hps.hr/planinarski-putovi/" target="_blank" class="align-middle w-50 text-white">Komisija za planinarske putove</a>
-                            </div>
-                        </div>
+                    <div class="col-md-4 col-sm-6 item p-2">
+                        <a href="https://www.hps.hr/" target="_blank" class="text-white">
+                            <h5>Hrvatski planinarski savez</h5>
+                            <img class="img-footer" alt="image-link" src="assets/images/hps.png"/>
+                        </a>
                     </div>
-                    <div class="col-sm-12 col-md-4 pt-2 pb-3">
-                        <h6>Drugi dnevnici</h6>
+                    <div class="col-md-4 col-sm-6 item p-2">
+                        <h5>Drugi dnevnici</h5>
                         <div class="row">
-                            <div class="col-3 text-center">
-                                <img class="img-footer" src="assets/images/dnevnik_hpk.jpg"/>
-                            </div>
-                            <div class="col-3 text-center pl-0">
+                            <div class="col">
+                                <img class="img-footer mr-4" src="assets/images/dnevnik_hpk.jpg"/>
                                 <img class="img-footer" src="assets/images/dnevnik_vpp.jpg"/>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4 pt-2 pb-3">
-                        <h6>Kontakt</h6>
-                        <div class="row">
-                            <div class="col-3 text-center">
-                                <img class="img-footer" alt="image-link" src="assets/images/geodetski.png"/>
-                            </div>
-                            <div class="col-9 pl-2">
+                    <div class="col-md-4 col-sm-12 item p-2">
+                        <h5>Kontakt</h5>
+                        <div class="row d-inline-flex">
+                            <a href="https://www.geof.unizg.hr/" target="_blank" class="float-left mx-3">
+                                <img alt="image-link" class="img-footer" src="assets/images/geodetski.png"/>
+                            </a>
+                            <div class="col">
                                 <address class="mb-1">
-                                    <a href="https://www.geof.unizg.hr/" target="_blank" class="text-dark">
-                                    <span id="geodetski-fakultet" class="text-white">
-                                        Geodetski fakultet<br>
-                                        Kačićeva 26, Zagreb<br>
-                                    </span>
+                                    <a href="https://www.geof.unizg.hr/" target="_blank" class="text-white">
+                                        <span>
+                                            Geodetski fakultet<br>
+                                            Kačićeva 26, Zagreb<br>
+                                        </span>
                                     </a>
                                     e-pošta: 
                                     <a href="mailto:dragspoljaric@gmail.com" class="text-white">
@@ -142,7 +133,6 @@
                                 </address>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
