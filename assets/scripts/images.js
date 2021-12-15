@@ -45,10 +45,10 @@ var locations = [{
 	name: "Pag, vrh Sveti Vid (KT HPO 15.5.)",
 }, {
 	id: 16,
-	name: "Peljesac, vrh Sv. Ilija (KT HPO 20.1.)",
+	name: "Pelješac, vrh Sv. Ilija (KT HPO 20.1.)",
 }, {
 	id: 17,
-	name: "Postak - vrh (KT HPO 14.3.)",
+	name: "Poštak - vrh (KT HPO 14.3.)",
 }, {
 	id: 18,
 	name: "Risnjak - vrh (KT HPO 9.6.)",
@@ -57,7 +57,7 @@ var locations = [{
 	name: "Samarske stijene - vrh (KT HPO 8.6.)",
 }, {
 	id: 20,
-	name: "Snjeznik - vrh (KT HPO 9.7.)",
+	name: "Snježnik - vrh (KT HPO 9.7.)",
 }, {
 	id: 21,
 	name: "Sv. Jure - vrh (KT HPO 19.2.)",
@@ -78,13 +78,13 @@ var locations = [{
 	name: "Veliki Sadikovac - vrh (KT HPO 13.1.)",
 }, {
 	id: 27,
-	name: "Veliki Zavizan - vrh (KT HPO 11.2.)",
+	name: "Veliki Zavižan - vrh (KT HPO 11.2.)",
 }, {
 	id: 28,
 	name: "Vis, vrh Hum (KT HPO 16.7.)",
 }, {
 	id: 29,
-	name: "Vlaski grad - vrh (KT HPO 13.8.)",
+	name: "Vlaški grad - vrh (KT HPO 13.8.)",
 }, {
 	id: 30,
 	name: "vrh Babina gomila (KT HPO 20.3.)",
@@ -126,7 +126,7 @@ var locations = [{
 	name: "vrh Vojak (KT HPO 10.6.)",
 }, {
 	id: 43,
-	name: "vrh Zbevnica (KT HPO 10.1.)",
+	name: "vrh Žbevnica (KT HPO 10.1.)",
 }, {
 	id: 44,
 	name: "Zir - vrh (KT HPO 17.1.)",

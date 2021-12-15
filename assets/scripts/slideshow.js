@@ -21,7 +21,7 @@ function forcePreloadNext(index) {
 }
 
 function imagePath(id) {
-	return baseUrl + id + ".jpg?v1";
+	return baseUrl + id + ".jpg?v2";
 }
 
 var baseUrl = "assets/images/backgrounds/";
