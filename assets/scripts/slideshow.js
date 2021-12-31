@@ -7,14 +7,14 @@ function setBackground(index) {
 	var pointName = document.getElementById("point-name");
 	var location = locations[index];
 	forcePreloadNext(index);
-	backgroundDiv.style.backgroundImage = 'url("'+ imagePath(location.name) + '")';
+	backgroundDiv.style.backgroundImage = 'url("'+ imagePath(location.id) + '")';
 	pointName.innerText = location.name;
 }
 
 function forcePreloadNext(index) {
 	var nextIndex = index + 1;
 	if (nextIndex < locations.length) {
-		var nextImage = imagePath(locations[nextIndex].name);
+		var nextImage = imagePath(locations[nextIndex].id);
 		var img = new Image();
 		img.src = nextImage;
 	}
@@ -24,7 +24,9 @@ function imagePath(id) {
 	return baseUrl + id + ".jpg?v2";
 }
 
-var baseUrl = "assets/images/backgrounds/";
+var imagesFolderUrl = "assets/images";
+var backgroundsJson = imagesFolderUrl + "/backgrounds.json";
+var baseUrl = imagesFolderUrl + "/backgrounds/";
 var intervalId = 0;
 function startImagesSlideShow() {
 	shuffleArray(locations);
