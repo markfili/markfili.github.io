@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'utils/assets.dart';
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Flexible(
                     child: Text(
                       "obrt za informatičke usluge",
@@ -105,11 +106,33 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontSize: 11,
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ContactBadge(
+                        icon: FontAwesomeIcons.linkedinIn,
+                        url: "https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/",
+                      ),
+                      SizedBox(width: 8,),
+                      ContactBadge(
+                        icon: FontAwesomeIcons.githubAlt,
+                        url: "https://github.com/markfili",
+                      ),
+                      SizedBox(width: 8,),
+                      ContactBadge(
+                        icon: FontAwesomeIcons.envelope,
+                        url: "mailto:mrkfilipovic3@gmail.com",
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
