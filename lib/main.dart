@@ -1,11 +1,13 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_shaders/flutter_shaders.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'utils/assets.dart';
 import 'utils/widgets.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -18,9 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Arilus',
       theme: ThemeData(
-        textTheme: GoogleFonts.dmMonoTextTheme(
+        /*textTheme: GoogleFonts.dmMonoTextTheme(
           ThemeData.dark().textTheme,
-        ),
+        ),*/
         brightness: Brightness.dark,
         primaryColor: AColors.primaryColor,
         primaryColorDark: AColors.primaryDarkColor,
@@ -44,20 +46,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                colors: [
-                  Colors.black38,
-                  Colors.black38,
-                  Colors.black38,
-                  Colors.black54,
-                  Colors.black38,
-                  Colors.black38,
-                  Colors.black38,
-                ],
+          // TODO(marko): find a blurry, colorful shader and animate it
+          ShaderBuilder(
+            (context, shader, child) => CustomPaint(
+              size: MediaQuery.of(context).size,
+              painter: ShaderPainter(
+                shader: shader,
               ),
+            ),
+            assetKey: 'shaders/simple.frag',
+            child: const Center(
+              child: CircularProgressIndicator(),
             ),
           ),
           Align(
@@ -115,14 +114,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       ContactBadge(
                         icon: FontAwesomeIcons.linkedinIn,
-                        url: "https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/",
+                        url:
+                            "https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/",
                       ),
-                      SizedBox(width: 8,),
+                      SizedBox(
+                        width: 8,
+                      ),
                       ContactBadge(
                         icon: FontAwesomeIcons.githubAlt,
                         url: "https://github.com/markfili",
                       ),
-                      SizedBox(width: 8,),
+                      SizedBox(
+                        width: 8,
+                      ),
                       ContactBadge(
                         icon: FontAwesomeIcons.envelope,
                         url: "mailto:mrkfilipovic3@gmail.com",
@@ -136,6 +140,25 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+}
+
+class ShaderPainter extends CustomPainter {
+  ShaderPainter({required this.shader}) : _paint = ui.Paint()..shader = shader;
+  final ui.FragmentShader shader;
+  final Paint _paint;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      ui.Paint()..shader = shader,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
   }
 }
 
