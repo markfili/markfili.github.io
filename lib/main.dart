@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'utils/assets.dart';
+import 'utils/theme.dart';
 import 'utils/widgets.dart';
 
 void main() {
@@ -15,17 +16,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final theme = MaterialTheme(
+      GoogleFonts.dmMonoTextTheme(
+        ThemeData.dark().textTheme,
+      ),
+    );
     return MaterialApp(
       title: 'Arilus',
-      theme: ThemeData(
-        textTheme: GoogleFonts.dmMonoTextTheme(
-          ThemeData.dark().textTheme,
-        ),
-        brightness: Brightness.dark,
-        primaryColor: AColors.primaryColor,
-        primaryColorDark: AColors.primaryDarkColor,
-        primaryColorLight: AColors.primaryLightColor,
-      ),
+      theme: theme.light(),
+      darkTheme: theme.dark(),
       home: const MyHomePage(),
     );
   }
@@ -44,28 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                colors: [
-                  Colors.black38,
-                  Colors.black38,
-                  Colors.black38,
-                  Colors.black54,
-                  Colors.black38,
-                  Colors.black38,
-                  Colors.black38,
-                ],
-              ),
-            ),
-          ),
           Align(
             alignment: Alignment.center,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                OnHover(child: Image.asset(Assets.logo)),
+                Image.asset(Assets.logo),
                 const Text(
                   "arilus",
                   style: TextStyle(
@@ -75,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -117,15 +100,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         icon: FontAwesomeIcons.linkedinIn,
                         url: "https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/",
                       ),
-                      SizedBox(width: 8,),
+                      8.w,
                       ContactBadge(
                         icon: FontAwesomeIcons.githubAlt,
                         url: "https://github.com/markfili",
                       ),
-                      SizedBox(width: 8,),
+                      8.w,
                       ContactBadge(
                         icon: FontAwesomeIcons.envelope,
-                        url: "mailto:mrkfilipovic3@gmail.com",
+                        url: "mailto:info@arilus.hr",
                       ),
                     ],
                   ),
