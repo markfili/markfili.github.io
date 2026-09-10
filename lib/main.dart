@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'data/pages_repository.dart';
 import 'utils/assets.dart';
 import 'utils/theme.dart';
 import 'utils/widgets.dart';
+import 'widgets/pages_sheet.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +40,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _pagesRepository = PagesRepository();
+  // Fetched once per session; Retry in the sheet forces a new request.
+  Future<List<PagesSite>>? _sites;
+
+  Future<List<PagesSite>> _loadSites({bool forceRefresh = false}) {
+    if (forceRefresh || _sites == null) {
+      _sites = _pagesRepository.fetchSites();
+    }
+    return _sites!;
+  }
+
+  void _showPages() {
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => PagesSheet(loadSites: _loadSites),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       ContactBadge(
                         icon: FontAwesomeIcons.envelope,
                         url: "mailto:info@arilus.hr",
+                      ),
+                      8.w,
+                      ContactBadge(
+                        icon: FontAwesomeIcons.layerGroup,
+                        tooltip: "Projects",
+                        onPressed: _showPages,
                       ),
                     ],
                   ),
