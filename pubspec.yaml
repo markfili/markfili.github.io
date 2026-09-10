@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.3.2
   flutter_shaders: ^0.1.3
   platform_info: ^5.0.0
+  http: ^1.6.0
 
 dev_dependencies:
   effective_dart: ^1.3.2
