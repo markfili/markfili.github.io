@@ -44,7 +44,7 @@ class ContactBadge extends StatelessWidget {
         ),
         onPressed: onPressed ?? () => openUrl(url!),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white12,
     );
   }
 }
