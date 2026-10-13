@@ -1,27 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="hr">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Arilus.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Arilus, obrt za informatičke usluge, Zagreb.">
+  <meta name="theme-color" content="#07070a">
 
   <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Arilus">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
@@ -31,74 +19,65 @@
 
   <title>Arilus</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Start the big downloads from the HTML, before any script runs. -->
+  <link rel="preload" href="main.dart.js" as="script">
+  <link rel="preload" href="assets/assets/images/logo.png" as="image">
+  <link rel="preload" href="assets/assets/fonts/DMMono-Light.ttf" as="font" type="font/ttf" crossorigin>
+  <script>
+    // Mirror flutter.js: Chromium browsers get the slimmer CanvasKit build.
+    (function () {
+      var chromium = (navigator.vendor === 'Google Inc.' || navigator.userAgent.indexOf('Edg/') !== -1)
+        && typeof Intl.v8BreakIterator !== 'undefined'
+        && typeof Intl.Segmenter !== 'undefined'
+        && typeof ImageDecoder !== 'undefined';
+      var dir = chromium ? 'canvaskit/chromium/' : 'canvaskit/';
+      var wasm = document.createElement('link');
+      wasm.rel = 'preload'; wasm.as = 'fetch'; wasm.crossOrigin = 'anonymous';
+      wasm.href = dir + 'canvaskit.wasm';
+      var js = document.createElement('link');
+      js.rel = 'modulepreload'; js.href = dir + 'canvaskit.js';
+      document.head.appendChild(wasm);
+      document.head.appendChild(js);
+    })();
+  </script>
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #07070a; }
+    @font-face {
+      font-family: "DM Mono";
+      font-weight: 300;
+      font-display: block;
+      src: url(assets/assets/fonts/DMMono-Light.ttf) format("truetype");
+    }
+    /* Same sky and the same centered brand as the Flutter home page, shown
+       at first byte and crossfaded out once Flutter paints its first frame. */
+    #splash {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: linear-gradient(#07070a, #1b1517);
+      opacity: 1; transition: opacity 1.4s ease-out;
+    }
+    #splash img { width: 88px; height: 88px; display: block; }
+    #splash span {
+      font: 300 56px/1.15 "DM Mono", ui-monospace, Menlo, monospace;
+      letter-spacing: -2px; color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <div id="splash" aria-hidden="true">
+    <img src="assets/assets/images/logo.png" alt="">
+    <span>arilus</span>
+  </div>
   <script>
-    var serviceWorkerVersion = {{flutter_service_worker_version}};
-    var scriptLoaded = false;
-    function loadMainDartJs() {
-      if (scriptLoaded) {
-        return;
-      }
-      scriptLoaded = true;
-      var scriptTag = document.createElement('script');
-      scriptTag.src = 'main.dart.js';
-      scriptTag.type = 'application/javascript';
-      document.body.append(scriptTag);
-    }
-
-    if ('serviceWorker' in navigator) {
-      // Service workers are supported. Use them.
-      window.addEventListener('load', function () {
-        // Wait for registration to finish before dropping the <script> tag.
-        // Otherwise, the browser will load the script multiple times,
-        // potentially different versions.
-        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-        navigator.serviceWorker.register(serviceWorkerUrl)
-          .then((reg) => {
-            function waitForActivation(serviceWorker) {
-              serviceWorker.addEventListener('statechange', () => {
-                if (serviceWorker.state == 'activated') {
-                  console.log('Installed new service worker.');
-                  loadMainDartJs();
-                }
-              });
-            }
-            if (!reg.active && (reg.installing || reg.waiting)) {
-              // No active web worker and we have installed or are installing
-              // one for the first time. Simply wait for it to activate.
-              waitForActivation(reg.installing || reg.waiting);
-            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
-              // When the app updates the serviceWorkerVersion changes, so we
-              // need to ask the service worker to update.
-              console.log('New service worker available.');
-              reg.update();
-              waitForActivation(reg.installing);
-            } else {
-              // Existing service worker is still good.
-              console.log('Loading app from service worker.');
-              loadMainDartJs();
-            }
-          });
-
-        // If service worker doesn't succeed in a reasonable amount of time,
-        // fallback to plaint <script> tag.
-        setTimeout(() => {
-          if (!scriptLoaded) {
-            console.warn(
-              'Failed to load app from service worker. Falling back to plain <script> tag.',
-            );
-            loadMainDartJs();
-          }
-        }, 4000);
-      });
-    } else {
-      // Service workers not supported. Just drop the <script> tag.
-      loadMainDartJs();
-    }
+    window.addEventListener('flutter-first-frame', function () {
+      var splash = document.getElementById('splash');
+      if (!splash) return;
+      splash.style.opacity = '0';
+      setTimeout(function () { splash.remove(); }, 1500);
+    }, { once: true });
   </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

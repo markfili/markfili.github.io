@@ -71,6 +71,7 @@ flutter:
 
   assets:
     - assets/images/logo.png
+    - assets/fonts/
 
   shaders:
     - shaders/grain.frag

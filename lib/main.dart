@@ -10,6 +10,8 @@ import 'widgets/hero_scene.dart';
 import 'widgets/pages_sheet.dart';
 
 void main() {
+  // DM Mono ships in assets/fonts, so never go to the network for it.
+  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MyApp());
 }
 
