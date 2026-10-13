@@ -1,3 +1,9 @@
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
 include: package:effective_dart/analysis_options.yaml
 
 linter:

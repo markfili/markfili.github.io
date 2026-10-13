@@ -1,12 +1,12 @@
 {
-    "name": "showcase",
-    "short_name": "showcase",
+    "name": "Arilus",
+    "short_name": "Arilus",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
+    "background_color": "#07070a",
+    "theme_color": "#07070a",
     "description": "Arilus.",
-    "orientation": "portrait-primary",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
