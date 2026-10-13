@@ -6,6 +6,7 @@ import 'data/pages_repository.dart';
 import 'utils/assets.dart';
 import 'utils/theme.dart';
 import 'utils/widgets.dart';
+import 'widgets/hero_scene.dart';
 import 'widgets/pages_sheet.dart';
 
 void main() {
@@ -61,89 +62,93 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final small = textTheme.bodySmall?.copyWith(
+      fontSize: 11,
+      color: HeroScene.inkSoft,
+      letterSpacing: 0.4,
+    );
     return Scaffold(
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(Assets.logo),
-                const Text(
-                  "arilus",
-                  style: TextStyle(
-                    fontSize: 40,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+      backgroundColor: HeroScene.skyTop,
+      body: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: 1),
+        duration: const Duration(milliseconds: 1400),
+        curve: Curves.easeOut,
+        builder: (context, opacity, child) =>
+            Opacity(opacity: opacity, child: child),
+        child: Stack(
+          children: [
+            const Positioned.fill(child: HeroScene()),
+            Align(
+              alignment: Alignment.center,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Flexible(
-                    child: Text(
-                      "obrt za informatičke usluge",
-                      style: TextStyle(
-                        fontSize: 11,
-                      ),
+                  Image.asset(Assets.logo),
+                  Text(
+                    "arilus",
+                    style: textTheme.displaySmall?.copyWith(
+                      fontSize: 56,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: -2,
+                      color: HeroScene.ink,
                     ),
-                  ),
-                  Flexible(
-                    child: Text(
-                      "vl. Marko Filipović",
-                      style: TextStyle(
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Zagreb",
-                      style: TextStyle(
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ContactBadge(
-                        icon: FontAwesomeIcons.linkedinIn,
-                        url: "https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/",
-                      ),
-                      8.w,
-                      ContactBadge(
-                        icon: FontAwesomeIcons.githubAlt,
-                        url: "https://github.com/markfili",
-                      ),
-                      8.w,
-                      ContactBadge(
-                        icon: FontAwesomeIcons.envelope,
-                        url: "mailto:info@arilus.hr",
-                      ),
-                      8.w,
-                      ContactBadge(
-                        icon: FontAwesomeIcons.layerGroup,
-                        tooltip: "Projects",
-                        onPressed: _showPages,
-                      ),
-                    ],
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Text("obrt za informatičke usluge", style: small),
+                    ),
+                    Flexible(
+                      child: Text("vl. Marko Filipović", style: small),
+                    ),
+                    Flexible(
+                      child: Text("Zagreb", style: small),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const ContactBadge(
+                          icon: FontAwesomeIcons.linkedinIn,
+                          url:
+                              "https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/",
+                        ),
+                        8.w,
+                        const ContactBadge(
+                          icon: FontAwesomeIcons.githubAlt,
+                          url: "https://github.com/markfili",
+                        ),
+                        8.w,
+                        const ContactBadge(
+                          icon: FontAwesomeIcons.envelope,
+                          url: "mailto:info@arilus.hr",
+                        ),
+                        8.w,
+                        ContactBadge(
+                          icon: FontAwesomeIcons.layerGroup,
+                          tooltip: "Projects",
+                          onPressed: _showPages,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
