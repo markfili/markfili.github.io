@@ -11,14 +11,13 @@ Map<String, Object?> repo(
   String pushedAt = '2026-01-01T00:00:00Z',
   String? homepage,
   String? description,
-}) =>
-    {
-      'name': name,
-      'has_pages': hasPages,
-      'pushed_at': pushedAt,
-      'homepage': homepage,
-      'description': description,
-    };
+}) => {
+  'name': name,
+  'has_pages': hasPages,
+  'pushed_at': pushedAt,
+  'homepage': homepage,
+  'description': description,
+};
 
 PagesRepository repositoryReturning(
   List<Map<String, Object?>> repos, {
@@ -81,19 +80,22 @@ void main() {
     expect(sites.map((site) => site.name), ['new', 'old']);
   });
 
-  test('uses homepage when set, otherwise the arilus.hr project path', () async {
-    final sites = await repositoryReturning([
-      repo('metalhop', pushedAt: '2026-02-01T00:00:00Z'),
-      repo('custom', homepage: 'https://custom.example'),
-      repo('blank', homepage: '', pushedAt: '2025-01-01T00:00:00Z'),
-    ]).fetchSites();
+  test(
+    'uses homepage when set, otherwise the arilus.hr project path',
+    () async {
+      final sites = await repositoryReturning([
+        repo('metalhop', pushedAt: '2026-02-01T00:00:00Z'),
+        repo('custom', homepage: 'https://custom.example'),
+        repo('blank', homepage: '', pushedAt: '2025-01-01T00:00:00Z'),
+      ]).fetchSites();
 
-    expect(sites.map((site) => site.url), [
-      'https://arilus.hr/metalhop/',
-      'https://custom.example',
-      'https://arilus.hr/blank/',
-    ]);
-  });
+      expect(sites.map((site) => site.url), [
+        'https://arilus.hr/metalhop/',
+        'https://custom.example',
+        'https://arilus.hr/blank/',
+      ]);
+    },
+  );
 
   test('treats an empty description as missing', () async {
     final sites = await repositoryReturning([
@@ -112,7 +114,11 @@ void main() {
     expect(
       repository.fetchSites(),
       throwsA(
-        isA<PagesFetchException>().having((e) => e.statusCode, 'statusCode', 403),
+        isA<PagesFetchException>().having(
+          (e) => e.statusCode,
+          'statusCode',
+          403,
+        ),
       ),
     );
   });

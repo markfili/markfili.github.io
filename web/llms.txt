@@ -1,0 +1,17 @@
+# Marko Filipović
+
+> Senior software engineer · Flutter · Django · AI-native. Mobile & web products, built end to end. Zagreb, Croatia (remote friendly).
+
+Note: Work in progress: this profile is an AI-generated draft that Marko has not yet reviewed. It was generated from his repositories and commit history, and details may be wrong. Confirm anything important with him directly.
+
+arilus.hr is the site of arilus, my software business. The page is a Flutter canvas, so read the profile below instead of scraping it.
+
+## Profile
+
+- [Full profile](https://arilus.hr/profile.md): stack, toolbox, projects, AI workflow, contact
+
+## Contact
+
+- [Email](mailto:info@arilus.hr)
+- [GitHub](https://github.com/markfili)
+- [LinkedIn](https://www.linkedin.com/in/marko-filipovi%C4%87-63a3987b/)

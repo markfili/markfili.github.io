@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:showcase/widgets/hero_scene.dart';
 
@@ -57,7 +57,8 @@ void main() {
         bottom: Colors.black,
       );
       final same = List.generate(50, (i) => i / 50).every(
-          (t) => (ridge.elevationAt(t) - other.elevationAt(t)).abs() < 1e-6);
+        (t) => (ridge.elevationAt(t) - other.elevationAt(t)).abs() < 1e-6,
+      );
       expect(same, isFalse);
     });
 
@@ -78,8 +79,9 @@ void main() {
       expect(find.byType(CustomPaint), findsWidgets);
     });
 
-    testWidgets('renders without grain when the shader is unavailable',
-        (tester) async {
+    testWidgets('renders without grain when the shader is unavailable', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(home: HeroScene(grainShader: 'shaders/missing.frag')),
       );

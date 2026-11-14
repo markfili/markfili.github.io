@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -7,12 +7,12 @@ Future<void> openUrl(String url) async {
   try {
     final launched = await launchUrlString(url);
     if (!launched && kDebugMode) {
-      print('Could not launch $url');
+      debugPrint('Could not launch $url');
     }
   } on Exception catch (e) {
     // sadly, Url couldn't be launched...
     if (kDebugMode) {
-      print(e);
+      debugPrint("$e");
     }
   }
 }
@@ -29,37 +29,29 @@ class ContactBadge extends StatelessWidget {
     this.url,
     this.tooltip,
     this.onPressed,
-    Key? key,
-  })  : assert(url != null || onPressed != null),
-        super(key: key);
+    super.key,
+  }) : assert(url != null || onPressed != null);
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundColor: Colors.white12,
       child: IconButton(
         tooltip: tooltip ?? url,
-        icon: FaIcon(
-          icon,
-          color: Colors.white70,
-        ),
+        icon: FaIcon(icon, color: Colors.white70),
         onPressed: onPressed ?? () => openUrl(url!),
       ),
-      backgroundColor: Colors.white12,
     );
   }
 }
 
 extension SizedSpacers on num {
   SizedBox get w {
-    return SizedBox(
-      width: toDouble(),
-    );
+    return SizedBox(width: toDouble());
   }
 
   SizedBox get h {
-    return SizedBox(
-      height: toDouble(),
-    );
+    return SizedBox(height: toDouble());
   }
 }
 

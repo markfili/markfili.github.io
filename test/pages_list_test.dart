@@ -1,11 +1,14 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:showcase/data/pages_repository.dart';
-import 'package:showcase/widgets/pages_sheet.dart';
+import 'package:showcase/widgets/pages_list.dart';
 
-const metalhop = PagesSite(name: 'metalhop', url: 'https://arilus.hr/metalhop/');
+const metalhop = PagesSite(
+  name: 'metalhop',
+  url: 'https://arilus.hr/metalhop/',
+);
 const parkSuma = PagesSite(
   name: 'park-suma',
   url: 'https://arilus.hr/park-suma/',
@@ -20,7 +23,7 @@ Future<void> pumpSheet(
   return tester.pumpWidget(
     MaterialApp(
       home: Scaffold(
-        body: PagesSheet(loadSites: loadSites, onOpen: onOpen ?? (_) {}),
+        body: PagesList(loadSites: loadSites, onOpen: onOpen ?? (_) {}),
       ),
     ),
   );
@@ -29,9 +32,11 @@ Future<void> pumpSheet(
 void main() {
   testWidgets('shows a spinner while loading', (tester) async {
     final pending = Completer<List<PagesSite>>();
-    await pumpSheet(tester, loadSites: ({forceRefresh = false}) => pending.future);
+    await pumpSheet(
+      tester,
+      loadSites: ({forceRefresh = false}) => pending.future,
+    );
 
-    expect(find.text('Projects'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
@@ -60,7 +65,9 @@ void main() {
     expect(find.text('No projects yet'), findsOneWidget);
   });
 
-  testWidgets('offers a GitHub link and a retry that refetches', (tester) async {
+  testWidgets('offers a GitHub link and a retry that refetches', (
+    tester,
+  ) async {
     final refreshes = <bool>[];
     final opened = <String>[];
     await pumpSheet(

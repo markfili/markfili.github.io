@@ -3,14 +3,17 @@ import 'package:showcase/main.dart';
 import 'package:showcase/utils/widgets.dart';
 import 'package:showcase/widgets/hero_scene.dart';
 
+import 'test_utils.dart';
+
 void main() {
-  testWidgets('home page shows the brand, the scene and the contact badges',
-      (tester) async {
+  testWidgets('home page shows the brand, the scene and the contact badges', (
+    tester,
+  ) async {
     await tester.pumpWidget(const MyApp());
-    await tester.pump();
+    await settleFonts(tester);
 
     expect(find.text('arilus'), findsOneWidget);
     expect(find.byType(HeroScene), findsOneWidget);
-    expect(find.byType(ContactBadge), findsNWidgets(4));
+    expect(find.byType(ContactBadge), findsNWidgets(6));
   });
 }

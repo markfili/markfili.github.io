@@ -3,8 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:showcase/main.dart';
 
 void main() {
-  testWidgets('DM Mono is bundled, so no runtime font fetch is needed',
-      (tester) async {
+  testWidgets('DM Mono is bundled, so no runtime font fetch is needed', (
+    tester,
+  ) async {
     GoogleFonts.config.allowRuntimeFetching = false;
     addTearDown(() => GoogleFonts.config.allowRuntimeFetching = true);
 

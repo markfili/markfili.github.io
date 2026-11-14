@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// One silhouette of hills, drawn as a filled path anchored to the bottom
 /// edge of the canvas.
@@ -109,8 +109,7 @@ class HeroScene extends StatefulWidget {
   /// renders without grain.
   final String grainShader;
 
-  const HeroScene({this.grainShader = 'shaders/grain.frag', Key? key})
-      : super(key: key);
+  const HeroScene({this.grainShader = 'shaders/grain.frag', super.key});
 
   static const skyTop = Color(0xFF07070A);
   static const skyBottom = Color(0xFF1B1517);

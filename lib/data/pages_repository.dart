@@ -7,11 +7,7 @@ class PagesSite {
   final String? description;
   final String url;
 
-  const PagesSite({
-    required this.name,
-    required this.url,
-    this.description,
-  });
+  const PagesSite({required this.name, required this.url, this.description});
 }
 
 class PagesFetchException implements Exception {
@@ -43,19 +39,14 @@ class PagesRepository {
       name: 'Zagreb Developers Spaces',
       url: 'https://zagreb-developers.github.io/spaces/',
     ),
-    PagesSite(
-      name: 'Uradi sad',
-      url: 'https://uradisad.vercel.app/',
-    ),
+    PagesSite(name: 'Uradi sad', url: 'https://uradisad.vercel.app/'),
   ];
 
   final http.Client _client;
   final List<PagesSite> extraSites;
 
-  PagesRepository({
-    http.Client? client,
-    this.extraSites = defaultExtraSites,
-  }) : _client = client ?? http.Client();
+  PagesRepository({http.Client? client, this.extraSites = defaultExtraSites})
+    : _client = client ?? http.Client();
 
   Future<List<PagesSite>> fetchSites() async {
     final response = await _client.get(
@@ -69,19 +60,23 @@ class PagesRepository {
       throw PagesFetchException(response.statusCode);
     }
 
-    final repos = (jsonDecode(response.body) as List<dynamic>)
-        .cast<Map<String, dynamic>>()
-        .where((repo) => repo['has_pages'] == true && repo['name'] != _userSite)
-        .toList()
-      // ISO 8601 timestamps sort chronologically as strings.
-      ..sort((a, b) => _pushedAt(b).compareTo(_pushedAt(a)));
+    final repos =
+        (jsonDecode(response.body) as List<dynamic>)
+            .cast<Map<String, dynamic>>()
+            .where(
+              (repo) => repo['has_pages'] == true && repo['name'] != _userSite,
+            )
+            .toList()
+          // ISO 8601 timestamps sort chronologically as strings.
+          ..sort((a, b) => _pushedAt(b).compareTo(_pushedAt(a)));
 
     return [
       for (final repo in repos)
         PagesSite(
           name: repo['name'] as String,
           description: _nonEmpty(repo['description'] as String?),
-          url: _nonEmpty(repo['homepage'] as String?) ??
+          url:
+              _nonEmpty(repo['homepage'] as String?) ??
               '$_pagesOrigin/${repo['name']}/',
         ),
       ...extraSites,
