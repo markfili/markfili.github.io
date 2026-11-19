@@ -141,7 +141,7 @@ class MenuLayout {
     for (var x = from + step; x <= to; x += step) {
       final y = skylineAt(x, size, ridges: ridges);
       if (rising && y > prevY) {
-        final peak = Offset(x - step, prevY);
+        final peak = _climb(x - step, size, ridges, step * 4);
         final bubble = Rect.fromCircle(
           center: peak.translate(0, -bubbleRadius - perchGap),
           radius: bubbleRadius,
@@ -166,6 +166,18 @@ class MenuLayout {
       if (picked.every((x) => (x - s.dx).abs() >= minGap)) picked.add(s.dx);
     }
     return picked..sort();
+  }
+
+  /// The highest skyline point within [reach] pixels of [x], searched at
+  /// half-pixel steps, so a summit found on the coarse grid lands on the true
+  /// peak of a jagged outline.
+  static Offset _climb(double x, Size size, List<Ridge> ridges, double reach) {
+    var best = Offset(x, skylineAt(x, size, ridges: ridges));
+    for (var dx = -reach; dx <= reach; dx += 0.5) {
+      final y = skylineAt(x + dx, size, ridges: ridges);
+      if (y < best.dy) best = Offset(x + dx, y);
+    }
+    return best;
   }
 
   /// How far the skyline falls below [peak] within [span] pixels to one
@@ -208,13 +220,55 @@ class MenuLayout {
       }
       prevY = y;
     }
-    return bestPeak ?? bestX;
+    return _climb(bestPeak ?? bestX, size, ridges, step * 4).dx;
   }
 
-  /// Logo center: just above the middle of the screen, a little higher in
-  /// orbit mode to leave room for the ring and the wordmark below it.
-  static Offset logoCenter(Size size, {required bool orbit}) =>
-      Offset(size.width / 2, size.height / 2 - (orbit ? 70 : 35));
+  /// Height kept free at the bottom for the footer in orbit mode. These are
+  /// the measured footer heights (phones wrap the contact row), rounded up to
+  /// a multiple of 4; `footer fits its reserve` fails if the footer outgrows
+  /// them.
+  static double footerReserve(Size size) => size.width < 600 ? 248 : 164;
+
+  /// Orbit mode's brand, from the top of the upper bubbles to the bottom of
+  /// the wordmark.
+  static const orbitBrandHeight =
+      2 * (orbitRadius + bubbleRadius) + 12 + labelClearance + wordmarkHeight;
+
+  /// Extra space between the ring and the wordmark in orbit mode, for the
+  /// labels of the lower bubbles.
+  static const labelClearance = 14.0;
+
+  /// Which side of the bubble at [index] its label goes on in orbit mode:
+  /// outward from the logo, vertical within 45 degrees of straight up or
+  /// down, horizontal otherwise.
+  static Alignment orbitLabelSide(int index, {required int count}) {
+    final a = -math.pi / 2 - math.pi / count + index * 2 * math.pi / count;
+    final dx = math.cos(a), dy = math.sin(a);
+    if (dy.abs() > dx.abs()) {
+      return dy < 0 ? Alignment.topCenter : Alignment.bottomCenter;
+    }
+    return dx < 0 ? Alignment.centerLeft : Alignment.centerRight;
+  }
+
+  /// Height of the page for a [viewport]: the viewport itself, unless the
+  /// orbit brand and the footer can't both fit, in which case the page
+  /// grows and scrolls rather than overlapping them.
+  static double pageHeight(Size viewport, {required bool orbit}) => orbit
+      ? math.max(
+          viewport.height,
+          orbitBrandHeight + 2 * 12 + footerReserve(viewport),
+        )
+      : viewport.height;
+
+  /// Logo center: just above the middle of the screen in peak mode. In
+  /// orbit mode the brand is centered in the sky above the footer, but never
+  /// lower than just above the middle.
+  static Offset logoCenter(Size size, {required bool orbit}) {
+    if (!orbit) return Offset(size.width / 2, size.height / 2 - 35);
+    final free = size.height - footerReserve(size);
+    final centered = (free - orbitBrandHeight) / 2 + orbitRadius + bubbleRadius;
+    return Offset(size.width / 2, math.min(size.height / 2 - 70, centered));
+  }
 
   /// [count] bubble centers evenly spaced on a circle around [center],
   /// clockwise from the upper left, offset by half a step so no bubble sits
@@ -230,6 +284,8 @@ class MenuLayout {
   /// Top of the wordmark under the logo.
   static double wordmarkTop(Size size, {required bool orbit}) {
     final c = logoCenter(size, orbit: orbit);
-    return orbit ? c.dy + orbitRadius + bubbleRadius + 12 : c.dy + logoRadius;
+    return orbit
+        ? c.dy + orbitRadius + bubbleRadius + 12 + labelClearance
+        : c.dy + logoRadius;
   }
 }

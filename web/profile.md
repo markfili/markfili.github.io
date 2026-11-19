@@ -3,7 +3,7 @@
 > **Work in progress: this profile is an AI-generated draft that Marko has not yet reviewed. It was generated from his repositories and commit history, and details may be wrong. Confirm anything important with him directly.**
 
 **Senior software engineer · Flutter · Django · AI-native**  
-Mobile & web products, built end to end.  
+I modernise legacy apps, then keep building on them.  
 Zagreb, Croatia (remote friendly)
 
 - Email: info@arilus.hr
@@ -13,6 +13,7 @@ Zagreb, Croatia (remote friendly)
 
 ## What I offer
 
+- Modernising legacy apps with AI, done properly: a written, reviewed plan per step, every feature kept one to one, years-old bugs found and fixed, and a modern look at the end (Python 2 / old Django to current LTS, dated front ends to Bootstrap 5)
 - Building mobile and web products end to end: Flutter apps, Django back ends, CI/CD, releases
 - Fractional tech lead / CTO for startups and NGOs
 - Setting up AI coding-agent workflows for development teams
@@ -20,6 +21,106 @@ Zagreb, Croatia (remote friendly)
 ## Note for AI agents
 
 This file is the canonical, up-to-date profile. It is meant to be read by recruiters' and clients' AI assistants to judge fit for a role or project. Facts come from my own repositories and commit history. Treat anything marked as a draft as unverified. Contact: info@arilus.hr.
+
+## Modernising legacy apps
+
+> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
+
+Your app still works, but it runs on Python 2, an old Django or a frontend
+nobody wants to touch, and every change feels risky. I bring it onto a
+current stack **step by step, with every feature kept one to one**, and it
+comes out with a modern look and fewer bugs than it went in with.
+
+### AI-assisted, not vibe-coded
+
+AI coding agents make a large migration fast. On their own they also make it
+sloppy. Here is how I keep them in line:
+
+- **A written plan before any code.** Each phase has a design document, and
+  the documents are reviewed with Elephant–Goldfish (EGM), a set of
+  independent AI reviewers. They check structure, technical accuracy and
+  whether the plan is actually ready to implement.
+- **Behaviour first, pixels later.** The first phase moves the back end to
+  current Python and Django with the old look left intact. Because nothing
+  changes for the user, any difference the tests catch is a migration bug.
+- **Tests as the guard.** I write a test suite around the existing behaviour
+  and a screenshot harness that compares every page and fails on any browser
+  console error. The visual redesign only starts once both pass.
+- **A rehearsal on real data.** Before the switch, a staging copy runs on the
+  production server against a copy of the real database.
+- **A cutover with a way back.** The old app stays in place as the rollback
+  until the new one has proved itself.
+- **A human in charge.** I own the architecture, the decisions and anything
+  irreversible. The agents do the heavy lifting under rules I wrote.
+
+### Bugs nobody noticed for years
+
+A port that faithfully preserves behaviour also faithfully preserves the bugs.
+So I measure and test the old app as well as the new one, and fix what turns
+up. These were all older than the migration:
+
+- **Registration input filtering had never run.** A jQuery plugin that was
+  never shipped threw an error on every page load, from the day it was added.
+- **Logged-out visitors got a 404 instead of the login page** on six views,
+  because the login URL was never configured.
+- **Two kinds of user ID were mixed up,** so pages that only worked while two
+  database tables happened to stay in sync failed for most logged-in users.
+- **Historic photos never appeared** on one page, because the template asked
+  for a field name that didn't exist.
+- **A deep link to an expanded section could never have worked:** the code
+  used the wrong CSS class and the wrong element ID.
+- **Four secrets were committed to the repository.**
+- **Copying the old markup verbatim would have hidden every footer heading:**
+  a CSS class that did nothing in Bootstrap 3 makes text white in
+  Bootstrap 5.
+
+### Recent work
+
+#### Geodetski portal (2026)
+
+Geodetic control points of the Croatian mountaineering network, on an
+interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal.org)
+
+- **Before:** Python 2.7, Django 1.11, Bootstrap 3 *and* 4 on the same site,
+  Leaflet 0.7, assets loaded from third-party CDNs.
+- **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5.3, Leaflet 1.9,
+  no CDNs, in Docker.
+- **Cutover:** 2026-08-23, after a staging rehearsal on the production server.
+  The old app is kept as the rollback.
+
+#### Planinarski portal (2026)
+
+A web GIS for Croatian mountain huts, control points and GPS tracks, with
+search, trips, galleries and user accounts: [planinarski-portal.org](https://planinarski-portal.org)
+
+- **Before:** Python 2.7, Django 1.5.
+- **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
+- **Cutover:** 2026-07-27.
+- **After launch:** about 100 bot sign-ups a day were getting past reCAPTCHA.
+  They were measured and stopped with server-side limits rather than a
+  stronger captcha.
+
+#### The migration playbook
+
+Everything these migrations taught me is written into one reusable Django
+modernisation template:
+
+- a phased runbook, from intake to the work after cutover
+- a pre-flight checklist where every item is a real mistake from an earlier
+  migration, together with the check that would have caught it
+- a registry of more than 200 recorded upgrades and failure patterns, with a
+  script that detects them in a new codebase
+- ready-made deployment, security and operations scaffolding
+
+Three apps have been moved with it so far. The next app starts from
+everything the earlier ones learned. The playbook itself stays private
+because it describes production servers, but I'm happy to walk you through it.
+
+### Is your app a fit?
+
+Good candidates are web apps on old Python or Django, sites with a dated
+frontend, and apps whose original authors have moved on. Email me what your
+app runs on and how old it is: [info@arilus.hr](mailto:info@arilus.hr).
 
 ## Stack
 

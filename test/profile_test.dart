@@ -1,15 +1,17 @@
 import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:showcase/data/profile.dart';
 import 'package:showcase/main.dart';
+import 'package:showcase/widgets/content_sheet.dart';
+import 'package:showcase/widgets/modernise_actions.dart';
 import 'package:showcase/widgets/profile_sheet.dart';
 
 import 'test_utils.dart';
 
 const contentPages = [
+  'assets/content/modernise.md',
   'assets/content/stack.md',
   'assets/content/toolbox.md',
   'assets/content/work.md',
@@ -68,7 +70,7 @@ void main() {
     }
   });
 
-  testWidgets('home page shows role and business under the name', (
+  testWidgets('footer shows name, role, contact row, then legal', (
     tester,
   ) async {
     tester.view.physicalSize = const Size(1440, 900);
@@ -77,32 +79,124 @@ void main() {
     await tester.pumpWidget(const MyApp());
     await settleFonts(tester);
 
-    final name = tester.getTopLeft(find.text('vl. Marko Filipović')).dy;
-    expect(
-      tester.getTopLeft(find.text(Profile.roleUnbreakable)).dy,
-      greaterThan(name),
-    );
-    expect(find.text(Profile.business), findsOneWidget);
+    final name = tester.getTopLeft(find.text(Profile.name)).dy;
+    final role = tester.getTopLeft(find.text(Profile.roleUnbreakable)).dy;
+    final email = tester.getTopLeft(find.text(Profile.email)).dy;
+    final legal = tester
+        .getTopLeft(find.textContaining('obrt za informatičke usluge'))
+        .dy;
+    expect(role, greaterThan(name));
+    expect(email, greaterThan(role));
+    expect(legal, greaterThan(email));
+    expect(find.text(Profile.business), findsNothing);
+    expect(find.text('Talk about your app'), findsNothing);
 
     await tester.tap(find.text('Profile for you & your AI'));
     await tester.pumpAndSettle();
     expect(find.text('Am I the right fit?'), findsOneWidget);
   });
 
+  testWidgets('the Modernise bubble opens the Modernise page', (tester) async {
+    tester.view.physicalSize = const Size(1440, 900);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(const MyApp());
+    await settleFonts(tester);
+
+    await tester.tap(find.byTooltip('Modernise'));
+    await tester.pumpAndSettle();
+    expect(find.text('Modernising legacy apps'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Email me about your app'),
+      300,
+      scrollable: find.byType(Scrollable).last,
+    );
+    expect(find.text('Copy a prompt for your AI'), findsOneWidget);
+  });
+
+  testWidgets('tapping a label does the same as its bubble', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(const MyApp());
+    await settleFonts(tester);
+
+    await tester.tap(find.text('Work'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('Live sites'),
+      300,
+      scrollable: find
+          .descendant(
+            of: find.byType(ContentSheet),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    expect(find.text('Live sites'), findsOneWidget);
+  });
+
+  testWidgets('the footer email opens mail', (tester) async {
+    final launched = mockUrlLauncher(tester, result: true);
+    final copied = mockClipboard(tester);
+    tester.view.physicalSize = const Size(1440, 900);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(const MyApp());
+    await settleFonts(tester);
+
+    await tester.tap(find.text(Profile.email));
+    await tester.pump();
+    expect(launched, ['mailto:${Profile.email}']);
+    expect(copied, isEmpty);
+  });
+
+  testWidgets('the footer email falls back to copying', (tester) async {
+    final launched = mockUrlLauncher(tester, result: false);
+    final copied = mockClipboard(tester);
+    tester.view.physicalSize = const Size(1440, 900);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(const MyApp());
+    await settleFonts(tester);
+
+    await tester.tap(find.text(Profile.email));
+    await tester.pump();
+    expect(launched, ['mailto:${Profile.email}']);
+    expect(copied, [Profile.email]);
+    expect(find.text('Copied ${Profile.email}'), findsOneWidget);
+  });
+
+  testWidgets('Modernise actions email me or copy the legacy prompt', (
+    tester,
+  ) async {
+    final opened = <String>[];
+    final clip = mockClipboard(tester);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ModerniseActions(
+            profileUrl: 'https://arilus.hr/profile.md',
+            onOpen: opened.add,
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Email me about your app'));
+    expect(opened.single, startsWith('mailto:${Profile.email}?subject='));
+
+    await tester.tap(find.text('Copy a prompt for your AI'));
+    await tester.pump();
+    expect(clip.last, contains('https://arilus.hr/profile.md'));
+    expect(clip.last, contains('Modernising legacy apps'));
+  });
+
   testWidgets('profile sheet downloads the profile and copies a prompt', (
     tester,
   ) async {
     final opened = <String>[];
-    String? copied;
-    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      SystemChannels.platform,
-      (call) async {
-        if (call.method == 'Clipboard.setData') {
-          copied = (call.arguments as Map)['text'] as String;
-        }
-        return null;
-      },
-    );
+    final clip = mockClipboard(tester);
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -121,8 +215,8 @@ void main() {
 
     await tester.tap(find.text('Copy a prompt for your AI'));
     await tester.pump();
-    expect(copied, contains('https://arilus.hr/profile.md'));
-    expect(copied, contains('Job description'));
+    expect(clip.last, contains('https://arilus.hr/profile.md'));
+    expect(clip.last, contains('Job description'));
     expect(find.text('Prompt copied. Paste it into your AI.'), findsOneWidget);
   });
 }

@@ -26,6 +26,14 @@ class Ridge {
   /// Sharp mountain peaks instead of rolling hills.
   final bool peaked;
 
+  /// When set, the outline is a midpoint-displacement profile instead of the
+  /// sum of waves. Higher values give a rougher, more jagged skyline.
+  final double? jaggedness;
+
+  /// Picks another midpoint profile for the same [seed]; ignored without
+  /// [jaggedness].
+  final int variation;
+
   /// Fill color at the crest of the ridge.
   final Color top;
 
@@ -40,7 +48,54 @@ class Ridge {
     required this.bottom,
     this.roughness = 0,
     this.peaked = false,
+    this.jaggedness,
+    this.variation = 0,
   });
+
+  /// Width of one midpoint profile in canvas heights. Beyond it the profile
+  /// is mirrored back and forth, so it never ends.
+  static const double midpointSpan = 4.0;
+
+  static const _midpointLevels = 11;
+
+  static final _midpointCache = <(int, double), List<double>>{};
+
+  /// Midpoint displacement over 2^11 + 1 points, normalised to [0, 1].
+  static List<double> _midpointProfile(int seed, double jaggedness) {
+    return _midpointCache.putIfAbsent((seed, jaggedness), () {
+      const n = 1 << _midpointLevels;
+      final a = List<double>.filled(n + 1, 0);
+      final rng = math.Random(seed);
+      a[0] = rng.nextDouble();
+      a[n] = rng.nextDouble();
+      var step = n;
+      var scale = 0.6;
+      while (step > 1) {
+        final half = step ~/ 2;
+        for (var i = half; i < n; i += step) {
+          a[i] =
+              (a[i - half] + a[i + half]) / 2 +
+              (rng.nextDouble() * 2 - 1) * scale;
+        }
+        scale *= math.pow(2, -jaggedness).toDouble();
+        step = half;
+      }
+      final lo = a.reduce(math.min), hi = a.reduce(math.max);
+      return [for (final v in a) (v - lo) / (hi - lo)];
+    });
+  }
+
+  double _midpointElevation(double t, double jaggedness) {
+    final a = _midpointProfile(seed + variation * 101, jaggedness);
+    // Ping-pong: fold t / span into [0, 1].
+    var u = (t / midpointSpan) % 2;
+    if (u < 0) u += 2;
+    if (u > 1) u = 2 - u;
+    final x = u * (a.length - 1);
+    final i = math.min(x.floor(), a.length - 2);
+    final h = a[i] + (a[i + 1] - a[i]) * (x - i);
+    return horizon - amplitude * (2 * h - 1);
+  }
 
   // Octave weights sum to 1 so the profile never leaves the amplitude band.
   // The last octave is the treeline and is scaled by [roughness].
@@ -61,6 +116,8 @@ class Ridge {
   /// Elevation at [t] (horizontal position in canvas heights) as a fraction
   /// of the canvas height from the top. Always within `horizon ± amplitude`.
   double elevationAt(double t) {
+    final j = jaggedness;
+    if (j != null) return _midpointElevation(t, j);
     var sum = 0.0;
     final last = _weights.length - 1;
     for (var i = 0; i < _weights.length; i++) {
@@ -109,7 +166,15 @@ class HeroScene extends StatefulWidget {
   /// renders without grain.
   final String grainShader;
 
-  const HeroScene({this.grainShader = 'shaders/grain.frag', super.key});
+  /// Asset key of the cloud shader, painted once and still. `null`, or a
+  /// shader that cannot be loaded, leaves the sky clear.
+  final String? cloudShader;
+
+  const HeroScene({
+    this.grainShader = 'shaders/grain.frag',
+    this.cloudShader = 'shaders/sky_clouds.frag',
+    super.key,
+  });
 
   static const skyTop = Color(0xFF07070A);
   static const skyBottom = Color(0xFF1B1517);
@@ -127,16 +192,20 @@ class HeroScene extends StatefulWidget {
     Ridge(
       seed: 11,
       horizon: 0.73,
-      amplitude: 0.12,
+      amplitude: 0.1008,
       peaked: true,
+      jaggedness: 0.82,
+      variation: 183,
       top: Color(0xFFB0695A),
       bottom: Color(0xFF6A5A5E),
     ),
     Ridge(
       seed: 23,
       horizon: 0.79,
-      amplitude: 0.08,
+      amplitude: 0.0672,
       peaked: true,
+      jaggedness: 0.82,
+      variation: 183,
       top: Color(0xFF7D4D47),
       bottom: Color(0xFF55484D),
     ),
@@ -173,11 +242,13 @@ class HeroScene extends StatefulWidget {
 
 class _HeroSceneState extends State<HeroScene> {
   ui.FragmentShader? _grain;
+  ui.FragmentShader? _clouds;
 
   @override
   void initState() {
     super.initState();
     _loadGrain();
+    _loadClouds();
   }
 
   Future<void> _loadGrain() async {
@@ -190,38 +261,45 @@ class _HeroSceneState extends State<HeroScene> {
     }
   }
 
+  Future<void> _loadClouds() async {
+    final asset = widget.cloudShader;
+    if (asset == null) return;
+    try {
+      final program = await ui.FragmentProgram.fromAsset(asset);
+      if (!mounted) return;
+      setState(() => _clouds = program.fragmentShader());
+    } on Object catch (_) {
+      // A clear sky is better than no page.
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: CustomPaint(
-        painter: _ScenePainter(grain: _grain),
-        size: Size.infinite,
-      ),
+    final clouds = _clouds;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const RepaintBoundary(child: CustomPaint(painter: _SkyPainter())),
+        if (clouds != null)
+          RepaintBoundary(child: CustomPaint(painter: _CloudsPainter(clouds))),
+        RepaintBoundary(
+          child: CustomPaint(
+            painter: _ScenePainter(grain: _grain),
+            size: Size.infinite,
+          ),
+        ),
+      ],
     );
   }
 }
 
-class _ScenePainter extends CustomPainter {
-  final ui.FragmentShader? grain;
-
-  const _ScenePainter({this.grain});
+/// The still sky: dark gradient with the warm glow on the horizon.
+class _SkyPainter extends CustomPainter {
+  const _SkyPainter();
 
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
-    _paintSky(canvas, rect);
-    final ridges = HeroScene.ridges;
-    for (final ridge in ridges.where((r) => r.peaked)) {
-      _paintRidge(canvas, size, ridge);
-    }
-    _paintValleyHaze(canvas, size, ridges);
-    for (final ridge in ridges.where((r) => !r.peaked)) {
-      _paintRidge(canvas, size, ridge);
-    }
-    _paintGrain(canvas, rect);
-  }
-
-  void _paintSky(Canvas canvas, Rect rect) {
     canvas.drawRect(
       rect,
       Paint()
@@ -243,6 +321,65 @@ class _ScenePainter extends CustomPainter {
           ],
         ).createShader(rect),
     );
+  }
+
+  @override
+  bool shouldRepaint(_SkyPainter oldDelegate) => false;
+}
+
+/// The clouds: one still frame of the shader, painted once.
+class _CloudsPainter extends CustomPainter {
+  final ui.FragmentShader shader;
+
+  const _CloudsPainter(this.shader);
+
+  /// Where in the noise the frame is taken from.
+  static const cloudTime = 65.0;
+
+  void _setColor(int index, Color c) {
+    shader
+      ..setFloat(index, c.r)
+      ..setFloat(index + 1, c.g)
+      ..setFloat(index + 2, c.b);
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Fade out just above the highest far peak.
+    final far = HeroScene.ridges.first;
+    shader
+      ..setFloat(0, size.width)
+      ..setFloat(1, size.height)
+      ..setFloat(2, cloudTime)
+      ..setFloat(3, far.horizon - far.amplitude)
+      ..setFloat(4, 0.22);
+    _setColor(5, HeroScene.mist);
+    _setColor(8, HeroScene.glow);
+    canvas.drawRect(Offset.zero & size, Paint()..shader = shader);
+  }
+
+  @override
+  bool shouldRepaint(_CloudsPainter oldDelegate) =>
+      oldDelegate.shader != shader;
+}
+
+class _ScenePainter extends CustomPainter {
+  final ui.FragmentShader? grain;
+
+  const _ScenePainter({this.grain});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    final ridges = HeroScene.ridges;
+    for (final ridge in ridges.where((r) => r.peaked)) {
+      _paintRidge(canvas, size, ridge);
+    }
+    _paintValleyHaze(canvas, size, ridges);
+    for (final ridge in ridges.where((r) => !r.peaked)) {
+      _paintRidge(canvas, size, ridge);
+    }
+    _paintGrain(canvas, rect);
   }
 
   /// Haze pooled in the valley where the peaks meet the forest. Clipped to

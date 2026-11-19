@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:showcase/widgets/hero_scene.dart';
@@ -48,6 +50,53 @@ void main() {
       }
     });
 
+    group('midpoint outline', () {
+      Ridge mid({int variation = 0}) => Ridge(
+        seed: 7,
+        horizon: 0.7,
+        amplitude: 0.1,
+        jaggedness: 0.82,
+        variation: variation,
+        top: Colors.red,
+        bottom: Colors.black,
+      );
+
+      test('stays within the band', () {
+        final r = mid();
+        for (var t = 0.0; t <= 12; t += 0.003) {
+          expect(r.elevationAt(t), inInclusiveRange(0.6, 0.8), reason: 't=$t');
+        }
+      });
+
+      test('is jagged', () {
+        int peaks(Ridge r) {
+          final v = [for (var t = 0.0; t <= 1.6; t += 0.002) r.elevationAt(t)];
+          var n = 0;
+          for (var i = 1; i < v.length - 1; i++) {
+            if (v[i] > v[i - 1] && v[i] >= v[i + 1]) n++;
+          }
+          return n;
+        }
+
+        expect(peaks(mid()), greaterThan(40));
+        expect(peaks(ridge), lessThan(10));
+      });
+
+      test('continues past its span', () {
+        final r = mid();
+        final v = [for (var t = 4.5; t <= 6.0; t += 0.003) r.elevationAt(t)];
+        final spread = v.reduce(math.max) - v.reduce(math.min);
+        expect(spread, greaterThan(0.3 * 0.1));
+      });
+
+      test('variation changes the outline', () {
+        final a = mid(), b = mid(variation: 1);
+        final differs = [for (var t = 0.0; t <= 2; t += 0.01) t]
+            .any((t) => a.elevationAt(t) != b.elevationAt(t));
+        expect(differs, isTrue);
+      });
+    });
+
     test('different seeds give different profiles', () {
       const other = Ridge(
         seed: 8,
@@ -86,6 +135,30 @@ void main() {
         const MaterialApp(home: HeroScene(grainShader: 'shaders/missing.frag')),
       );
       await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.byType(HeroScene), findsOneWidget);
+    });
+
+    testWidgets('clouds are painted and the scene is idle', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: HeroScene()));
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 200)),
+      );
+      await tester.pump();
+      expect(tester.binding.hasScheduledFrame, isFalse);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('renders without clouds when the shader is unavailable', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        const MaterialApp(home: HeroScene(cloudShader: 'shaders/missing.frag')),
+      );
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 200)),
+      );
+      await tester.pump();
       expect(tester.takeException(), isNull);
       expect(find.byType(HeroScene), findsOneWidget);
     });

@@ -9,17 +9,20 @@ procedurally painted landscape, deployed to GitHub Pages.
 - **Hero scene:** a dark, grainy sky with misty mountain ridges, painted in
   code with `CustomPainter` and a grain fragment shader. It uses no image
   assets apart from the logo (`lib/widgets/hero_scene.dart`).
-- **Menu bubbles:** LinkedIn, GitHub, Email, Stack, Work and AI.
+- **Menu bubbles:** LinkedIn, GitHub, Modernise, Stack, Work and AI. Tapping a label does the
+  same as its bubble.
   - On wide screens each bubble sits on its own mountain summit.
   - On narrow screens the bubbles circle the logo, and they animate between
     the two layouts.
   - Placement is in `lib/widgets/menu_layout.dart`.
-- **Content pages:** Stack, Work and AI open markdown pages from
+- **Content pages:** Modernise, Stack, Work and AI open markdown pages from
   `assets/content/` in a bottom sheet. Work also lists my live GitHub Pages
   sites, fetched from the GitHub API.
 - **Profile for people and AI:** a footer button opens a sheet with two
   actions. One downloads a single-file profile (`profile.md`); the other
   copies a prompt for checking fit against a job description.
+- **Footer:** name, role, the email (opens mail, or copies it), the profile
+  button, and the business registration.
 
 ## Making the site readable to crawlers and AI agents
 

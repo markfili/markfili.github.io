@@ -7,6 +7,7 @@ import '../utils/widgets.dart';
 
 /// Content pages behind the menu bubbles, as markdown asset paths.
 class ContentAssets {
+  static const modernise = 'assets/content/modernise.md';
   static const stack = 'assets/content/stack.md';
   static const toolbox = 'assets/content/toolbox.md';
   static const work = 'assets/content/work.md';

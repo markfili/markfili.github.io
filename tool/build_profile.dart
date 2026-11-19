@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:showcase/data/profile.dart';
 
 const pages = [
+  'assets/content/modernise.md',
   'assets/content/stack.md',
   'assets/content/toolbox.md',
   'assets/content/work.md',

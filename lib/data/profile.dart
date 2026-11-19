@@ -4,7 +4,7 @@
 class Profile {
   static const name = 'Marko Filipović';
   static const role = 'Senior software engineer · Flutter · Django · AI-native';
-  static const business = 'Mobile & web products, built end to end';
+  static const business = 'I modernise legacy apps, then keep building on them';
   static const location = 'Zagreb, Croatia (remote friendly)';
 
   /// [role] for narrow layouts: words inside each "·" item never break
@@ -35,6 +35,10 @@ class Profile {
   static const llmsPath = 'llms.txt';
 
   static const services = [
+    'Modernising legacy apps with AI, done properly: a written, reviewed plan '
+        'per step, every feature kept one to one, years-old bugs found and '
+        'fixed, and a modern look at the end (Python 2 / old Django to '
+        'current LTS, dated front ends to Bootstrap 5)',
     'Building mobile and web products end to end: Flutter apps, Django back '
         'ends, CI/CD, releases',
     'Fractional tech lead / CTO for startups and NGOs',
@@ -55,6 +59,22 @@ description below. Then tell me:
 
 Job description:
 <paste it here>''';
+
+  /// Prompt a client pastes into their own AI, together with the profile
+  /// and a description of their legacy app.
+  static String legacyPrompt(String profileUrl) =>
+      '''
+You are helping me decide whether to hire a software engineer to modernise
+an old application. Read his profile at $profileUrl (or the attached
+profile.md), especially "Modernising legacy apps", and my app's details
+below. Then tell me:
+1. How closely my app matches the migrations he has done (strong / partial / weak), and why.
+2. The main risks in modernising my app, and how his process addresses them.
+3. What I should prepare before a first call (access, documentation, data).
+4. Three questions to ask him.
+
+My app (what it does, language and framework versions, age, hosting, known problems):
+<describe it here>''';
 
   /// Drops `<!-- ... -->` editing notes.
   static String stripComments(String markdown) =>
