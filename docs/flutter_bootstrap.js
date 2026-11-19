@@ -48,7 +48,7 @@ _flutter.loader.load();
 
 // Still register the service worker so repeat visits load from cache, but only
 // after the page is already on screen.
-var serviceWorkerVersion = "181322326" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */;
+var serviceWorkerVersion = "1105105400" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */;
 if ('serviceWorker' in navigator) {
   window.addEventListener('flutter-first-frame', function () {
     navigator.serviceWorker.register('flutter_service_worker.js?v=' + serviceWorkerVersion);
