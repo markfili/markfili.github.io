@@ -43,24 +43,41 @@
   <link rel="manifest" href="manifest.json">
 
   <!-- Start the big downloads from the HTML, before any script runs. -->
-  <link rel="preload" href="main.dart.js" as="script">
   <link rel="preload" href="assets/assets/images/logo.png" as="image">
   <link rel="preload" href="assets/assets/fonts/DMMono-Light.ttf" as="font" type="font/ttf" crossorigin>
   <script>
-    // Mirror flutter.js: Chromium browsers get the slimmer CanvasKit build.
+    // Mirror flutter.js, so we preload only the files it will ask for.
+    // Chromium browsers with WasmGC run the wasm build on skwasm. Everyone
+    // else (Safari, Firefox, older Chrome) runs main.dart.js on CanvasKit.
     (function () {
-      var chromium = (navigator.vendor === 'Google Inc.' || navigator.userAgent.indexOf('Edg/') !== -1)
+      var blink = navigator.vendor === 'Google Inc.' || navigator.userAgent.indexOf('Edg/') !== -1;
+      var chromium = blink
         && typeof Intl.v8BreakIterator !== 'undefined'
         && typeof Intl.Segmenter !== 'undefined'
         && typeof ImageDecoder !== 'undefined';
-      var dir = chromium ? 'canvaskit/chromium/' : 'canvaskit/';
-      var wasm = document.createElement('link');
-      wasm.rel = 'preload'; wasm.as = 'fetch'; wasm.crossOrigin = 'anonymous';
-      wasm.href = dir + 'canvaskit.wasm';
-      var js = document.createElement('link');
-      js.rel = 'modulepreload'; js.href = dir + 'canvaskit.js';
-      document.head.appendChild(wasm);
-      document.head.appendChild(js);
+      var wasmGC = false;
+      try {
+        wasmGC = WebAssembly.validate(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 95, 1, 120, 0]));
+      } catch (e) {}
+      function add(rel, href, as) {
+        var link = document.createElement('link');
+        link.rel = rel; link.href = href;
+        if (as) { link.as = as; link.crossOrigin = 'anonymous'; }
+        document.head.appendChild(link);
+      }
+      if (chromium && wasmGC) {
+        add('preload', 'main.dart.wasm', 'fetch');
+        add('modulepreload', 'main.dart.mjs');
+        add('preload', 'canvaskit/skwasm.wasm', 'fetch');
+        add('modulepreload', 'canvaskit/skwasm.js');
+      } else {
+        var dir = chromium ? 'canvaskit/chromium/' : 'canvaskit/';
+        var js = document.createElement('link');
+        js.rel = 'preload'; js.as = 'script'; js.href = 'main.dart.js';
+        document.head.appendChild(js);
+        add('preload', dir + 'canvaskit.wasm', 'fetch');
+        add('modulepreload', dir + 'canvaskit.js');
+      }
     })();
   </script>
 

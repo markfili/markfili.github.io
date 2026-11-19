@@ -32610,7 +32610,7 @@ $iOR:1}
 A.aBR.prototype={
 $1(a){var s=A.d7().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/371f77202a73e8dff57a8b3bff75bca55c090aee/":s)+a},
+return(s==null?"canvaskit/":s)+a},
 $S:34}
 A.M3.prototype={
 l(){if(this.b)return
