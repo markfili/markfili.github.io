@@ -68,9 +68,14 @@ GitHub Pages serves the `docs/` folder on `main`, with the custom domain in
 
 ```sh
 fvm dart run tool/build_profile.dart
-fvm flutter build web --release -o docs
+fvm flutter build web --release --wasm --no-web-resources-cdn -o docs
 git add docs && git commit -m "deploy …" && git push
 ```
+
+`--wasm` gives Chromium browsers the faster wasm build; others fall back to
+`main.dart.js`. `--no-web-resources-cdn` serves the renderer from the site
+instead of gstatic, so the preloads in `web/index.html` are the files Flutter
+actually uses.
 
 ## Layout
 
