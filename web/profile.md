@@ -141,7 +141,7 @@ What I build with, from 10 years of commits.
 | TypeScript / Next.js | 2026 | 2026 | 5 | Next.js + Tailwind site, Docker image | 1% |
 | Java (Android) | 2016 – 2019, 2026 | 2026 | 5 | Native Android apps | 1% |
 | Kotlin (Android) | 2020 – now | 2026 | 27 | Native Android, Flutter platform channels and plugins | < 1% |
-| PHP | 2022 – 2023 | 2023 | 4 | B2B web shop | < 1% |
+| PHP | 2023 | 2023 | 3 | [client] (civic) | < 1% |
 | Docker | 2022 – now | 2026 | 17 | Containerised Django and Next.js deploys | < 1% |
 | Swift (iOS) | 2020 – now | 2026 | 28 | Flutter iOS integration | < 1% |
 | GLSL | 2026 | 2026 | 1 | Fragment shaders in Flutter (this site) | < 1% |
@@ -238,7 +238,6 @@ Packages, patterns and practices I use.
 | [client] — [app] & beacons | Flutter, BLE | 2023 – 2025 |
 | [client] [?] | Flutter | 2023 – 2026 |
 | [client] app | Flutter | 2023 |
-| B2B web shop ([client]) | PHP, Docker | 2022 – 2023 |
 | [client] — [app] (foot-scanning app, CameraX plugin) | Flutter, Kotlin | 2020 – 2022 |
 
 ### Volunteer — mountaineering

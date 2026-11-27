@@ -20,7 +20,6 @@ TODO(marko): verify before publishing.
 | [client] — [app] & beacons | Flutter, BLE | 2023 – 2025 |
 | [client] [?] | Flutter | 2023 – 2026 |
 | [client] app | Flutter | 2023 |
-| B2B web shop ([client]) | PHP, Docker | 2022 – 2023 |
 | [client] — [app] (foot-scanning app, CameraX plugin) | Flutter, Kotlin | 2020 – 2022 |
 
 ## Volunteer — mountaineering
