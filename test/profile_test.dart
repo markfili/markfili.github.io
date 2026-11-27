@@ -91,9 +91,10 @@ void main() {
     expect(find.text(Profile.business), findsNothing);
     expect(find.text('Talk about your app'), findsNothing);
 
-    await tester.tap(find.text('Profile for you & your AI'));
+    await tester.tap(find.text('Am I the right fit?'));
     await tester.pumpAndSettle();
-    expect(find.text('Am I the right fit?'), findsOneWidget);
+    expect(find.text('Am I the right fit?'), findsNWidgets(2));
+    expect(find.text('Download profile (.md)'), findsOneWidget);
   });
 
   testWidgets('the Modernise bubble opens the Modernise page', (tester) async {
@@ -103,7 +104,9 @@ void main() {
     await tester.pumpWidget(const MyApp());
     await settleFonts(tester);
 
-    await tester.tap(find.byTooltip('Modernise'));
+    await tester.tap(
+      find.byTooltip('Modernise: how I bring legacy apps up to date'),
+    );
     await tester.pumpAndSettle();
     expect(find.text('Modernising legacy apps'), findsOneWidget);
     await tester.scrollUntilVisible(

@@ -53,6 +53,10 @@ class ContactBadge extends StatelessWidget {
 
   final FaIconData icon;
   final String label;
+
+  /// Tooltip and screen-reader name: what's behind the bubble, starting
+  /// with [label] so the spoken name matches the visible one.
+  final String? description;
   final Alignment labelSide;
   final String? url;
   final VoidCallback? onPressed;
@@ -60,6 +64,7 @@ class ContactBadge extends StatelessWidget {
   const ContactBadge({
     required this.icon,
     required this.label,
+    this.description,
     this.labelSide = Alignment.topCenter,
     this.url,
     this.onPressed,
@@ -70,6 +75,7 @@ class ContactBadge extends StatelessWidget {
   ContactBadge withLabelSide(Alignment side) => ContactBadge(
     icon: icon,
     label: label,
+    description: description,
     labelSide: side,
     url: url,
     onPressed: onPressed,
@@ -148,7 +154,7 @@ class ContactBadge extends StatelessWidget {
             child: CircleAvatar(
               backgroundColor: Colors.white12,
               child: IconButton(
-                tooltip: label,
+                tooltip: description ?? label,
                 icon: FaIcon(icon, color: Colors.white70),
                 onPressed: _press,
               ),

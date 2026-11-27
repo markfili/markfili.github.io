@@ -113,21 +113,25 @@ class _MyHomePageState extends State<MyHomePage> {
       const ContactBadge(
         icon: FontAwesomeIcons.linkedinIn,
         label: "LinkedIn",
+        description: "LinkedIn: my profile",
         url: Profile.linkedin,
       ),
       const ContactBadge(
         icon: FontAwesomeIcons.githubAlt,
         label: "GitHub",
+        description: "GitHub: my code",
         url: Profile.github,
       ),
       ContactBadge(
         icon: FontAwesomeIcons.seedling,
         label: "Modernise",
+        description: "Modernise: how I bring legacy apps up to date",
         onPressed: _showModernise,
       ),
       ContactBadge(
         icon: FontAwesomeIcons.layerGroup,
         label: "Stack",
+        description: "Stack: the languages and tools I use",
         onPressed: () => showContentSheet(
           context,
           assets: const [ContentAssets.stack, ContentAssets.toolbox],
@@ -136,11 +140,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ContactBadge(
         icon: FontAwesomeIcons.briefcase,
         label: "Work",
+        description: "Work: clients, projects and live sites",
         onPressed: _showWork,
       ),
       ContactBadge(
         icon: FontAwesomeIcons.wandMagicSparkles,
         label: "AI",
+        description: "AI: how I work with AI coding agents",
         onPressed: () =>
             showContentSheet(context, assets: const [ContentAssets.ai]),
       ),
@@ -380,8 +386,8 @@ class _WhoIAm extends StatelessWidget {
                         TextButton.icon(
                           onPressed: onProfile,
                           style: quiet,
-                          icon: const Icon(Icons.download, size: 16),
-                          label: const Text("Profile for you & your AI"),
+                          icon: const Icon(Icons.fact_check_outlined, size: 16),
+                          label: const Text('Am I the right fit?'),
                         ),
                       ],
                     ),
