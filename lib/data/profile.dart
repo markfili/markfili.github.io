@@ -70,6 +70,9 @@ class Profile {
 
   /// Path of the generated files, relative to the site root.
   static const profilePath = 'profile.md';
+
+  /// The explainer of how the page is made (`web/how.html`).
+  static const howPath = 'how.html';
   static const llmsPath = 'llms.txt';
 
   static const services = [

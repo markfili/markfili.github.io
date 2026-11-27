@@ -90,5 +90,6 @@ actually uses.
 | `lib/data/` | GitHub Pages repository, profile text and generators |
 | `assets/content/` | Markdown pages behind the bubbles |
 | `tool/build_profile.dart` | Writes `web/profile.md` and `web/llms.txt` |
+| `web/how.html` | "How this page is made" explainer behind the corner ⓘ button; plain HTML, edited by hand when the scene or build changes |
 | `design/` | Design notes written before implementation |
 | `docs/` | Built site (generated, deployed) |

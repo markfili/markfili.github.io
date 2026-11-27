@@ -8,10 +8,14 @@ import '../widgets/hero_scene.dart';
 import '../widgets/menu_layout.dart';
 
 /// Opens [url]; false when nothing could handle it (e.g. `mailto:` on a
-/// machine without a mail app).
-Future<bool> openUrl(String url) async {
+/// machine without a mail app). On the web it opens a new tab unless
+/// [sameTab].
+Future<bool> openUrl(String url, {bool sameTab = false}) async {
   try {
-    final launched = await launchUrlString(url);
+    final launched = await launchUrlString(
+      url,
+      webOnlyWindowName: sameTab ? '_self' : null,
+    );
     if (!launched && kDebugMode) {
       debugPrint('Could not launch $url');
     }

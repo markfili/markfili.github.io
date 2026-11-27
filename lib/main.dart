@@ -77,6 +77,9 @@ class MyHomePage extends StatefulWidget {
   /// Finds the footer's box (fade strip included) in tests.
   static const footerKey = ValueKey('who-i-am-footer');
 
+  /// Finds the corner button that opens how the page is made.
+  static const howKey = ValueKey('how-it-is-made');
+
   /// 70% of skyTop: inkSoft reaches 5.1:1 over HeroScene.mist (4.5:1 needed).
   static const footerScrim = Color(0xB307070A);
 
@@ -328,11 +331,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Semantics(
                           container: true,
                           sortKey: const OrdinalSortKey(20),
-                          child: _WhoIAm(
-                            key: MyHomePage.footerKey,
-                            small: small,
-                            onEmail: _email,
-                            onProfile: _sheets[profileSheetName]!,
+                          // Tab: after the bubbles, before the corner button.
+                          child: FocusTraversalOrder(
+                            order: const NumericFocusOrder(10),
+                            child: _WhoIAm(
+                              key: MyHomePage.footerKey,
+                              small: small,
+                              onEmail: _email,
+                              onProfile: _sheets[profileSheetName]!,
+                            ),
                           ),
                         ),
                       ),
@@ -362,6 +369,35 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ),
+                      // How the page is made, out of the way in the corner.
+                      Positioned(
+                        top: MediaQuery.paddingOf(context).top + Insets.medium,
+                        right: Insets.medium,
+                        child: Semantics(
+                          container: true,
+                          sortKey: const OrdinalSortKey(30),
+                          child: FocusTraversalOrder(
+                            // Last for Tab too.
+                            order: const NumericFocusOrder(20),
+                            child: IconButton(
+                              key: MyHomePage.howKey,
+                              tooltip: 'How this page is made',
+                              icon: const Icon(
+                                Icons.info_outline,
+                                color: HeroScene.inkSoft,
+                                size: 22,
+                              ),
+                              style: IconButton.styleFrom(
+                                fixedSize: const Size.square(48),
+                              ),
+                              onPressed: () => openUrl(
+                                Uri.base.resolve(Profile.howPath).toString(),
+                                sameTab: true,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

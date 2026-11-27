@@ -201,6 +201,11 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - Blockquotes are italic on the tertiary container, with an 8px radius.
 - It follows the Night Ridge sheet colours above. Each sheet has its own address (see Do's).
 
+### How-It's-Made Button
+- A 48px ⓘ icon in Soft Ink in the top-right corner, with no fill and no border, so the email pill stays the only filled control. Tooltip "How this page is made".
+- Opens `how.html` (`web/how.html`) in the same tab: a static explainer in the same palette, with DM Mono served from the site and nothing loaded from other hosts.
+- Last in Tab and screen-reader order, after the footer.
+
 ### Years Timeline
 - Horizontal bars on one shared year axis, drawn from the "Years" column of a page's tables (`lib/widgets/years_timeline.dart`). A `<!-- timeline -->` comment marks where it goes.
 - Bars are Sheet Accent, 6px, fully rounded; faint Outline Variant gridlines every year or every two; group titles from the `##` headings in Valley Mist.
