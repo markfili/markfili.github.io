@@ -1,7 +1,7 @@
 <!--
 TODO(marko): verify before publishing.
 - Groupings confirmed by Marko. Clients stay unnamed.
-- Unchecked: the years of the beacon app and the club logbooks (no git history).
+- Years of the beacon app and the trail stamp books confirmed by Marko.
 -->
 
 # Work
@@ -38,7 +38,7 @@ Clients aren’t named here.
 | Hrvatske planine (Croatian mountain names) | Django | 2025 – now |
 | Planinarska konzola (club console) | Django | 2026 |
 | Planinarski menu | HTML | 2026 |
-| Club logbooks (HPK, HPO, GPO, VPP) | Django | 2022 – 2023 |
+| Online trail stamp books (HPK, HPO, GPO, VPP): hikers log control points with photos | Django | 2022 – 2023 |
 
 ## Volunteer — developer community
 

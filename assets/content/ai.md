@@ -52,5 +52,4 @@ standards instead of guessing.
 
 ## Scale
 
-- 340+ agent sessions in five months of 2026.
-- Most of my 2025–2026 output was built this way.
+Most of my 2025–2026 output was built this way.

@@ -257,7 +257,7 @@ Clients aren’t named here.
 | Hrvatske planine (Croatian mountain names) | Django | 2025 – now |
 | Planinarska konzola (club console) | Django | 2026 |
 | Planinarski menu | HTML | 2026 |
-| Club logbooks (HPK, HPO, GPO, VPP) | Django | 2022 – 2023 |
+| Online trail stamp books (HPK, HPO, GPO, VPP): hikers log control points with photos | Django | 2022 – 2023 |
 
 ### Volunteer — developer community
 
@@ -338,5 +338,4 @@ standards instead of guessing.
 
 ### Scale
 
-- 340+ agent sessions in five months of 2026.
-- Most of my 2025–2026 output was built this way.
+Most of my 2025–2026 output was built this way.
