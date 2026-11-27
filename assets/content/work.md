@@ -14,8 +14,8 @@ Clients aren’t named here.
 
 | Project | Stack | Years |
 |---|---|---|
-| Workforce management app (Android) | Kotlin, Java | 2026 |
 | Price-comparison and shopping-list app | Flutter, maps | 2025 – 2026 |
+| Workforce location-tracking app (plus small changes to its native Android version) | Flutter; Kotlin, Java | 2025 – 2026 |
 | Second-hand marketplace app with AI item scanning | Flutter, Firebase, melos monorepo | 2025 |
 | Radio station app | Flutter | 2023 – 2026 |
 | App with Bluetooth beacons | Flutter, BLE | 2023 – 2025 |
