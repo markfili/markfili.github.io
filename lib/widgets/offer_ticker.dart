@@ -42,6 +42,16 @@ class _OfferTickerState extends State<OfferTicker> {
   Timer? _timer;
 
   @override
+  void initState() {
+    super.initState();
+    // The columns are measured in build; measure again once DM Mono has
+    // loaded, or the verb stays clipped to the fallback font's width.
+    PaintingBinding.instance.systemFonts.addListener(_fontsChanged);
+  }
+
+  void _fontsChanged() => setState(() {});
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (MediaQuery.disableAnimationsOf(context)) {
@@ -62,6 +72,7 @@ class _OfferTickerState extends State<OfferTicker> {
 
   @override
   void dispose() {
+    PaintingBinding.instance.systemFonts.removeListener(_fontsChanged);
     _timer?.cancel();
     super.dispose();
   }

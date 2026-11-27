@@ -207,7 +207,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: 1),
         duration: const Duration(milliseconds: 1400),
-        curve: Curves.easeOut,
+        // Waits out the web splash's 0.4s fade (web/index.html), so its
+        // centred brand never overlaps this page's.
+        curve: const Interval(0.3, 1, curve: Curves.easeOut),
         builder: (context, opacity, child) =>
             Opacity(opacity: opacity, child: child),
         child: LayoutBuilder(

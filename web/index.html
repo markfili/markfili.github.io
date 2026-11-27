@@ -89,18 +89,38 @@
       font-display: block;
       src: url(assets/assets/fonts/DMMono-Light.ttf) format("truetype");
     }
-    /* Same sky and the same centered brand as the Flutter home page, shown
-       at first byte and crossfaded out once Flutter paints its first frame. */
+    /* Same sky as the Flutter home page and the brand, shown at first byte.
+       Once Flutter paints its first frame the splash fades out quickly and
+       only then does the scene fade in (see MyHomePage), so the splash brand
+       and the page's brand, which sits higher, never show together. */
     #splash {
       position: fixed; inset: 0; z-index: 1; pointer-events: none;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       background: linear-gradient(#07070a, #1b1517);
-      opacity: 1; transition: opacity 1.4s ease-out;
+      opacity: 1; transition: opacity 0.4s ease-out;
     }
     #splash img { width: 88px; height: 88px; display: block; }
     #splash span {
       font: 300 56px/1.15 "DM Mono", ui-monospace, Menlo, monospace;
       letter-spacing: -2px; color: rgba(255, 255, 255, 0.9);
+    }
+    /* A thin glint crossing a faint track under the wordmark, so a slow
+       load doesn't look frozen. Held still for reduced motion. */
+    #splash i {
+      margin-top: 24px; width: 120px; height: 2px; border-radius: 1px;
+      background: rgba(255, 255, 255, 0.12); overflow: hidden;
+    }
+    #splash i::after {
+      content: ""; display: block; width: 40%; height: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      animation: glint 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+    @keyframes glint {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(250%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #splash i::after { animation: none; width: 100%; opacity: 0.4; }
     }
   </style>
 </head>
@@ -117,6 +137,7 @@
   <div id="splash" role="status" aria-label="arilus is loading">
     <img src="assets/assets/images/logo.png" alt="">
     <span aria-hidden="true">arilus</span>
+    <i aria-hidden="true"></i>
   </div>
   <script>
     window.addEventListener('flutter-first-frame', function () {
@@ -125,7 +146,7 @@
       splash.removeAttribute('role');
       splash.setAttribute('aria-hidden', 'true');
       splash.style.opacity = '0';
-      setTimeout(function () { splash.remove(); }, 1500);
+      setTimeout(function () { splash.remove(); }, 600);
     }, { once: true });
   </script>
   <script src="flutter_bootstrap.js" async></script>
