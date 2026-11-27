@@ -187,6 +187,9 @@ class HeroScene extends StatefulWidget {
   /// Secondary text color over the scene.
   static const inkSoft = Color(0x99FFFFFF);
 
+  /// Translucent fill of the bubbles and the email pill.
+  static const glass = Color(0x1FFFFFFF);
+
   static const ridges = [
     // Far peaks catching the light, dissolving into haze at their base.
     Ridge(

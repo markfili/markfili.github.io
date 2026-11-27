@@ -178,7 +178,9 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 
 ### Footer Band
 - **Character:** dusk settling on the treeline.
-- **Content:** Footer Scrim behind the name (Title), the role (Body in Soft Ink), two quiet text buttons (the email, and "Profile for you & your AI" with a download icon), and the registration line (Label).
+- **Content:** Footer Scrim behind the name (Title), the role (Body in Soft Ink), the actions, and the registration line (Label).
+- **Email pill (primary action):** the one solid control on the page. A Glass stadium, 48px tall, with a mail icon and the address in Body. It brightens on hover.
+- **"Am I the right fit?":** a quiet text button with a checklist icon. It opens the profile sheet.
 
 ### Content Sheet (legacy theme)
 - A modal bottom sheet with a drag handle that renders markdown.
@@ -195,7 +197,7 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - **Do** paint new scenery procedurally (`CustomPainter`, fragment shaders) and keep the grain over it.
 - **Do** keep Ember Ring for the mark. Warm the scene with Horizon Glow and the ridge tones instead.
 - **Do** set text on the scene in Moon Ink or Soft Ink, and keep secondary text at least 4.5:1 against what is actually behind it (the reason for the 70% footer scrim).
-- **Do** keep controls glassy and translucent, so the landscape stays the subject.
+- **Do** keep controls glassy and translucent, so the landscape stays the subject. The email pill is the only filled one.
 - **Do** use DM Mono for all text.
 - **Do** keep one moving element on the home screen: the offer line. The scene itself stays still.
 

@@ -152,7 +152,7 @@ class ContactBadge extends StatelessWidget {
             width: _size,
             height: _size,
             child: CircleAvatar(
-              backgroundColor: Colors.white12,
+              backgroundColor: HeroScene.glass,
               child: IconButton(
                 tooltip: description ?? label,
                 icon: FaIcon(icon, color: Colors.white70),

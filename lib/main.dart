@@ -321,6 +321,16 @@ class _WhoIAm extends StatelessWidget {
       textStyle: small?.copyWith(color: HeroScene.ink),
       minimumSize: const Size(48, 48),
     );
+    // The one solid action on the page: a glass pill, brighter on hover.
+    final primary = TextButton.styleFrom(
+      foregroundColor: HeroScene.ink,
+      backgroundColor: HeroScene.glass,
+      overlayColor: Colors.white,
+      textStyle: text.bodyMedium?.copyWith(letterSpacing: 0.2),
+      minimumSize: const Size(48, 48),
+      padding: const EdgeInsets.symmetric(horizontal: Insets.large + 4),
+      shape: const StadiumBorder(),
+    );
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -370,17 +380,18 @@ class _WhoIAm extends StatelessWidget {
                     Wrap(
                       alignment: WrapAlignment.center,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      spacing: Insets.medium,
+                      spacing: Insets.large,
                       runSpacing: 0,
                       children: [
                         Semantics(
                           label: 'Email Marko at ${Profile.email}',
                           button: true,
                           excludeSemantics: true,
-                          child: TextButton(
+                          child: TextButton.icon(
                             onPressed: onEmail,
-                            style: quiet,
-                            child: const Text(Profile.email),
+                            style: primary,
+                            icon: const Icon(Icons.mail_outline, size: 18),
+                            label: const Text(Profile.email),
                           ),
                         ),
                         TextButton.icon(
