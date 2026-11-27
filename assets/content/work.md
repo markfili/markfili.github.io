@@ -1,8 +1,7 @@
 <!--
 TODO(marko): verify before publishing.
-- Groupings were inferred from repo names and remotes. Items marked [?] are guesses.
-- Check that each client agrees to be named publicly.
-- Add one-line descriptions and links where public.
+- Groupings confirmed by Marko. Clients stay unnamed.
+- Unchecked: the years of the beacon app and the club logbooks (no git history).
 -->
 
 # Work
@@ -11,26 +10,34 @@ TODO(marko): verify before publishing.
 
 ## Client & employer work
 
+Clients aren’t named here.
+
 | Project | Stack | Years |
 |---|---|---|
-| [client] — Workforce management (Android) | Kotlin, Java | 2026 |
-| Hauztor [?] | Flutter, Jaspr, dart_frog, PostgreSQL | 2026 |
-| Geodetski portal [?] | Django | 2021 – now |
-| [client] [?] | Flutter, Firebase, melos monorepo | 2025 |
-| [client] — [app] & beacons | Flutter, BLE | 2023 – 2025 |
-| [client] [?] | Flutter | 2023 – 2026 |
-| [client] app | Flutter | 2023 |
-| [client] — [app] (foot-scanning app, CameraX plugin) | Flutter, Kotlin | 2020 – 2022 |
+| Workforce management app (Android) | Kotlin, Java | 2026 |
+| Price-comparison and shopping-list app | Flutter, maps | 2025 – 2026 |
+| Second-hand marketplace app with AI item scanning | Flutter, Firebase, melos monorepo | 2025 |
+| Radio station app | Flutter | 2023 – 2026 |
+| App with Bluetooth beacons | Flutter, BLE | 2023 – 2025 |
+| Classifieds app | Flutter | 2023 |
+| Budget transparency site | PHP | 2023 |
+| Foot-scanning app, with my own CameraX plugin | Flutter, Kotlin | 2020 – 2022 |
+
+## With partners
+
+| Project | Stack | Years |
+|---|---|---|
+| Hauztor | Flutter, Jaspr, dart_frog, Serverpod, Django, PostgreSQL, Stream Chat | 2026 |
 
 ## Volunteer — mountaineering
 
 | Project | Stack | Years |
 |---|---|---|
 | Planinarski portal (mountaineering portal) | Django | 2022 – now |
+| Geodetski portal (geodetic control points) | Django | 2021 – now |
 | Hrvatske planine (Croatian mountain names) | Django | 2025 – now |
 | Planinarska konzola (club console) | Django | 2026 |
 | Planinarski menu | HTML | 2026 |
-| [client] [?] | Flutter, maps | 2025 – 2026 |
 | Club logbooks (HPK, HPO, GPO, VPP) | Django | 2022 – 2023 |
 
 ## Volunteer — developer community
@@ -49,8 +56,6 @@ TODO(marko): verify before publishing.
 | Project | Stack | Years |
 |---|---|---|
 | Uradi sad (activism app) | Flutter | 2026 |
-| Susjed (neighbourhood app) [?] | Flutter, Django, Serverpod, Stream Chat | 2026 |
-| [client] [?] | PHP | 2023 |
 
 ## Personal & R&D
 

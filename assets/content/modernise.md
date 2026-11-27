@@ -56,7 +56,7 @@ up. These were all older than the migration:
 
 ## Recent work
 
-### Geodetski portal (2026)
+### Geodetski portal (2026, volunteer)
 
 Geodetic control points of the Croatian mountaineering network, on an
 interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal.org)
@@ -68,13 +68,13 @@ interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal
 - **Cutover:** 2026-08-23, after a staging rehearsal on the production server.
   The old app is kept as the rollback.
 
-### Planinarski portal (2026)
+### Planinarski portal (2026, volunteer)
 
 A web GIS for Croatian mountain huts, control points and GPS tracks, with
 search, trips, galleries and user accounts: [planinarski-portal.org](https://planinarski-portal.org)
 
 - **Before:** Python 2.7, Django 1.5.
-- **After:** Python 3, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
+- **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
 - **Cutover:** 2026-07-27.
 - **After launch:** about 100 bot sign-ups a day were getting past reCAPTCHA.
   A hidden honeypot field didn't stop them, so registration now also asks a

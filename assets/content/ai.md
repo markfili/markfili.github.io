@@ -25,11 +25,10 @@ standards instead of guessing.
   at most 3 parallel subagents, and short reports.
 - **Persistent memory:** per-project notes on decisions, feedback and context,
   so sessions don't start from zero.
-- **Custom skills I wrote:**
+- **Custom skills, generated with AI:**
   - a Material 3 design audit for Flutter apps
   - a design audit for Django + Bootstrap apps
   - a release flow: semver bump, Croatian release notes, tagged release
-  - Railway infrastructure operations
   - visual explainers
 - **Plugins:** Superpowers (brainstorm → plan → test-driven implementation →
   review), Google's Elephant–Goldfish document review, a Pyright language

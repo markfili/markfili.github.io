@@ -32,7 +32,7 @@ Packages, patterns and practices I use.
 | Web front end | Next.js, React, Tailwind CSS, TypeScript, Vitest |
 | Content | Directus (headless CMS) |
 | Data | PostgreSQL, Supabase, SQLite, Firestore |
-| Infrastructure | Docker / Compose, GitHub Pages, Railway |
+| Infrastructure | Docker / Compose, GitHub Pages |
 
 ## Architecture
 

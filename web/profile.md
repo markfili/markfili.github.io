@@ -76,7 +76,7 @@ up. These were all older than the migration:
 
 ### Recent work
 
-#### Geodetski portal (2026)
+#### Geodetski portal (2026, volunteer)
 
 Geodetic control points of the Croatian mountaineering network, on an
 interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal.org)
@@ -88,13 +88,13 @@ interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal
 - **Cutover:** 2026-08-23, after a staging rehearsal on the production server.
   The old app is kept as the rollback.
 
-#### Planinarski portal (2026)
+#### Planinarski portal (2026, volunteer)
 
 A web GIS for Croatian mountain huts, control points and GPS tracks, with
 search, trips, galleries and user accounts: [planinarski-portal.org](https://planinarski-portal.org)
 
 - **Before:** Python 2.7, Django 1.5.
-- **After:** Python 3, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
+- **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
 - **Cutover:** 2026-07-27.
 - **After launch:** about 100 bot sign-ups a day were getting past reCAPTCHA.
   A hidden honeypot field didn't stop them, so registration now also asks a
@@ -141,7 +141,7 @@ What I build with, from 10 years of commits.
 | TypeScript / Next.js | 2026 | 2026 | 5 | Next.js + Tailwind site, Docker image | 1% |
 | Java (Android) | 2016 – 2019, 2026 | 2026 | 5 | Native Android apps | 1% |
 | Kotlin (Android) | 2020 – now | 2026 | 27 | Native Android, Flutter platform channels and plugins | < 1% |
-| PHP | 2023 | 2023 | 3 | [client] (civic) | < 1% |
+| PHP | 2023 | 2023 | 3 | A budget transparency site for a client | < 1% |
 | Docker | 2022 – now | 2026 | 17 | Containerised Django and Next.js deploys | < 1% |
 | Swift (iOS) | 2020 – now | 2026 | 28 | Flutter iOS integration | < 1% |
 | GLSL | 2026 | 2026 | 1 | Fragment shaders in Flutter (this site) | < 1% |
@@ -194,7 +194,7 @@ Packages, patterns and practices I use.
 | Web front end | Next.js, React, Tailwind CSS, TypeScript, Vitest |
 | Content | Directus (headless CMS) |
 | Data | PostgreSQL, Supabase, SQLite, Firestore |
-| Infrastructure | Docker / Compose, GitHub Pages, Railway |
+| Infrastructure | Docker / Compose, GitHub Pages |
 
 ### Architecture
 
@@ -229,26 +229,34 @@ Packages, patterns and practices I use.
 
 ### Client & employer work
 
+Clients aren’t named here.
+
 | Project | Stack | Years |
 |---|---|---|
-| [client] — Workforce management (Android) | Kotlin, Java | 2026 |
-| Hauztor [?] | Flutter, Jaspr, dart_frog, PostgreSQL | 2026 |
-| Geodetski portal [?] | Django | 2021 – now |
-| [client] [?] | Flutter, Firebase, melos monorepo | 2025 |
-| [client] — [app] & beacons | Flutter, BLE | 2023 – 2025 |
-| [client] [?] | Flutter | 2023 – 2026 |
-| [client] app | Flutter | 2023 |
-| [client] — [app] (foot-scanning app, CameraX plugin) | Flutter, Kotlin | 2020 – 2022 |
+| Workforce management app (Android) | Kotlin, Java | 2026 |
+| Price-comparison and shopping-list app | Flutter, maps | 2025 – 2026 |
+| Second-hand marketplace app with AI item scanning | Flutter, Firebase, melos monorepo | 2025 |
+| Radio station app | Flutter | 2023 – 2026 |
+| App with Bluetooth beacons | Flutter, BLE | 2023 – 2025 |
+| Classifieds app | Flutter | 2023 |
+| Budget transparency site | PHP | 2023 |
+| Foot-scanning app, with my own CameraX plugin | Flutter, Kotlin | 2020 – 2022 |
+
+### With partners
+
+| Project | Stack | Years |
+|---|---|---|
+| Hauztor | Flutter, Jaspr, dart_frog, Serverpod, Django, PostgreSQL, Stream Chat | 2026 |
 
 ### Volunteer — mountaineering
 
 | Project | Stack | Years |
 |---|---|---|
 | Planinarski portal (mountaineering portal) | Django | 2022 – now |
+| Geodetski portal (geodetic control points) | Django | 2021 – now |
 | Hrvatske planine (Croatian mountain names) | Django | 2025 – now |
 | Planinarska konzola (club console) | Django | 2026 |
 | Planinarski menu | HTML | 2026 |
-| [client] [?] | Flutter, maps | 2025 – 2026 |
 | Club logbooks (HPK, HPO, GPO, VPP) | Django | 2022 – 2023 |
 
 ### Volunteer — developer community
@@ -267,8 +275,6 @@ Packages, patterns and practices I use.
 | Project | Stack | Years |
 |---|---|---|
 | Uradi sad (activism app) | Flutter | 2026 |
-| Susjed (neighbourhood app) [?] | Flutter, Django, Serverpod, Stream Chat | 2026 |
-| [client] [?] | PHP | 2023 |
 
 ### Personal & R&D
 
@@ -305,11 +311,10 @@ standards instead of guessing.
   at most 3 parallel subagents, and short reports.
 - **Persistent memory:** per-project notes on decisions, feedback and context,
   so sessions don't start from zero.
-- **Custom skills I wrote:**
+- **Custom skills, generated with AI:**
   - a Material 3 design audit for Flutter apps
   - a design audit for Django + Bootstrap apps
   - a release flow: semver bump, Croatian release notes, tagged release
-  - Railway infrastructure operations
   - visual explainers
 - **Plugins:** Superpowers (brainstorm → plan → test-driven implementation →
   review), Google's Elephant–Goldfish document review, a Pyright language
