@@ -1,12 +1,4 @@
-<!--
-TODO(marko): verify before publishing.
-- Groupings confirmed by Marko. Clients stay unnamed.
-- Years of the beacon app and the trail stamp books confirmed by Marko.
--->
-
 # Work
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 ## Client & employer work
 

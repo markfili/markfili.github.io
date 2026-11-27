@@ -1,8 +1,5 @@
-<!-- DRAFT: review before publishing. Numbers are from my own Claude Code usage stats. -->
 
 # How I work with AI
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 I build with AI coding agents every day, set up so they follow my engineering
 standards instead of guessing.

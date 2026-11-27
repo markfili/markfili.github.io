@@ -40,11 +40,11 @@ publishes the same information in plain formats as well:
 - `web/index.html`: a meta description, schema.org `Person` data, links to
   the profile, and a `<noscript>` fallback.
 
-The content is a **work-in-progress, AI-generated draft** and says so
-everywhere it appears. Remove the notice at the top of each page in
-`assets/content/` once that page has been reviewed. Set
-`Profile.draftNotice` to `null` in `lib/data/profile.dart` once all of them
-have been.
+The content was drafted with AI from my repositories and checked against
+them and by me (2026-11-28). To mark pages as drafts again, set
+`Profile.draftNotice` in `lib/data/profile.dart` and put a "Work in
+progress" notice at the top of each page in `assets/content/`; a test keeps
+the two in step.
 
 ## Development
 

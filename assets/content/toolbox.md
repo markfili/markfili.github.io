@@ -1,7 +1,5 @@
 # Toolbox
 
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
-
 Packages, patterns and practices I use.
 
 ## Flutter

@@ -37,9 +37,8 @@ void main() {
       '<!-- secret note -->\n# Stack\n\n## Flutter\n\nDart',
     ]);
 
-    test('starts with name, draft notice, role and contact', () {
+    test('starts with name, role and contact', () {
       expect(md, startsWith('# ${Profile.name}\n'));
-      expect(md, contains(Profile.draftNotice!));
       expect(md, contains(Profile.role));
       expect(md, contains(Profile.email));
     });
@@ -60,11 +59,11 @@ void main() {
     expect(Profile.roleUnbreakable, isNot(contains('-')));
   });
 
-  test('every content page says it is an unreviewed AI draft', () {
+  test('content pages carry a draft notice exactly when the profile does', () {
     for (final p in contentPages) {
       expect(
-        File(p).readAsStringSync(),
-        contains('Work in progress'),
+        File(p).readAsStringSync().contains('Work in progress'),
+        Profile.draftNotice != null,
         reason: p,
       );
     }
@@ -215,7 +214,10 @@ void main() {
       ),
     );
 
-    expect(find.textContaining('Work in progress'), findsOneWidget);
+    expect(
+      find.textContaining('Work in progress'),
+      Profile.draftNotice == null ? findsNothing : findsOneWidget,
+    );
 
     await tester.tap(find.text('Download profile (.md)'));
     expect(opened, ['https://arilus.hr/profile.md']);

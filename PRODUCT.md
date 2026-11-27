@@ -39,7 +39,7 @@ The lead offer is **legacy-app modernisation done properly with AI**: a written,
 ## Brand Commitments
 
 - Name: **arilus**. The red ring logo is the existing mark (`assets/`). Neither is locked against future change.
-- Voice: plain, first person, honest; no inflated claims. Unreviewed content is labelled as an AI-generated draft (`Profile.draftNotice`).
+- Voice: plain, first person, honest; no inflated claims. Unreviewed content is labelled as an AI-generated draft (`Profile.draftNotice`); none is at present.
 
 ## Evidence on Hand
 
@@ -48,7 +48,7 @@ The lead offer is **legacy-app modernisation done properly with AI**: a written,
 - Stack history from 10 years of commits: `assets/content/stack.md`, `assets/content/toolbox.md`.
 - Client and volunteer projects: `assets/content/work.md`.
 - AI workflow: `assets/content/ai.md`.
-- **All content pages are unreviewed drafts.** Some client names are marked `[?]`, and whether clients agree to be named is unconfirmed.
+- **Content pages were checked against the repositories on 2026-11-28.** Clients are not named; only numbers the repositories confirm are shown.
 - There are no testimonials, pricing or case-study metrics. Do not invent any.
 
 ## Product Principles

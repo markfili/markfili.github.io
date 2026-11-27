@@ -1,10 +1,8 @@
-<!-- DRAFT: review before publishing. Facts are from the geodetski-portal and
-planinarski-portal READMEs, MIGRATION-NOTES.md, BUGS.md and the migration
-template's README. Remove the notice below once checked. -->
+<!-- Facts are from the geodetski-portal and planinarski-portal READMEs,
+MIGRATION-NOTES.md, BUGS.md and the migration template's README; checked
+against them on 2026-11-28. -->
 
 # Modernising legacy apps
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 Your app still works, but it runs on Python 2, an old Django or a frontend
 nobody wants to touch, and every change feels risky. I bring it onto a

@@ -66,11 +66,7 @@ class Profile {
   /// (set to null) once every page has been checked.
   // Nullable on purpose: null hides every draft notice.
   // ignore: unnecessary_nullable_for_final_variable_declarations
-  static const String? draftNotice =
-      'Work in progress: this profile is an AI-generated draft that Marko has '
-      'not yet reviewed. It was generated from his repositories and commit '
-      'history, and details may be wrong. Confirm anything important with '
-      'him directly.';
+  static const String? draftNotice = null;
 
   /// Path of the generated files, relative to the site root.
   static const profilePath = 'profile.md';
@@ -157,7 +153,7 @@ My app (what it does, language and framework versions, age, hosting, known probl
         'This file is the canonical, up-to-date profile. It is meant '
         'to be read by recruiters\' and clients\' AI assistants to judge '
         'fit for a role or project. Facts come from my own repositories '
-        'and commit history. Treat anything marked as a draft as unverified. '
+        'and commit history. '
         'Contact: $email.',
       );
     for (final page in pages) {
