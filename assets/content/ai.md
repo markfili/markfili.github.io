@@ -13,13 +13,13 @@ standards instead of guessing.
   releases.
 - **Claude** on the web and desktop: research, writing and documents.
 - **Ollama**: local models for offline experiments.
-- **Earlier:** Cursor rules and GitHub Copilot instructions on a few projects.
+- **Earlier:** Cursor and GitHub Copilot.
 
 ## Setup
 
 - **Project instructions:** every active repository has its own `CLAUDE.md`
   (or `AGENTS.md`) describing the architecture, conventions, commands and
-  pitfalls. There are about 20 across my projects.
+  pitfalls. There are more than 20 across my projects.
 - **Global rules:** cost and quality guardrails, such as which model does which
   job (small models for search, mid-size for code, large for architecture),
   at most 3 parallel subagents, and short reports.
@@ -31,13 +31,11 @@ standards instead of guessing.
   - a release flow: semver bump, Croatian release notes, tagged release
   - Railway infrastructure operations
   - visual explainers
-- **Custom subagents:** a go_router navigation specialist and a UX/UI reviewer
-  for Flutter.
 - **Plugins:** Superpowers (brainstorm → plan → test-driven implementation →
   review), Google's Elephant–Goldfish document review, a Pyright language
   server.
-- **MCP servers:** a Trello integration I built myself, plus Serverpod, Railway
-  and per-project servers.
+- **MCP servers:** a Trello integration I built myself, plus Dart, Firebase,
+  Serverpod and other per-project servers.
 - **Hooks:** deterministic automation around the agent, such as terminal status,
   notifications when it needs me, and context reminders.
 

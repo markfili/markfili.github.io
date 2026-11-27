@@ -36,16 +36,16 @@ comes out with a modern look and fewer bugs than it went in with.
 AI coding agents make a large migration fast. On their own they also make it
 sloppy. Here is how I keep them in line:
 
-- **A written plan before any code.** Each phase has a design document, and
-  the documents are reviewed with Elephant–Goldfish (EGM), a set of
-  independent AI reviewers. They check structure, technical accuracy and
-  whether the plan is actually ready to implement.
+- **A written plan before any code.** Each phase is planned and recorded in
+  migration notes. Larger design documents also go through Elephant–Goldfish
+  (EGM), a set of independent AI reviewers that check structure, technical
+  accuracy and whether the plan is actually ready to implement.
 - **Behaviour first, pixels later.** The first phase moves the back end to
   current Python and Django with the old look left intact. Because nothing
   changes for the user, any difference the tests catch is a migration bug.
 - **Tests as the guard.** I write a test suite around the existing behaviour
-  and a screenshot harness that compares every page and fails on any browser
-  console error. The visual redesign only starts once both pass.
+  and a screenshot harness that compares pages and fails on any browser console
+  error. The visual redesign only starts once both pass.
 - **A rehearsal on real data.** Before the switch, a staging copy runs on the
   production server against a copy of the real database.
 - **A cutover with a way back.** The old app stays in place as the rollback
@@ -94,11 +94,11 @@ A web GIS for Croatian mountain huts, control points and GPS tracks, with
 search, trips, galleries and user accounts: [planinarski-portal.org](https://planinarski-portal.org)
 
 - **Before:** Python 2.7, Django 1.5.
-- **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
+- **After:** Python 3, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
 - **Cutover:** 2026-07-27.
 - **After launch:** about 100 bot sign-ups a day were getting past reCAPTCHA.
-  They were measured and stopped with server-side limits rather than a
-  stronger captcha.
+  A hidden honeypot field didn't stop them, so registration now also asks a
+  question any Croatian hiker can answer.
 
 #### The migration playbook
 
@@ -108,12 +108,14 @@ modernisation template:
 - a phased runbook, from intake to the work after cutover
 - a pre-flight checklist where every item is a real mistake from an earlier
   migration, together with the check that would have caught it
-- a registry of more than 200 recorded upgrades and failure patterns, with a
-  script that detects them in a new codebase
+- a registry of more than 200 recorded capabilities and failure patterns,
+  with a script that detects them in a new codebase
 - ready-made deployment, security and operations scaffolding
 
-Three apps have been moved with it so far. The next app starts from
-everything the earlier ones learned. The playbook itself stays private
+It grew out of the Planinarski portal migration and has been used since on
+two more apps: the Python 2 port of the Geodetski portal and the upgrade of a
+newer Django app. The next app starts from everything the earlier ones
+learned. The playbook itself stays private
 because it describes production servers, but I'm happy to walk you through it.
 
 ### Is your app a fit?
@@ -255,10 +257,10 @@ Packages, patterns and practices I use.
 
 | Project | Stack | Years |
 |---|---|---|
-| Karlovac Developers website | HTML | 2026 |
+| Karlovac Developers website | Astro | 2026 |
 | STEMka (site, CMS, back end) | Next.js, Directus, Django | 2026 |
 | Zagreb Developers — Drinkup & Spaces | HTML, Python | 2026 |
-| Cromesh docs | HTML | 2026 |
+| Cromesh docs | MkDocs | 2026 |
 | GDG Zagreb — DevFest 2022, 2023 & talk proposals | HTML, Flutter | 2022 – 2025 |
 | Flutter Croatia — conference website | Flutter web | 2023 |
 
@@ -293,13 +295,13 @@ standards instead of guessing.
   releases.
 - **Claude** on the web and desktop: research, writing and documents.
 - **Ollama**: local models for offline experiments.
-- **Earlier:** Cursor rules and GitHub Copilot instructions on a few projects.
+- **Earlier:** Cursor and GitHub Copilot.
 
 ### Setup
 
 - **Project instructions:** every active repository has its own `CLAUDE.md`
   (or `AGENTS.md`) describing the architecture, conventions, commands and
-  pitfalls. There are about 20 across my projects.
+  pitfalls. There are more than 20 across my projects.
 - **Global rules:** cost and quality guardrails, such as which model does which
   job (small models for search, mid-size for code, large for architecture),
   at most 3 parallel subagents, and short reports.
@@ -311,13 +313,11 @@ standards instead of guessing.
   - a release flow: semver bump, Croatian release notes, tagged release
   - Railway infrastructure operations
   - visual explainers
-- **Custom subagents:** a go_router navigation specialist and a UX/UI reviewer
-  for Flutter.
 - **Plugins:** Superpowers (brainstorm → plan → test-driven implementation →
   review), Google's Elephant–Goldfish document review, a Pyright language
   server.
-- **MCP servers:** a Trello integration I built myself, plus Serverpod, Railway
-  and per-project servers.
+- **MCP servers:** a Trello integration I built myself, plus Dart, Firebase,
+  Serverpod and other per-project servers.
 - **Hooks:** deterministic automation around the agent, such as terminal status,
   notifications when it needs me, and context reminders.
 

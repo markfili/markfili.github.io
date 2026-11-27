@@ -38,10 +38,10 @@ TODO(marko): verify before publishing.
 
 | Project | Stack | Years |
 |---|---|---|
-| Karlovac Developers website | HTML | 2026 |
+| Karlovac Developers website | Astro | 2026 |
 | STEMka (site, CMS, back end) | Next.js, Directus, Django | 2026 |
 | Zagreb Developers — Drinkup & Spaces | HTML, Python | 2026 |
-| Cromesh docs | HTML | 2026 |
+| Cromesh docs | MkDocs | 2026 |
 | GDG Zagreb — DevFest 2022, 2023 & talk proposals | HTML, Flutter | 2022 – 2025 |
 | Flutter Croatia — conference website | Flutter web | 2023 |
 
