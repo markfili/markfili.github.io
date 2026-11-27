@@ -7,7 +7,6 @@ import 'package:showcase/utils/theme.dart';
 import 'package:showcase/widgets/content_sheet.dart';
 import 'package:showcase/widgets/profile_sheet.dart';
 
-
 Future<void> pumpHome(WidgetTester tester, {String? route}) async {
   tester.view.physicalSize = const Size(1440, 900);
   tester.view.devicePixelRatio = 1;

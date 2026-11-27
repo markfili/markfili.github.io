@@ -449,9 +449,8 @@ class _WhoIAm extends StatelessWidget {
                       Profile.name,
                       style: text.titleSmall?.copyWith(color: HeroScene.ink),
                     ),
-                    Text(
-                      Profile.roleUnbreakable,
-                      textAlign: TextAlign.center,
+                    _ItemLine(
+                      Profile.role,
                       style: text.bodyMedium?.copyWith(
                         color: HeroScene.inkSoft,
                       ),
@@ -486,7 +485,7 @@ class _WhoIAm extends StatelessWidget {
                       ],
                     ),
                     Insets.small.h,
-                    Text(legal, textAlign: TextAlign.center, style: small),
+                    _ItemLine(legal, style: small),
                   ],
                 ),
               ),
@@ -494,6 +493,42 @@ class _WhoIAm extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// A "·" list such as the role, on one line when it fits and otherwise
+/// split after its first item, so no line ends on a dangling "·".
+class _ItemLine extends StatelessWidget {
+  final String text;
+  final TextStyle? style;
+
+  const _ItemLine(this.text, {this.style});
+
+  @override
+  Widget build(BuildContext context) {
+    // Measured again when DM Mono finishes loading: the fallback font is
+    // wider and would split the line needlessly.
+    return ListenableBuilder(
+      listenable: PaintingBinding.instance.systemFonts,
+      builder: (context, _) => LayoutBuilder(
+        builder: (context, constraints) {
+          final oneLine = Profile.unbreakable(text);
+          final painter = TextPainter(
+            text: TextSpan(text: oneLine, style: style),
+            textDirection: TextDirection.ltr,
+            textScaler: MediaQuery.textScalerOf(context),
+            maxLines: 1,
+          )..layout();
+          final fits = painter.width <= constraints.maxWidth;
+          painter.dispose();
+          return Text(
+            fits ? oneLine : Profile.twoLines(text),
+            textAlign: TextAlign.center,
+            style: style,
+          );
+        },
+      ),
     );
   }
 }

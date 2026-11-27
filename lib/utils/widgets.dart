@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../widgets/hero_scene.dart';
+import '../widgets/menu_layout.dart';
 
 /// Opens [url]; false when nothing could handle it (e.g. `mailto:` on a
 /// machine without a mail app).
@@ -36,19 +37,23 @@ Future<void> copyEmail(BuildContext context, String email) async {
 ///
 /// The widget is a fixed [boxSize] box with the 40x40 circle at its centre, so
 /// the label can sit on any [labelSide] without moving the circle. Empty parts
-/// of the box don't take taps: only the circle and the label text do.
+/// of the box don't take taps: only the circle (with a 48x48 target around
+/// it) and the label text do.
 class ContactBadge extends StatelessWidget {
   /// Gap between the bubble and its label.
-  static const labelGap = 6.0;
-  static const _size = 40.0;
+  static const labelGap = MenuLayout.labelGap;
+  static const _size = MenuLayout.bubbleRadius * 2;
 
-  /// Room for one label (10 characters of 12 px DM Mono).
-  static const labelSlot = Size(80, 20);
+  /// Tap target around the circle: the 48px minimum for touch.
+  static const _target = 48.0;
+
+  /// Room for one label (11 characters of 14 px DM Mono).
+  static const labelSlot = Size(96, MenuLayout.labelHeight);
 
   /// Box holding the circle at its centre and a label slot on any side.
   static const boxSize = Size(
-    _size + 2 * (labelGap + 80),
-    _size + 2 * (labelGap + 20),
+    _size + 2 * (labelGap + 96),
+    _size + 2 * (labelGap + MenuLayout.labelHeight),
   );
 
   final FaIconData icon;
@@ -102,9 +107,9 @@ class ContactBadge extends StatelessWidget {
             softWrap: false,
             maxLines: 1,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontSize: 12,
+              fontSize: 14,
               color: HeroScene.ink,
-              letterSpacing: 0.4,
+              letterSpacing: 0.2,
             ),
           ),
         ),
@@ -147,17 +152,32 @@ class ContactBadge extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Positioned(
-            left: (boxSize.width - _size) / 2,
-            top: (boxSize.height - _size) / 2,
-            width: _size,
-            height: _size,
-            child: CircleAvatar(
-              backgroundColor: HeroScene.glass,
-              child: IconButton(
-                tooltip: description ?? label,
-                icon: FaIcon(icon, color: Colors.white70),
-                onPressed: _press,
-              ),
+            left: (boxSize.width - _target) / 2,
+            top: (boxSize.height - _target) / 2,
+            width: _target,
+            height: _target,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                const SizedBox.square(
+                  dimension: _size,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: HeroScene.glass,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  tooltip: description ?? label,
+                  icon: FaIcon(icon, color: Colors.white70, size: 20),
+                  onPressed: _press,
+                  style: IconButton.styleFrom(
+                    fixedSize: const Size.square(_target),
+                    padding: EdgeInsets.zero,
+                  ),
+                ),
+              ],
             ),
           ),
           _label(context),

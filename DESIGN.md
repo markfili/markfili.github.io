@@ -42,6 +42,11 @@ typography:
     fontSize: "12px"
     fontWeight: 400
     letterSpacing: "0.4px"
+  menu-label:
+    fontFamily: "DM Mono, monospace"
+    fontSize: "14px"
+    fontWeight: 400
+    letterSpacing: "0.2px"
 rounded:
   sm: "8px"
   full: "9999px"
@@ -58,7 +63,7 @@ components:
     size: "40px"
   menu-label:
     textColor: "{colors.moon-ink}"
-    typography: "{typography.label}"
+    typography: "{typography.menu-label}"
   footer-action:
     textColor: "{colors.moon-ink}"
     typography: "{typography.body}"
@@ -135,7 +140,8 @@ Cold night neutrals and dusk red-browns, lit by one saturated red.
 - **Offer** (300, 26px on one line from 700px wide, 20px stacked below): the rotating offer line. The verb is in Soft Ink and the tail in Moon Ink.
 - **Title** (500, 14px): the name in the footer.
 - **Body** (400, 14px, 1.55 line height in sheets): sheet prose, the role line and footer actions.
-- **Label** (400, 12px, 0.4px tracking): bubble labels and the business-registration line.
+- **Label** (400, 12px, 0.4px tracking): the business-registration line.
+- **Menu Label** (400, 14px, 0.2px tracking): bubble labels, at the 14px floor for text people have to read to navigate.
 
 ### Named Rules
 **The One Face Rule.** DM Mono everywhere. Hierarchy comes from size, weight (300 to 500) and ink alpha, never from a second family.
@@ -165,8 +171,9 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 
 ### Menu Bubble (signature)
 - **Character:** a glass bead resting on a summit.
-- **Shape:** a 40px circle with a Glass fill and a Soft Ink icon (Font Awesome).
-- **Label:** Moon Ink, Label type, placed above, below or to the side of the bubble according to the layout. Tapping the label does the same as tapping the bubble.
+- **Shape:** a 40px circle with a Glass fill and a Soft Ink icon (Font Awesome), inside a 48px tap target.
+- **Label:** Moon Ink, Menu Label type. On the ridge it sits above the bubble; in orbit mode, above the upper bubbles and below the rest, never beside one, so it can't run off a narrow phone. Tapping the label does the same as tapping the bubble.
+- **Footer lines:** the role and the registration line are "·" lists. When one doesn't fit on a line it splits after its first item, so no line ends on a "·".
 - **States:** a Material ripple and a tooltip; there is no custom hover or active treatment yet.
 
 ### Offer Line (signature)

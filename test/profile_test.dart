@@ -83,7 +83,11 @@ void main() {
     final role = tester.getTopLeft(find.text(Profile.roleUnbreakable)).dy;
     final email = tester.getTopLeft(find.text(Profile.email)).dy;
     final legal = tester
-        .getTopLeft(find.textContaining('obrt za informatičke usluge'))
+        .getTopLeft(
+          find.byWidgetPredicate(
+            (w) => w is Text && (w.data?.startsWith('obrt') ?? false),
+          ),
+        )
         .dy;
     expect(role, greaterThan(name));
     expect(email, greaterThan(role));

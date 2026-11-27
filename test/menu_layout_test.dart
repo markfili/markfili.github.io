@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:material_ui/material_ui.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:showcase/main.dart';
 import 'package:showcase/utils/widgets.dart';
@@ -121,11 +122,12 @@ void main() {
     }
   });
 
-  test('orbitLabelSide points outward', () {
+  test('orbitLabelSide puts labels above the top bubbles, below the rest', () {
     expect(MenuLayout.orbitLabelSide(0, count: 6), Alignment.topCenter);
-    expect(MenuLayout.orbitLabelSide(2, count: 6), Alignment.centerRight);
+    expect(MenuLayout.orbitLabelSide(1, count: 6), Alignment.topCenter);
+    expect(MenuLayout.orbitLabelSide(2, count: 6), Alignment.bottomCenter);
     expect(MenuLayout.orbitLabelSide(3, count: 6), Alignment.bottomCenter);
-    expect(MenuLayout.orbitLabelSide(5, count: 6), Alignment.centerLeft);
+    expect(MenuLayout.orbitLabelSide(5, count: 6), Alignment.bottomCenter);
   });
 
   const names = ['LinkedIn', 'GitHub', 'Modernise', 'Stack', 'Work', 'AI'];
@@ -251,6 +253,71 @@ void main() {
         lessThanOrEqualTo(MenuLayout.footerReserve(size)),
         reason: '$size',
       );
+    });
+  }
+
+  for (final size in const [
+    Size(320, 568),
+    Size(360, 640),
+    Size(390, 844),
+    Size(1024, 768),
+    Size(1440, 900),
+  ]) {
+    testWidgets('every bubble is a 48px target with its label on screen '
+        'at $size', (tester) async {
+      await pumpAt(tester, size);
+      for (final button
+          in find
+              .descendant(
+                of: find.byType(ContactBadge),
+                matching: find.byType(IconButton),
+              )
+              .evaluate()) {
+        expect(
+          tester.getSize(find.byWidget(button.widget)),
+          const Size(48, 48),
+        );
+      }
+      for (final badge in tester.widgetList<ContactBadge>(
+        find.byType(ContactBadge),
+      )) {
+        final label = tester.getRect(
+          find.descendant(
+            of: find.byWidget(badge),
+            matching: find.text(badge.label),
+          ),
+        );
+        expect(label.left, greaterThanOrEqualTo(0), reason: badge.label);
+        expect(label.right, lessThanOrEqualTo(size.width), reason: badge.label);
+      }
+    });
+
+    testWidgets('role and legal lines never end on a "·" at $size', (
+      tester,
+    ) async {
+      await pumpAt(tester, size);
+      // It only breaks where Profile.twoLines puts a newline, never by
+      // wrapping, which could end a line on a "·".
+      for (final start in ['Senior', 'obrt']) {
+        final finder = find.byWidgetPredicate(
+          (w) => w is Text && (w.data?.startsWith(start) ?? false),
+        );
+        final role = tester.widget<Text>(finder);
+        final paragraph = tester.renderObject<RenderParagraph>(
+          find.descendant(of: finder, matching: find.byType(RichText)),
+        );
+        final line = TextPainter(
+          text: TextSpan(text: 'X', style: paragraph.text.style),
+          textDirection: TextDirection.ltr,
+          textScaler: paragraph.textScaler,
+        )..layout();
+        expect(
+          (paragraph.size.height / line.height).round(),
+          role.data!.split('\n').length,
+          reason: role.data,
+        );
+        line.dispose();
+      }
     });
   }
 

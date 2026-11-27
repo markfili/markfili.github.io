@@ -12,6 +12,11 @@ class MenuLayout {
   /// Bubble radius ([ContactBadge] is a default [CircleAvatar]).
   static const bubbleRadius = 20.0;
 
+  /// Gap between a bubble and its label, and the label's height (14px
+  /// text); see [ContactBadge].
+  static const labelGap = 6.0;
+  static const labelHeight = 22.0;
+
   /// Gap between a bubble and the summit it sits on.
   static const perchGap = 6.0;
 
@@ -75,7 +80,12 @@ class MenuLayout {
   static Rect _peakAvoid(Size size) {
     final ticker = tickerRect(size, orbit: false).inflate(12);
     return brandRect(size).expandToInclude(
-      Rect.fromLTRB(ticker.left, ticker.top, ticker.right, ticker.bottom + 26),
+      Rect.fromLTRB(
+        ticker.left,
+        ticker.top,
+        ticker.right,
+        ticker.bottom + labelGap + labelHeight,
+      ),
     );
   }
 
@@ -269,9 +279,12 @@ class MenuLayout {
 
   /// How far above the logo center the orbit reaches: the top bubbles (six
   /// of them, so the highest sit 30 degrees off vertical) plus the labels
-  /// above them (6px gap, 20px slot).
+  /// above them.
   static final orbitTopReach =
-      orbitRadius * math.cos(math.pi / 6) + bubbleRadius + 6 + 20;
+      orbitRadius * math.cos(math.pi / 6) +
+      bubbleRadius +
+      labelGap +
+      labelHeight;
 
   /// Orbit mode's brand, from the top of the upper bubbles' labels to the
   /// bottom of the offer line under the wordmark.
@@ -290,15 +303,11 @@ class MenuLayout {
   static const labelClearance = 14.0;
 
   /// Which side of the bubble at [index] its label goes on in orbit mode:
-  /// outward from the logo, vertical within 45 degrees of straight up or
-  /// down, horizontal otherwise.
+  /// above the upper bubbles, below the rest. Never beside a bubble: on a
+  /// 360px phone a label beside a side bubble runs off the screen.
   static Alignment orbitLabelSide(int index, {required int count}) {
     final a = -math.pi / 2 - math.pi / count + index * 2 * math.pi / count;
-    final dx = math.cos(a), dy = math.sin(a);
-    if (dy.abs() > dx.abs()) {
-      return dy < 0 ? Alignment.topCenter : Alignment.bottomCenter;
-    }
-    return dx < 0 ? Alignment.centerLeft : Alignment.centerRight;
+    return math.sin(a) < -0.5 ? Alignment.topCenter : Alignment.bottomCenter;
   }
 
   /// Height of the page for a [viewport]: the viewport itself, unless the

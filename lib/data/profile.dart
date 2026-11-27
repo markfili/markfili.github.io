@@ -38,12 +38,23 @@ class Profile {
       'and apps nobody wants to touch. I build new Flutter apps and new '
       'Django back ends, and keep building on what I modernise.';
 
-  /// [role] for narrow layouts: words inside each "·" item never break
-  /// apart, so lines wrap only between items.
-  static String get roleUnbreakable => role
+  /// [role] for narrow layouts; see [unbreakable].
+  static String get roleUnbreakable => unbreakable(role);
+
+  /// [text], a list of "·" items, with no break points inside an item, so
+  /// lines wrap only between items.
+  static String unbreakable(String text) => text
       .split(' · ')
       .map((item) => item.replaceAll(' ', '\u00A0').replaceAll('-', '\u2011'))
       .join(' · ');
+
+  /// [unbreakable] on two lines, the first item above the rest, for when it
+  /// doesn't fit on one: wrapping anywhere else leaves a "·" dangling at
+  /// the end of a line.
+  static String twoLines(String text) {
+    final items = unbreakable(text).split(' · ');
+    return '${items.first}\n${items.skip(1).join(' · ')}';
+  }
 
   static const email = 'info@arilus.hr';
   static const site = 'https://arilus.hr';
