@@ -16,8 +16,10 @@ colors:
   soft-ink: "#FFFFFF99"
   glass: "#FFFFFF1F"
   footer-scrim: "#07070AB3"
-  sheet-surface-legacy: "#13140C"
-  sheet-accent-legacy: "#C6CC79"
+  sheet-surface: "#1B1517"
+  sheet-ink: "#EDE6E7"
+  sheet-accent: "#E8A795"
+  sheet-notice: "#2C3542"
 typography:
   display:
     fontFamily: "DM Mono, monospace"
@@ -85,7 +87,7 @@ arilus is dusk over a mountain range. The whole first screen is a landscape pain
 
 The mood is quiet and patient. Controls are glassy and low-contrast so the landscape stays the subject. Type is DM Mono throughout, with a precise engineer's voice, set light and loose. There are no images other than the logo. Every ridge, cloud and grain is generated, and that is part of the point: the scene itself shows the craft.
 
-The content sheets currently use an olive Material 3 theme that is **not** part of this world. It is recorded below as legacy debt, to be rethemed into the Night Ridge palette.
+The content sheets carry the same world indoors: Dusk Floor behind the text, a lightened Sunlit Ridge for links and buttons, Slate Forest for notices.
 
 **Key Characteristics:**
 - One warm focal point (the ember ring) on a cold, dark field.
@@ -118,8 +120,12 @@ Cold night neutrals and dusk red-browns, lit by one saturated red.
 - **Glass** (12% white): bubble fills and the faint orbit ring.
 - **Footer Scrim** (70% Night Sky): the band behind the footer. It is tuned so that Soft Ink reaches 5.1:1 over Valley Mist.
 
-### Legacy (debt)
-- **Olive Sheet Surface / Olive Accent**: the Material 3 dark scheme in `lib/utils/theme.dart`, used by the content and profile sheets. It is off-world. Replace it with Night Ridge values when the sheets are rethemed.
+### Sheets
+The Material 3 dark scheme in `lib/utils/theme.dart` (`darkScheme`), used by the content and profile sheets. Every text pair is at least 4.5:1.
+- **Sheet Surface** (#1B1517, Dusk Floor): the sheet background (`surfaceContainerLow`).
+- **Sheet Ink** (#EDE6E7): body text, 14.6:1. Secondary text is Valley Mist (#C9BCBE), 9.8:1.
+- **Sheet Accent** (#E8A795, Sunlit Ridge lightened): links, the filled button and outlines in focus, 8.9:1. A button's text on it is #3A1A12.
+- **Sheet Notice** (#2C3542, Slate Forest deepened): behind the draft notice.
 
 ### Named Rules
 **The One Ember Rule.** Ember Ring is the only saturated colour on the page, and it belongs to the mark. Every other colour is a dusk or night tone.
@@ -189,11 +195,11 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - **Email pill (primary action):** the one solid control on the page. A Glass stadium, 48px tall, with a mail icon and the address in Body. It brightens on hover.
 - **"Am I the right fit?":** a quiet text button with a checklist icon. It opens the profile sheet.
 
-### Content Sheet (legacy theme)
+### Content Sheet
 - A modal bottom sheet with a drag handle that renders markdown.
 - Tables use 0.5px outline-variant borders.
 - Blockquotes are italic on the tertiary container, with an 8px radius.
-- It currently follows the olive Material 3 dark scheme. Retheme it before extending it.
+- It follows the Night Ridge sheet colours above. Each sheet has its own address (see Do's).
 
 ### Loading Splash
 - The logo and the "arilus" wordmark on Night Sky (in `web/index.html`). It is removed about 1.5s after Flutter's first frame.
@@ -214,5 +220,4 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - **Don't** add photography, stock illustration or image textures to the hero.
 - **Don't** introduce a second typeface.
 - **Don't** add drop shadows to the scene. Depth comes from aerial perspective.
-- **Don't** extend the olive Material 3 sheet theme to new surfaces.
 - **Don't** add a second saturated accent colour.

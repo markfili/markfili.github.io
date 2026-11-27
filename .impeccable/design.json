@@ -94,15 +94,25 @@
         "displayName": "Footer Scrim",
         "canonical": "rgba(7,7,10,0.7)"
       },
-      "sheet-surface-legacy": {
+      "sheet-surface": {
         "role": "neutral",
-        "displayName": "Olive Sheet Surface (legacy debt)",
-        "canonical": "#13140C"
+        "displayName": "Sheet Surface",
+        "canonical": "#1B1517"
       },
-      "sheet-accent-legacy": {
+      "sheet-ink": {
         "role": "neutral",
-        "displayName": "Olive Accent (legacy debt)",
-        "canonical": "#C6CC79"
+        "displayName": "Sheet Ink",
+        "canonical": "#EDE6E7"
+      },
+      "sheet-accent": {
+        "role": "accent",
+        "displayName": "Sheet Accent",
+        "canonical": "#E8A795"
+      },
+      "sheet-notice": {
+        "role": "neutral",
+        "displayName": "Sheet Notice",
+        "canonical": "#2C3542"
       }
     },
     "typographyMeta": {
@@ -186,17 +196,17 @@
       "css": ".ds-band{background:linear-gradient(#1B1517,#07070A);padding:24px 16px 16px;text-align:center;font-family:'DM Mono',monospace}.ds-band-name{font-size:14px;font-weight:500;color:rgba(255,255,255,0.9)}.ds-band-role{font-size:14px;color:rgba(255,255,255,0.6)}.ds-band-legal{margin-top:8px;font-size:12px;letter-spacing:.4px;color:rgba(255,255,255,0.6)}"
     },
     {
-      "name": "Content Sheet (legacy olive)",
+      "name": "Content Sheet",
       "kind": "card",
       "refersTo": "content-sheet",
-      "description": "Markdown bottom sheet; current olive M3 theme, recorded as debt.",
+      "description": "Markdown bottom sheet in the Night Ridge sheet colours.",
       "html": "<div class=\"ds-sheet\"><div class=\"ds-sheet-handle\"></div><h1>Stack</h1><p>What I build with, from 10 years of commits.</p><blockquote>Work in progress: AI-generated draft.</blockquote></div>",
-      "css": ".ds-sheet{background:#13140C;color:#E5E3D6;font-family:'DM Mono',monospace;padding:0 24px 32px;border-radius:28px 28px 0 0;max-width:560px}.ds-sheet-handle{width:32px;height:4px;border-radius:2px;background:#C9C7B6;margin:16px auto 24px}.ds-sheet h1{font-size:28px;font-weight:300;margin:0 0 12px}.ds-sheet p{font-size:14px;line-height:1.55}.ds-sheet blockquote{margin:0;padding:12px;border-radius:8px;background:#234E42;font-size:12px;font-style:italic}"
+      "css": ".ds-sheet{background:#1B1517;color:#EDE6E7;font-family:'DM Mono',monospace;padding:0 24px 32px;border-radius:28px 28px 0 0;max-width:560px}.ds-sheet-handle{width:32px;height:4px;border-radius:2px;background:#C9BCBE;margin:16px auto 24px}.ds-sheet h1{font-size:28px;font-weight:300;margin:0 0 12px}.ds-sheet p{font-size:14px;line-height:1.55}.ds-sheet blockquote{margin:0;padding:12px;border-radius:8px;background:#2C3542;font-size:12px;font-style:italic}"
     }
   ],
   "narrative": {
     "northStar": "The Night Ridge",
-    "overview": "arilus is dusk over a mountain range. The whole first screen is a landscape painted in code: a near-black sky that warms toward the horizon, still clouds, layered ridges from sunlit red-brown to slate-blue forest, and film grain over everything. Above it hangs a single red ring. That ring is the one warm light in a cold scene, and nothing else competes with it.\n\nThe mood is quiet and patient. Controls are glassy and low-contrast so the landscape stays the subject. Type is DM Mono throughout, with a precise engineer's voice, set light and loose. There are no images other than the logo. Every ridge, cloud and grain is generated, and that is part of the point: the scene itself shows the craft.\n\nThe content sheets currently use an olive Material 3 theme that is not part of this world. It is recorded as legacy debt, to be rethemed into the Night Ridge palette.",
+    "overview": "arilus is dusk over a mountain range. The whole first screen is a landscape painted in code: a near-black sky that warms toward the horizon, still clouds, layered ridges from sunlit red-brown to slate-blue forest, and film grain over everything. Above it hangs a single red ring. That ring is the one warm light in a cold scene, and nothing else competes with it.\n\nThe mood is quiet and patient. Controls are glassy and low-contrast so the landscape stays the subject. Type is DM Mono throughout, with a precise engineer's voice, set light and loose. There are no images other than the logo. Every ridge, cloud and grain is generated, and that is part of the point: the scene itself shows the craft.\n\nThe content sheets carry the same world indoors: Dusk Floor behind the text, a lightened Sunlit Ridge for links and buttons, Slate Forest for notices.",
     "keyCharacteristics": [
       "One warm focal point (the ember ring) on a cold, dark field.",
       "Procedural landscape: no stock imagery, no photography.",
@@ -238,7 +248,6 @@
       "Don't add photography, stock illustration or image textures to the hero.",
       "Don't introduce a second typeface.",
       "Don't add drop shadows to the scene. Depth comes from aerial perspective.",
-      "Don't extend the olive Material 3 sheet theme to new surfaces.",
       "Don't add a second saturated accent colour."
     ]
   }
