@@ -11,7 +11,7 @@
 
 **Tech Stack:** Flutter web (FVM 3.50.0), `CustomPainter`, Flutter fragment shaders, `flutter_test`.
 
-**Spec:** `docs/superpowers/specs/2026-11-17-hero-mountains-clouds-labels-design.md`
+**Spec:** `design/superpowers/specs/2026-11-17-hero-mountains-clouds-labels-design.md`
 
 ## Global Constraints
 
@@ -127,5 +127,5 @@
 ### Task 5: Verify and hand over
 
 - [ ] **Step 1:** Render `MyApp` to PNG at 1440×900, 1280×720, 390×844 and 360×640 with a throwaway test (see memory: visual check via widget test). Measure contrast with `scratchpad/cr.py`: wordmark ≥ 4.5, each label ≥ 4.5 against its sampled background, bubble icons ≥ 3. Delete the throwaway test.
-- [ ] **Step 2:** Update `docs/design-audit.md`. Add a changelog row noting the sky animation was removed, so F10 no longer applies to the sky, and that F1's phone half is closed by the labels.
+- [ ] **Step 2:** Update `design/design-audit.md`. Add a changelog row noting the sky animation was removed, so F10 no longer applies to the sky, and that F1's phone half is closed by the labels.
 - [ ] **Step 3:** Restart the web server on 127.0.0.1:8790 (web-server mode) and open `/` and `/?playground=mountains` for Marko.

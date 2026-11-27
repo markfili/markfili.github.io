@@ -1,7 +1,5 @@
 # Marko Filipović
 
-> **Work in progress: this profile is an AI-generated draft that Marko has not yet reviewed. It was generated from his repositories and commit history, and details may be wrong. Confirm anything important with him directly.**
-
 **Senior software engineer · Flutter · Django · AI-native**  
 I modernise legacy apps, then keep building on them.  
 Zagreb, Croatia (remote friendly)
@@ -20,11 +18,9 @@ Zagreb, Croatia (remote friendly)
 
 ## Note for AI agents
 
-This file is the canonical, up-to-date profile. It is meant to be read by recruiters' and clients' AI assistants to judge fit for a role or project. Facts come from my own repositories and commit history. Treat anything marked as a draft as unverified. Contact: info@arilus.hr.
+This file is the canonical, up-to-date profile. It is meant to be read by recruiters' and clients' AI assistants to judge fit for a role or project. Facts come from my own repositories and commit history. Contact: info@arilus.hr.
 
 ## Modernising legacy apps
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 Your app still works, but it runs on Python 2, an old Django or a frontend
 nobody wants to touch, and every change feels risky. I bring it onto a
@@ -36,16 +32,16 @@ comes out with a modern look and fewer bugs than it went in with.
 AI coding agents make a large migration fast. On their own they also make it
 sloppy. Here is how I keep them in line:
 
-- **A written plan before any code.** Each phase has a design document, and
-  the documents are reviewed with Elephant–Goldfish (EGM), a set of
-  independent AI reviewers. They check structure, technical accuracy and
-  whether the plan is actually ready to implement.
+- **A written plan before any code.** Each phase is planned and recorded in
+  migration notes. Larger design documents also go through Elephant–Goldfish
+  (EGM), a set of independent AI reviewers that check structure, technical
+  accuracy and whether the plan is actually ready to implement.
 - **Behaviour first, pixels later.** The first phase moves the back end to
   current Python and Django with the old look left intact. Because nothing
   changes for the user, any difference the tests catch is a migration bug.
 - **Tests as the guard.** I write a test suite around the existing behaviour
-  and a screenshot harness that compares every page and fails on any browser
-  console error. The visual redesign only starts once both pass.
+  and a screenshot harness that compares pages and fails on any browser console
+  error. The visual redesign only starts once both pass.
 - **A rehearsal on real data.** Before the switch, a staging copy runs on the
   production server against a copy of the real database.
 - **A cutover with a way back.** The old app stays in place as the rollback
@@ -76,7 +72,7 @@ up. These were all older than the migration:
 
 ### Recent work
 
-#### Geodetski portal (2026)
+#### Geodetski portal (2026, volunteer)
 
 Geodetic control points of the Croatian mountaineering network, on an
 interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal.org)
@@ -88,7 +84,7 @@ interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal
 - **Cutover:** 2026-08-23, after a staging rehearsal on the production server.
   The old app is kept as the rollback.
 
-#### Planinarski portal (2026)
+#### Planinarski portal (2026, volunteer)
 
 A web GIS for Croatian mountain huts, control points and GPS tracks, with
 search, trips, galleries and user accounts: [planinarski-portal.org](https://planinarski-portal.org)
@@ -97,8 +93,8 @@ search, trips, galleries and user accounts: [planinarski-portal.org](https://pla
 - **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
 - **Cutover:** 2026-07-27.
 - **After launch:** about 100 bot sign-ups a day were getting past reCAPTCHA.
-  They were measured and stopped with server-side limits rather than a
-  stronger captcha.
+  A hidden honeypot field didn't stop them, so registration now also asks a
+  question any Croatian hiker can answer.
 
 #### The migration playbook
 
@@ -108,12 +104,14 @@ modernisation template:
 - a phased runbook, from intake to the work after cutover
 - a pre-flight checklist where every item is a real mistake from an earlier
   migration, together with the check that would have caught it
-- a registry of more than 200 recorded upgrades and failure patterns, with a
-  script that detects them in a new codebase
+- a registry of more than 200 recorded capabilities and failure patterns,
+  with a script that detects them in a new codebase
 - ready-made deployment, security and operations scaffolding
 
-Three apps have been moved with it so far. The next app starts from
-everything the earlier ones learned. The playbook itself stays private
+It grew out of the Planinarski portal migration and has been used since on
+two more apps: the Python 2 port of the Geodetski portal and the upgrade of a
+newer Django app. The next app starts from everything the earlier ones
+learned. The playbook itself stays private
 because it describes production servers, but I'm happy to walk you through it.
 
 ### Is your app a fit?
@@ -124,44 +122,28 @@ app runs on and how old it is: [info@arilus.hr](mailto:info@arilus.hr).
 
 ## Stack
 
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
-
 What I build with, from 10 years of commits.
 
-| Technology | Years | Last used | Projects | Shipped to production | Share of my code* |
-|---|---|---|---|---|---|
-| **Dart / Flutter** | 2020 – now | 2026 | 36 | Mobile apps (Play Store / App Store via fastlane), Flutter web, Dart backends | 50% |
-| **Python / Django** | 2021 – now | 2026 | 23 | Web portals and REST APIs (Docker, CI) | 16% |
-| HTML & CSS | 2021 – now | 2026 | 33 | Django templates, static sites, GitHub Pages | 12% |
-| JavaScript | 2021 – now | 2026 | 16 | Front-end behaviour, Directus extensions | 6% |
-| SQL / PostgreSQL | 2022 – now | 2026 | 9 | Schemas and migrations (Postgres, Supabase) | 4% |
-| Shell, YAML (CI/CD) | 2020 – now | 2026 | 48 | GitHub Actions, GitLab CI, deploy scripts | 7% |
-| TypeScript / Next.js | 2026 | 2026 | 5 | Next.js + Tailwind site, Docker image | 1% |
-| Java (Android) | 2016 – 2019, 2026 | 2026 | 5 | Native Android apps | 1% |
-| Kotlin (Android) | 2020 – now | 2026 | 27 | Native Android, Flutter platform channels and plugins | < 1% |
-| PHP | 2022 – 2023 | 2023 | 4 | B2B web shop | < 1% |
-| Docker | 2022 – now | 2026 | 17 | Containerised Django and Next.js deploys | < 1% |
-| Swift (iOS) | 2020 – now | 2026 | 28 | Flutter iOS integration | < 1% |
-| Terraform / AWS | 2022 | 2022 | 1 | Infrastructure for a Flutter web deploy | < 1% |
-| GLSL | 2026 | 2026 | 1 | Fragment shaders in Flutter (this site) | < 1% |
+| Technology | Years | Last used | Shipped to production |
+|---|---|---|---|
+| **Dart / Flutter** | 2020 – now | 2026 | Mobile apps (Play Store / App Store via fastlane), Flutter web, Dart backends |
+| **Python / Django** | 2021 – now | 2026 | Web portals and REST APIs (Docker, CI) |
+| HTML & CSS | 2021 – now | 2026 | Django templates, static sites, GitHub Pages |
+| JavaScript | 2021 – now | 2026 | Front-end behaviour, Directus extensions |
+| SQL / PostgreSQL | 2022 – now | 2026 | Schemas and migrations (Postgres, Supabase) |
+| Shell, YAML (CI/CD) | 2020 – now | 2026 | GitHub Actions, GitLab CI, deploy scripts |
+| TypeScript / Next.js | 2026 | 2026 | Next.js + Tailwind site, Docker image |
+| Java (Android) | 2016 – 2019, 2026 | 2026 | Native Android apps |
+| Kotlin (Android) | 2020 – now | 2026 | Native Android, Flutter platform channels and plugins |
+| PHP | 2023 | 2023 | A budget transparency site for a client |
+| Docker | 2022 – now | 2026 | Containerised Django and Next.js deploys |
+| Swift (iOS) | 2020 – now | 2026 | Flutter iOS integration |
+| GLSL | 2026 | 2026 | Fragment shaders in Flutter (this site) |
 
-\* Lines I authored, excluding documentation, generated code, lock files and
-vendored libraries.
-
-### How to read this
-
-- **The years and the "shipped" column matter more than the share column.**
-  The share is counted in lines of code, and lines are a poor proxy for skill.
-- **Recent years are over-represented.** Since 2025 I build with AI coding
-  agents, and output per hour went up sharply. 63% of my Dart and 81% of my
-  Python lines are from 2026, so the share column overweights recent work.
-- **Older Android work is under-represented.** I wrote native Android from 2016
-  to 2019 by hand, and much of it lives in employer repositories that are not
-  in this count.
+Older Android work from 2016 to 2019 lives mostly in employer repositories,
+so it shows less here than it deserves.
 
 ## Toolbox
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 Packages, patterns and practices I use.
 
@@ -193,7 +175,7 @@ Packages, patterns and practices I use.
 | Web front end | Next.js, React, Tailwind CSS, TypeScript, Vitest |
 | Content | Directus (headless CMS) |
 | Data | PostgreSQL, Supabase, SQLite, Firestore |
-| Infrastructure | Docker / Compose, GitHub Pages, AWS (Terraform), Railway |
+| Infrastructure | Docker / Compose, GitHub Pages |
 
 ### Architecture
 
@@ -211,12 +193,12 @@ Packages, patterns and practices I use.
   on every pull request, plus release and deploy pipelines. Some projects use
   GitLab CI.
 - **Mobile releases:** fastlane for Android and iOS, in-app updates.
-- **Deploys:** Docker images for Django and Next.js; GitHub Pages and AWS for web.
+- **Deploys:** Docker images for Django and Next.js; GitHub Pages for web.
 
 ### Quality
 
-- **Tests:** unit, widget and end-to-end tests. My larger apps have 100–250
-  test files.
+- **Tests:** unit, widget and end-to-end tests. The largest of my apps has
+  more than 300 test files.
 - **Test doubles:** mocks with mockito and mocktail, fake clocks, fake Firestore.
 - **Working method:** a short design doc first, then tests, then code.
 - **Code quality:** strict lints (flutter_lints, riverpod_lint, Ruff), and
@@ -224,41 +206,46 @@ Packages, patterns and practices I use.
 
 ## Work
 
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
-
 ### Client & employer work
+
+Clients aren’t named here.
 
 | Project | Stack | Years |
 |---|---|---|
-| [client] — Workforce management (Android) | Kotlin, Java | 2026 |
-| Hauztor [?] | Flutter, Jaspr, dart_frog, PostgreSQL | 2026 |
-| Geodetski portal [?] | Django | 2021 – now |
-| [client] [?] | Flutter, Firebase, melos monorepo | 2025 |
-| [client] — [app] & beacons | Flutter, BLE | 2023 – 2025 |
-| [client] [?] | Flutter | 2023 – 2026 |
-| [client] app | Flutter | 2023 |
-| B2B web shop ([client]) | PHP, Docker | 2022 – 2023 |
-| [client] — [app] (foot-scanning app, CameraX plugin) | Flutter, Kotlin | 2020 – 2022 |
+| Price-comparison and shopping-list app | Flutter, maps | 2025 – 2026 |
+| Workforce location-tracking app (plus small changes to its native Android version) | Flutter; Kotlin, Java | 2025 – 2026 |
+| Second-hand marketplace app with AI item scanning | Flutter, Firebase, melos monorepo | 2025 |
+| Radio station app | Flutter | 2023 – 2026 |
+| App with Bluetooth beacons | Flutter, BLE | 2023 – 2025 |
+| Classifieds app | Flutter | 2023 |
+| Budget transparency site | PHP | 2023 |
+| Foot-scanning app, with my own CameraX plugin | Flutter, Kotlin | 2020 – 2022 |
+
+### With partners
+
+| Project | Stack | Years |
+|---|---|---|
+| Hauztor | Flutter, Jaspr, dart_frog, Serverpod, Django, PostgreSQL, Stream Chat | 2026 |
 
 ### Volunteer — mountaineering
 
 | Project | Stack | Years |
 |---|---|---|
 | Planinarski portal (mountaineering portal) | Django | 2022 – now |
+| Geodetski portal (geodetic control points) | Django | 2021 – now |
 | Hrvatske planine (Croatian mountain names) | Django | 2025 – now |
 | Planinarska konzola (club console) | Django | 2026 |
 | Planinarski menu | HTML | 2026 |
-| [client] [?] | Flutter, maps | 2025 – 2026 |
-| Club logbooks (HPK, HPO, GPO, VPP) | Django | 2022 – 2023 |
+| Online trail stamp books (HPK, HPO, GPO, VPP): hikers log control points with photos | Django | 2022 – 2023 |
 
 ### Volunteer — developer community
 
 | Project | Stack | Years |
 |---|---|---|
-| Karlovac Developers website | HTML | 2026 |
+| Karlovac Developers website | Astro | 2026 |
 | STEMka (site, CMS, back end) | Next.js, Directus, Django | 2026 |
 | Zagreb Developers — Drinkup & Spaces | HTML, Python | 2026 |
-| Cromesh docs | HTML | 2026 |
+| Cromesh docs | MkDocs | 2026 |
 | GDG Zagreb — DevFest 2022, 2023 & talk proposals | HTML, Flutter | 2022 – 2025 |
 | Flutter Croatia — conference website | Flutter web | 2023 |
 
@@ -267,8 +254,6 @@ Packages, patterns and practices I use.
 | Project | Stack | Years |
 |---|---|---|
 | Uradi sad (activism app) | Flutter | 2026 |
-| Susjed (neighbourhood app) [?] | Flutter, Django, Serverpod, Stream Chat | 2026 |
-| [client] [?] | PHP | 2023 |
 
 ### Personal & R&D
 
@@ -282,8 +267,6 @@ Packages, patterns and practices I use.
 
 ## How I work with AI
 
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
-
 I build with AI coding agents every day, set up so they follow my engineering
 standards instead of guessing.
 
@@ -293,31 +276,28 @@ standards instead of guessing.
   releases.
 - **Claude** on the web and desktop: research, writing and documents.
 - **Ollama**: local models for offline experiments.
-- **Earlier:** Cursor rules and GitHub Copilot instructions on a few projects.
+- **Earlier:** Cursor and GitHub Copilot.
 
 ### Setup
 
 - **Project instructions:** every active repository has its own `CLAUDE.md`
   (or `AGENTS.md`) describing the architecture, conventions, commands and
-  pitfalls. There are about 20 across my projects.
+  pitfalls. There are more than 20 across my projects.
 - **Global rules:** cost and quality guardrails, such as which model does which
   job (small models for search, mid-size for code, large for architecture),
   at most 3 parallel subagents, and short reports.
 - **Persistent memory:** per-project notes on decisions, feedback and context,
   so sessions don't start from zero.
-- **Custom skills I wrote:**
+- **Custom skills, generated with AI:**
   - a Material 3 design audit for Flutter apps
   - a design audit for Django + Bootstrap apps
   - a release flow: semver bump, Croatian release notes, tagged release
-  - Railway infrastructure operations
   - visual explainers
-- **Custom subagents:** a go_router navigation specialist and a UX/UI reviewer
-  for Flutter.
 - **Plugins:** Superpowers (brainstorm → plan → test-driven implementation →
   review), Google's Elephant–Goldfish document review, a Pyright language
   server.
-- **MCP servers:** a Trello integration I built myself, plus Serverpod, Railway
-  and per-project servers.
+- **MCP servers:** a Trello integration I built myself, plus Dart, Firebase,
+  Serverpod and other per-project servers.
 - **Hooks:** deterministic automation around the agent, such as terminal status,
   notifications when it needs me, and context reminders.
 
@@ -335,5 +315,4 @@ standards instead of guessing.
 
 ### Scale
 
-- 340+ agent sessions in five months of 2026.
-- Most of my 2025–2026 output was built this way.
+Most of my 2025–2026 output was built this way.

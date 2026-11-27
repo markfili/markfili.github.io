@@ -105,7 +105,7 @@ And one problem with the bubbles: **a bubble's label can't be tapped.** The labe
 
 ## Decisions Made While Drafting and Reviewing
 
-*   **The offer leaves the home screen on purpose.** [`docs/design-audit.md`](../design-audit.md) is the owner's earlier UI/UX audit of this site. Its top finding, F1, is "a first-time visitor can't tell what you sell or what to do next". Its fix 1d closed F1 by putting the offer at the front of the footer. This design reopens F1. The owner accepts this: the offer is reached through the Modernise bubble, and the audit gets a note saying so.
+*   **The offer leaves the home screen on purpose.** [`design/design-audit.md`](design-audit.md) is the owner's earlier UI/UX audit of this site. Its top finding, F1, is "a first-time visitor can't tell what you sell or what to do next". Its fix 1d closed F1 by putting the offer at the front of the footer. This design reopens F1. The owner accepts this: the offer is reached through the Modernise bubble, and the audit gets a note saying so.
 *   **Footer height: a fixed reserve for each breakpoint, guarded by a test.** `MenuLayout.footerReserve` is set to the new footer's measured height. A new test fails if the real footer is ever taller.
 *   **Bubble label "Modernise", icon `FontAwesomeIcons.seedling`.** The label length is limited by width:
     *   Labels are 12 px DM Mono with 0.4 letter spacing, so each character is 7.6 px wide, measured. "Modernise" is 68 px.
@@ -268,7 +268,7 @@ The test `footer fits its reserve` pumps `MyApp` at those six sizes, with fonts 
     *   `test/menu_layout_test.dart` and `test/profile_test.dart` use `find.text(Profile.business)` to find the footer, and tap "Talk about your app".
     *   `test/widget_test.dart` counts six `ContactBadge`s. It still passes.
 *   **README**: `README.md:12` lists "Email" among the bubbles, and line 20 describes the footer.
-*   **Audit**: `docs/design-audit.md` gets a row noting that F1's footer fix is reversed on purpose.
+*   **Audit**: `design/design-audit.md` gets a row noting that F1's footer fix is reversed on purpose.
 
 ## Alternatives Considered
 
@@ -392,7 +392,7 @@ The test `footer fits its reserve` pumps `MyApp` at those six sizes, with fonts 
 4.  Set `footerReserve` in `lib/widgets/menu_layout.dart` from those heights.
 5.  Update the tests: `test/test_utils.dart`, `test/menu_layout_test.dart` and `test/profile_test.dart`. Run `flutter test`.
 6.  Take the "after" PNGs and compare them with the "before" ones.
-7.  Update `README.md` and `docs/design-audit.md`.
+7.  Update `README.md` and `design/design-audit.md`.
 
 ### Target Files to Create/Modify
 
@@ -510,7 +510,7 @@ The test `footer fits its reserve` pumps `MyApp` at those six sizes, with fonts 
     *   Line 17: "Stack, Work and AI open markdown pages" becomes "Modernise, Stack, Work and AI open markdown pages".
     *   After line 22, add: "**Footer:** name, role, the email (opens mail, or copies it), the profile button, and the business registration."
 
-#### 8. `docs/design-audit.md` (Modify)
+#### 8. `design/design-audit.md` (Modify)
 
 *   **Type / Scope**: Documentation (the audit's changelog table).
 *   **Proposed Changes**: Add a row after `1d`:

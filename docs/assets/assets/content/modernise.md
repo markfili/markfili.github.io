@@ -1,10 +1,8 @@
-<!-- DRAFT: review before publishing. Facts are from the geodetski-portal and
-planinarski-portal READMEs, MIGRATION-NOTES.md, BUGS.md and the migration
-template's README. Remove the notice below once checked. -->
+<!-- Facts are from the geodetski-portal and planinarski-portal READMEs,
+MIGRATION-NOTES.md, BUGS.md and the migration template's README; checked
+against them on 2026-11-28. -->
 
 # Modernising legacy apps
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 Your app still works, but it runs on Python 2, an old Django or a frontend
 nobody wants to touch, and every change feels risky. I bring it onto a
@@ -16,16 +14,16 @@ comes out with a modern look and fewer bugs than it went in with.
 AI coding agents make a large migration fast. On their own they also make it
 sloppy. Here is how I keep them in line:
 
-- **A written plan before any code.** Each phase has a design document, and
-  the documents are reviewed with Elephant–Goldfish (EGM), a set of
-  independent AI reviewers. They check structure, technical accuracy and
-  whether the plan is actually ready to implement.
+- **A written plan before any code.** Each phase is planned and recorded in
+  migration notes. Larger design documents also go through Elephant–Goldfish
+  (EGM), a set of independent AI reviewers that check structure, technical
+  accuracy and whether the plan is actually ready to implement.
 - **Behaviour first, pixels later.** The first phase moves the back end to
   current Python and Django with the old look left intact. Because nothing
   changes for the user, any difference the tests catch is a migration bug.
 - **Tests as the guard.** I write a test suite around the existing behaviour
-  and a screenshot harness that compares every page and fails on any browser
-  console error. The visual redesign only starts once both pass.
+  and a screenshot harness that compares pages and fails on any browser console
+  error. The visual redesign only starts once both pass.
 - **A rehearsal on real data.** Before the switch, a staging copy runs on the
   production server against a copy of the real database.
 - **A cutover with a way back.** The old app stays in place as the rollback
@@ -56,7 +54,7 @@ up. These were all older than the migration:
 
 ## Recent work
 
-### Geodetski portal (2026)
+### Geodetski portal (2026, volunteer)
 
 Geodetic control points of the Croatian mountaineering network, on an
 interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal.org)
@@ -68,7 +66,7 @@ interactive map: [geopp.planinarski-portal.org](https://geopp.planinarski-portal
 - **Cutover:** 2026-08-23, after a staging rehearsal on the production server.
   The old app is kept as the rollback.
 
-### Planinarski portal (2026)
+### Planinarski portal (2026, volunteer)
 
 A web GIS for Croatian mountain huts, control points and GPS tracks, with
 search, trips, galleries and user accounts: [planinarski-portal.org](https://planinarski-portal.org)
@@ -77,8 +75,8 @@ search, trips, galleries and user accounts: [planinarski-portal.org](https://pla
 - **After:** Python 3.13, Django 5.2 LTS, PostGIS, Bootstrap 5, in Docker.
 - **Cutover:** 2026-07-27.
 - **After launch:** about 100 bot sign-ups a day were getting past reCAPTCHA.
-  They were measured and stopped with server-side limits rather than a
-  stronger captcha.
+  A hidden honeypot field didn't stop them, so registration now also asks a
+  question any Croatian hiker can answer.
 
 ### The migration playbook
 
@@ -88,12 +86,14 @@ modernisation template:
 - a phased runbook, from intake to the work after cutover
 - a pre-flight checklist where every item is a real mistake from an earlier
   migration, together with the check that would have caught it
-- a registry of more than 200 recorded upgrades and failure patterns, with a
-  script that detects them in a new codebase
+- a registry of more than 200 recorded capabilities and failure patterns,
+  with a script that detects them in a new codebase
 - ready-made deployment, security and operations scaffolding
 
-Three apps have been moved with it so far. The next app starts from
-everything the earlier ones learned. The playbook itself stays private
+It grew out of the Planinarski portal migration and has been used since on
+two more apps: the Python 2 port of the Geodetski portal and the upgrade of a
+newer Django app. The next app starts from everything the earlier ones
+learned. The playbook itself stays private
 because it describes production servers, but I'm happy to walk you through it.
 
 ## Is your app a fit?

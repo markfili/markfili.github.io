@@ -1,8 +1,5 @@
-<!-- DRAFT: review before publishing. Numbers are from my own Claude Code usage stats. -->
 
 # How I work with AI
-
-> **Work in progress: AI-generated draft, not yet reviewed by Marko.** Generated from my repositories and commit history; details may be wrong. Please confirm with me before relying on them.
 
 I build with AI coding agents every day, set up so they follow my engineering
 standards instead of guessing.
@@ -13,31 +10,28 @@ standards instead of guessing.
   releases.
 - **Claude** on the web and desktop: research, writing and documents.
 - **Ollama**: local models for offline experiments.
-- **Earlier:** Cursor rules and GitHub Copilot instructions on a few projects.
+- **Earlier:** Cursor and GitHub Copilot.
 
 ## Setup
 
 - **Project instructions:** every active repository has its own `CLAUDE.md`
   (or `AGENTS.md`) describing the architecture, conventions, commands and
-  pitfalls. There are about 20 across my projects.
+  pitfalls. There are more than 20 across my projects.
 - **Global rules:** cost and quality guardrails, such as which model does which
   job (small models for search, mid-size for code, large for architecture),
   at most 3 parallel subagents, and short reports.
 - **Persistent memory:** per-project notes on decisions, feedback and context,
   so sessions don't start from zero.
-- **Custom skills I wrote:**
+- **Custom skills, generated with AI:**
   - a Material 3 design audit for Flutter apps
   - a design audit for Django + Bootstrap apps
   - a release flow: semver bump, Croatian release notes, tagged release
-  - Railway infrastructure operations
   - visual explainers
-- **Custom subagents:** a go_router navigation specialist and a UX/UI reviewer
-  for Flutter.
 - **Plugins:** Superpowers (brainstorm → plan → test-driven implementation →
   review), Google's Elephant–Goldfish document review, a Pyright language
   server.
-- **MCP servers:** a Trello integration I built myself, plus Serverpod, Railway
-  and per-project servers.
+- **MCP servers:** a Trello integration I built myself, plus Dart, Firebase,
+  Serverpod and other per-project servers.
 - **Hooks:** deterministic automation around the agent, such as terminal status,
   notifications when it needs me, and context reminders.
 
@@ -55,5 +49,4 @@ standards instead of guessing.
 
 ## Scale
 
-- 340+ agent sessions in five months of 2026.
-- Most of my 2025–2026 output was built this way.
+Most of my 2025–2026 output was built this way.
