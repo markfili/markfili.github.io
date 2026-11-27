@@ -132,6 +132,7 @@ Cold night neutrals and dusk red-browns, lit by one saturated red.
 ### Hierarchy
 - **Display** (300, 56px, −2px tracking): the "arilus" wordmark only.
 - **Headline** (300, 28px): the H1 of each content sheet.
+- **Offer** (300, 26px on one line from 700px wide, 20px stacked below): the rotating offer line. The verb is in Soft Ink and the tail in Moon Ink.
 - **Title** (500, 14px): the name in the footer.
 - **Body** (400, 14px, 1.55 line height in sheets): sheet prose, the role line and footer actions.
 - **Label** (400, 12px, 0.4px tracking): bubble labels and the business-registration line.
@@ -141,11 +142,11 @@ Cold night neutrals and dusk red-browns, lit by one saturated red.
 
 ## Layout
 
-There is one full-height screen and the home page does not scroll. The scene fills the viewport. The logo and wordmark sit centred, and the footer is pinned to the bottom over the scrim, capped at 720px wide.
+There is one full-height screen and the home page does not scroll; only the smallest phones (around 360×640) scroll a little. The scene fills the viewport. On wide screens the logo sits high in the sky (a fifth of the way down) with the wordmark under it, and the offer line holds the open sky at about 45% of the height, above every summit. The footer is pinned to the bottom over the scrim, capped at 720px wide.
 
 The menu has two arrangements, chosen by the size of the viewport:
 - **Peak layout** (at least 760×520 and enough width per bubble): each bubble perches on its own computed ridge summit, 6px above it.
-- **Orbit layout** (narrower): the bubbles circle the logo at an 84px radius, on a faint Glass ring.
+- **Orbit layout** (narrower): the bubbles circle the logo at an 84px radius, on a faint Glass ring, with the offer line 20px under the wordmark.
 
 The bubbles animate between the two arrangements (650ms, ease-in-out cubic). Content opens in modal bottom sheets. Content sheets are up to 880px wide and 90% of the viewport height; the profile sheet is up to 640px wide. The spacing rhythm is 4, 8 and 16px, and sheet content is padded 24px.
 
@@ -168,6 +169,13 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - **Label:** Moon Ink, Label type, placed above, below or to the side of the bubble according to the layout. Tapping the label does the same as tapping the bubble.
 - **States:** a Material ripple and a tooltip; there is no custom hover or active treatment yet.
 
+### Offer Line (signature)
+- **Character:** the one sentence the page exists to say, drifting like mist.
+- **Content:** a fixed verb with a rotating tail, from `Profile.offers`: "I modernise" legacy Django apps, Python 2 code bases, dated front ends, apps nobody wants to touch; then "I build" new Flutter apps, new Django back ends, on what I modernise.
+- **Layout:** one line on wide screens, with the tails in a fixed column so the verb never moves. Below 700px, the verb and the tail are stacked and centred.
+- **Motion:** the lead line holds for 5s and the others for 3.2s. In a 900ms swap, the old tail drifts up and fades out, then the new one rises in from below. The verb only fades when it changes. With reduce motion on, the lead line shows and nothing moves.
+- **Accessibility:** screen readers hear all the offers once, as one sentence (`Profile.offersSentence`).
+
 ### Footer Band
 - **Character:** dusk settling on the treeline.
 - **Content:** Footer Scrim behind the name (Title), the role (Body in Soft Ink), two quiet text buttons (the email, and "Profile for you & your AI" with a download icon), and the registration line (Label).
@@ -189,6 +197,7 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - **Do** set text on the scene in Moon Ink or Soft Ink, and keep secondary text at least 4.5:1 against what is actually behind it (the reason for the 70% footer scrim).
 - **Do** keep controls glassy and translucent, so the landscape stays the subject.
 - **Do** use DM Mono for all text.
+- **Do** keep one moving element on the home screen: the offer line. The scene itself stays still.
 
 ### Don't:
 - **Don't** add photography, stock illustration or image textures to the hero.

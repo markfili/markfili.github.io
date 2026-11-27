@@ -1,40 +1,163 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-27T08:00:00Z",
+  "generatedAt": "2026-11-27T19:30:00Z",
   "title": "Design System: arilus",
   "extensions": {
     "colorMeta": {
-      "ember-ring": { "role": "primary", "displayName": "Ember Ring", "canonical": "#9F0000", "tonalRamp": ["#2A0000", "#4A0101", "#6E0101", "#9F0000", "#C21F1A", "#DE5A50", "#F0998F", "#FAD6D1"] },
-      "ember-shadow": { "role": "primary", "displayName": "Ember Shadow", "canonical": "#5D0101" },
-      "horizon-glow": { "role": "secondary", "displayName": "Horizon Glow", "canonical": "#8A4232", "tonalRamp": ["#2A1410", "#45211A", "#663126", "#8A4232", "#A65C4A", "#C08070", "#D9AA9E", "#F0D8D1"] },
-      "sunlit-ridge": { "role": "secondary", "displayName": "Sunlit Ridge", "canonical": "#B0695A" },
-      "far-ridge": { "role": "secondary", "displayName": "Far Ridge", "canonical": "#7D4D47" },
-      "slate-forest": { "role": "tertiary", "displayName": "Slate Forest", "canonical": "#3B4555" },
-      "night-forest": { "role": "tertiary", "displayName": "Night Forest", "canonical": "#151B23" },
-      "night-sky": { "role": "neutral", "displayName": "Night Sky", "canonical": "#07070A" },
-      "dusk-floor": { "role": "neutral", "displayName": "Dusk Floor", "canonical": "#1B1517" },
-      "valley-mist": { "role": "neutral", "displayName": "Valley Mist", "canonical": "#C9BCBE" },
-      "moon-ink": { "role": "neutral", "displayName": "Moon Ink (90% white)", "canonical": "rgba(255,255,255,0.9)" },
-      "soft-ink": { "role": "neutral", "displayName": "Soft Ink (60% white)", "canonical": "rgba(255,255,255,0.6)" },
-      "glass": { "role": "neutral", "displayName": "Glass (12% white)", "canonical": "rgba(255,255,255,0.12)" },
-      "footer-scrim": { "role": "neutral", "displayName": "Footer Scrim", "canonical": "rgba(7,7,10,0.7)" },
-      "sheet-surface-legacy": { "role": "neutral", "displayName": "Olive Sheet Surface (legacy debt)", "canonical": "#13140C" },
-      "sheet-accent-legacy": { "role": "neutral", "displayName": "Olive Accent (legacy debt)", "canonical": "#C6CC79" }
+      "ember-ring": {
+        "role": "primary",
+        "displayName": "Ember Ring",
+        "canonical": "#9F0000",
+        "tonalRamp": [
+          "#2A0000",
+          "#4A0101",
+          "#6E0101",
+          "#9F0000",
+          "#C21F1A",
+          "#DE5A50",
+          "#F0998F",
+          "#FAD6D1"
+        ]
+      },
+      "ember-shadow": {
+        "role": "primary",
+        "displayName": "Ember Shadow",
+        "canonical": "#5D0101"
+      },
+      "horizon-glow": {
+        "role": "secondary",
+        "displayName": "Horizon Glow",
+        "canonical": "#8A4232",
+        "tonalRamp": [
+          "#2A1410",
+          "#45211A",
+          "#663126",
+          "#8A4232",
+          "#A65C4A",
+          "#C08070",
+          "#D9AA9E",
+          "#F0D8D1"
+        ]
+      },
+      "sunlit-ridge": {
+        "role": "secondary",
+        "displayName": "Sunlit Ridge",
+        "canonical": "#B0695A"
+      },
+      "far-ridge": {
+        "role": "secondary",
+        "displayName": "Far Ridge",
+        "canonical": "#7D4D47"
+      },
+      "slate-forest": {
+        "role": "tertiary",
+        "displayName": "Slate Forest",
+        "canonical": "#3B4555"
+      },
+      "night-forest": {
+        "role": "tertiary",
+        "displayName": "Night Forest",
+        "canonical": "#151B23"
+      },
+      "night-sky": {
+        "role": "neutral",
+        "displayName": "Night Sky",
+        "canonical": "#07070A"
+      },
+      "dusk-floor": {
+        "role": "neutral",
+        "displayName": "Dusk Floor",
+        "canonical": "#1B1517"
+      },
+      "valley-mist": {
+        "role": "neutral",
+        "displayName": "Valley Mist",
+        "canonical": "#C9BCBE"
+      },
+      "moon-ink": {
+        "role": "neutral",
+        "displayName": "Moon Ink (90% white)",
+        "canonical": "rgba(255,255,255,0.9)"
+      },
+      "soft-ink": {
+        "role": "neutral",
+        "displayName": "Soft Ink (60% white)",
+        "canonical": "rgba(255,255,255,0.6)"
+      },
+      "glass": {
+        "role": "neutral",
+        "displayName": "Glass (12% white)",
+        "canonical": "rgba(255,255,255,0.12)"
+      },
+      "footer-scrim": {
+        "role": "neutral",
+        "displayName": "Footer Scrim",
+        "canonical": "rgba(7,7,10,0.7)"
+      },
+      "sheet-surface-legacy": {
+        "role": "neutral",
+        "displayName": "Olive Sheet Surface (legacy debt)",
+        "canonical": "#13140C"
+      },
+      "sheet-accent-legacy": {
+        "role": "neutral",
+        "displayName": "Olive Accent (legacy debt)",
+        "canonical": "#C6CC79"
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The arilus wordmark only." },
-      "headline": { "displayName": "Headline", "purpose": "H1 of each content sheet." },
-      "title": { "displayName": "Title", "purpose": "Name in the footer." },
-      "body": { "displayName": "Body", "purpose": "Sheet prose, role line, footer actions." },
-      "label": { "displayName": "Label", "purpose": "Bubble labels and the registration line." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The arilus wordmark only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "H1 of each content sheet."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Name in the footer."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Sheet prose, role line, footer actions."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Bubble labels and the registration line."
+      },
+      "offer": {
+        "displayName": "Offer",
+        "purpose": "Rotating offer line: 300 weight, 26px wide / 20px stacked; verb Soft Ink, tail Moon Ink."
+      }
     },
     "shadows": [],
     "motion": [
-      { "name": "layout-move", "value": "650ms cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Bubbles, logo and wordmark moving between the peak and orbit layouts (easeInOutCubic)." },
-      { "name": "scene-reveal", "value": "1400ms cubic-bezier(0, 0, 0.58, 1)", "purpose": "First fade-in of the scene (easeOut)." }
+      {
+        "name": "layout-move",
+        "value": "650ms cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Bubbles, logo and wordmark moving between the peak and orbit layouts (easeInOutCubic)."
+      },
+      {
+        "name": "scene-reveal",
+        "value": "1400ms cubic-bezier(0, 0, 0.58, 1)",
+        "purpose": "First fade-in of the scene (easeOut)."
+      },
+      {
+        "name": "offer-swap",
+        "value": "900ms; out: easeInCubic over first half, drifting up; in: easeOutCubic over second half, rising",
+        "purpose": "Offer line tail swap; lead holds 5s, others 3.2s; off under reduced motion."
+      }
     ],
     "breakpoints": [
-      { "name": "peak-layout", "value": "760px wide and 520px tall" }
+      {
+        "name": "peak-layout",
+        "value": "760px wide and 520px tall"
+      },
+      {
+        "name": "offer-one-line",
+        "value": "700px wide"
+      }
     ]
   },
   "components": [
@@ -74,14 +197,49 @@
   "narrative": {
     "northStar": "The Night Ridge",
     "overview": "arilus is dusk over a mountain range. The whole first screen is a landscape painted in code: a near-black sky that warms toward the horizon, still clouds, layered ridges from sunlit red-brown to slate-blue forest, and film grain over everything. Above it hangs a single red ring. That ring is the one warm light in a cold scene, and nothing else competes with it.\n\nThe mood is quiet and patient. Controls are glassy and low-contrast so the landscape stays the subject. Type is DM Mono throughout, with a precise engineer's voice, set light and loose. There are no images other than the logo. Every ridge, cloud and grain is generated, and that is part of the point: the scene itself shows the craft.\n\nThe content sheets currently use an olive Material 3 theme that is not part of this world. It is recorded as legacy debt, to be rethemed into the Night Ridge palette.",
-    "keyCharacteristics": ["One warm focal point (the ember ring) on a cold, dark field.", "Procedural landscape: no stock imagery, no photography.", "Film grain over every pixel of the hero.", "Monospace type only, set light.", "Glassy, translucent controls that sit inside the scene rather than on top of it."],
-    "rules": [
-      { "name": "The One Ember Rule", "body": "Ember Ring is the only saturated colour on the page, and it belongs to the mark. Every other colour is a dusk or night tone.", "section": "colors" },
-      { "name": "The Ink Not Grey Rule", "body": "Text on the scene is white at a fixed alpha (Moon Ink or Soft Ink), never a solid grey, so it takes on the sky behind it.", "section": "colors" },
-      { "name": "The One Face Rule", "body": "DM Mono everywhere. Hierarchy comes from size, weight (300 to 500) and ink alpha, never from a second family.", "section": "typography" },
-      { "name": "The Aerial Perspective Rule", "body": "Separate layers with colour temperature and mist, never with a shadow.", "section": "elevation" }
+    "keyCharacteristics": [
+      "One warm focal point (the ember ring) on a cold, dark field.",
+      "Procedural landscape: no stock imagery, no photography.",
+      "Film grain over every pixel of the hero.",
+      "Monospace type only, set light.",
+      "Glassy, translucent controls that sit inside the scene rather than on top of it."
     ],
-    "dos": ["Do paint new scenery procedurally (`CustomPainter`, fragment shaders) and keep the grain over it.", "Do keep Ember Ring for the mark. Warm the scene with Horizon Glow and the ridge tones instead.", "Do set text on the scene in Moon Ink or Soft Ink, and keep secondary text at least 4.5:1 against what is actually behind it (the reason for the 70% footer scrim).", "Do keep controls glassy and translucent, so the landscape stays the subject.", "Do use DM Mono for all text."],
-    "donts": ["Don't add photography, stock illustration or image textures to the hero.", "Don't introduce a second typeface.", "Don't add drop shadows to the scene. Depth comes from aerial perspective.", "Don't extend the olive Material 3 sheet theme to new surfaces.", "Don't add a second saturated accent colour."]
+    "rules": [
+      {
+        "name": "The One Ember Rule",
+        "body": "Ember Ring is the only saturated colour on the page, and it belongs to the mark. Every other colour is a dusk or night tone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Not Grey Rule",
+        "body": "Text on the scene is white at a fixed alpha (Moon Ink or Soft Ink), never a solid grey, so it takes on the sky behind it.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "DM Mono everywhere. Hierarchy comes from size, weight (300 to 500) and ink alpha, never from a second family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Aerial Perspective Rule",
+        "body": "Separate layers with colour temperature and mist, never with a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do paint new scenery procedurally (`CustomPainter`, fragment shaders) and keep the grain over it.",
+      "Do keep Ember Ring for the mark. Warm the scene with Horizon Glow and the ridge tones instead.",
+      "Do set text on the scene in Moon Ink or Soft Ink, and keep secondary text at least 4.5:1 against what is actually behind it (the reason for the 70% footer scrim).",
+      "Do keep controls glassy and translucent, so the landscape stays the subject.",
+      "Do use DM Mono for all text.",
+      "Do keep one moving element on the home screen: the offer line. The scene itself stays still."
+    ],
+    "donts": [
+      "Don't add photography, stock illustration or image textures to the hero.",
+      "Don't introduce a second typeface.",
+      "Don't add drop shadows to the scene. Depth comes from aerial perspective.",
+      "Don't extend the olive Material 3 sheet theme to new surfaces.",
+      "Don't add a second saturated accent colour."
+    ]
   }
 }

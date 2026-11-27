@@ -9,6 +9,10 @@ procedurally painted landscape, deployed to GitHub Pages.
 - **Hero scene:** a dark, grainy sky with misty mountain ridges, painted in
   code with `CustomPainter` and a grain fragment shader. It uses no image
   assets apart from the logo (`lib/widgets/hero_scene.dart`).
+- **Offer line:** under the wordmark, "I modernise legacy Django apps." and
+  the rest of `Profile.offers` rotate one at a time. The verb stays put and
+  the tail drifts in. Reduced motion shows only the first line, and screen
+  readers hear every offer once (`lib/widgets/offer_ticker.dart`).
 - **Menu bubbles:** LinkedIn, GitHub, Modernise, Stack, Work and AI. Tapping a label does the
   same as its bubble.
   - On wide screens each bubble sits on its own mountain summit.

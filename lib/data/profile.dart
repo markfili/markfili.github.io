@@ -7,6 +7,39 @@ class Profile {
   static const business = 'I modernise legacy apps, then keep building on them';
   static const location = 'Zagreb, Croatia (remote friendly)';
 
+  /// What the home page cycles through under the wordmark: a fixed verb and
+  /// a rotating tail, the lead offer first. Same facts as [business] and
+  /// [services], cut to fit one line.
+  static const offers = [
+    (
+      verb: 'I modernise',
+      tails: [
+        'legacy Django apps.',
+        'Python 2 code bases.',
+        'dated front ends.',
+        'apps nobody wants to touch.',
+      ],
+    ),
+    (
+      verb: 'I build',
+      tails: [
+        'new Flutter apps.',
+        'new Django back ends.',
+        'on what I modernise.',
+      ],
+    ),
+  ];
+
+  /// Every offer as one sentence, for screen readers, which should hear the
+  /// list once rather than each rotation.
+  static String get offersSentence =>
+      offers.map((o) => '${o.verb} ${_joinTails(o.tails)}').join(' ');
+
+  static String _joinTails(List<String> tails) {
+    final bare = [for (final t in tails) t.substring(0, t.length - 1)];
+    return '${bare.sublist(0, bare.length - 1).join(', ')} and ${bare.last}.';
+  }
+
   /// [role] for narrow layouts: words inside each "·" item never break
   /// apart, so lines wrap only between items.
   static String get roleUnbreakable => role

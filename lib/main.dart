@@ -12,6 +12,7 @@ import 'widgets/menu_layout.dart';
 import 'data/profile.dart';
 import 'widgets/content_sheet.dart';
 import 'widgets/modernise_actions.dart';
+import 'widgets/offer_ticker.dart';
 import 'widgets/pages_list.dart';
 import 'widgets/profile_sheet.dart';
 
@@ -226,6 +227,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: HeroScene.ink,
                         ),
                       ),
+                    ),
+                    Builder(
+                      builder: (context) {
+                        final ticker = MenuLayout.tickerRect(
+                          size,
+                          orbit: orbit,
+                        );
+                        return AnimatedPositioned(
+                          duration: move,
+                          curve: curve,
+                          left: 0,
+                          right: 0,
+                          top: ticker.top,
+                          height: ticker.height,
+                          child: Center(
+                            child: OfferTicker(
+                              wide: MenuLayout.wideTicker(size),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,

@@ -41,6 +41,44 @@ class MenuLayout {
     ).inflate(12);
   }
 
+  /// The offer line ([OfferTicker]) is one line at or above this width, two
+  /// stacked lines below it.
+  static const wideTickerWidth = 700.0;
+
+  static bool wideTicker(Size size) => size.width >= wideTickerWidth;
+
+  /// Room reserved for the offer line: the widest line in DM Mono Light
+  /// (0.6em per character, "I modernise apps nobody wants to touch." is 39)
+  /// and 1.3 line height, rounded up.
+  static Size tickerSize(Size size) =>
+      wideTicker(size) ? const Size(624, 36) : const Size(332, 56);
+
+  /// Gap between the wordmark and the offer line.
+  static const tickerGap = 20.0;
+
+  /// The offer line. In peak mode it sits around 45% of the height, in the
+  /// open sky between the brand and the summits, but never closer than
+  /// [tickerGap] under the wordmark; in orbit mode it follows the wordmark.
+  static Rect tickerRect(Size size, {required bool orbit}) {
+    final t = tickerSize(size);
+    final underWordmark =
+        wordmarkTop(size, orbit: orbit) + wordmarkHeight + tickerGap;
+    final top = orbit
+        ? underWordmark
+        : math.max(underWordmark, size.height * 0.45 - t.height / 2);
+    return Rect.fromLTWH((size.width - t.width) / 2, top, t.width, t.height);
+  }
+
+  /// Everything the peak bubbles must stay clear of: the brand and the offer
+  /// line, which reaches further down by a label's height because each label
+  /// sits above its bubble.
+  static Rect _peakAvoid(Size size) {
+    final ticker = tickerRect(size, orbit: false).inflate(12);
+    return brandRect(size).expandToInclude(
+      Rect.fromLTRB(ticker.left, ticker.top, ticker.right, ticker.bottom + 26),
+    );
+  }
+
   /// Below this height, or [widthPerPeakBubble] per bubble (and never below
   /// [minPeakWidth]), there is not enough ridge for one summit per bubble.
   static const minPeakWidth = 760.0;
@@ -85,7 +123,7 @@ class MenuLayout {
       count,
       size,
       ridges,
-      brandRect(size),
+      _peakAvoid(size),
     );
     if (xs.length < count) xs = _slotted(size, count, ridges, margin);
     return [
@@ -229,10 +267,23 @@ class MenuLayout {
   /// them.
   static double footerReserve(Size size) => size.width < 600 ? 248 : 164;
 
-  /// Orbit mode's brand, from the top of the upper bubbles to the bottom of
-  /// the wordmark.
-  static const orbitBrandHeight =
-      2 * (orbitRadius + bubbleRadius) + 12 + labelClearance + wordmarkHeight;
+  /// How far above the logo center the orbit reaches: the top bubbles (six
+  /// of them, so the highest sit 30 degrees off vertical) plus the labels
+  /// above them (6px gap, 20px slot).
+  static final orbitTopReach =
+      orbitRadius * math.cos(math.pi / 6) + bubbleRadius + 6 + 20;
+
+  /// Orbit mode's brand, from the top of the upper bubbles' labels to the
+  /// bottom of the offer line under the wordmark.
+  static double orbitBrandHeight(Size size) =>
+      orbitTopReach +
+      orbitRadius +
+      bubbleRadius +
+      12 +
+      labelClearance +
+      wordmarkHeight +
+      tickerGap +
+      tickerSize(size).height;
 
   /// Extra space between the ring and the wordmark in orbit mode, for the
   /// labels of the lower bubbles.
@@ -256,17 +307,23 @@ class MenuLayout {
   static double pageHeight(Size viewport, {required bool orbit}) => orbit
       ? math.max(
           viewport.height,
-          orbitBrandHeight + 2 * 12 + footerReserve(viewport),
+          orbitBrandHeight(viewport) + 2 * 12 + footerReserve(viewport),
         )
       : viewport.height;
 
-  /// Logo center: just above the middle of the screen in peak mode. In
-  /// orbit mode the brand is centered in the sky above the footer, but never
-  /// lower than just above the middle.
+  /// Logo center: high in the sky in peak mode (a fifth of the way down),
+  /// leaving the middle for the offer line. In orbit mode the brand and
+  /// offer line are centered in the sky above the footer, but never lower
+  /// than just above the middle.
   static Offset logoCenter(Size size, {required bool orbit}) {
-    if (!orbit) return Offset(size.width / 2, size.height / 2 - 35);
+    if (!orbit) {
+      return Offset(
+        size.width / 2,
+        math.max(logoRadius + 32, size.height * 0.2),
+      );
+    }
     final free = size.height - footerReserve(size);
-    final centered = (free - orbitBrandHeight) / 2 + orbitRadius + bubbleRadius;
+    final centered = (free - orbitBrandHeight(size)) / 2 + orbitTopReach;
     return Offset(size.width / 2, math.min(size.height / 2 - 70, centered));
   }
 
