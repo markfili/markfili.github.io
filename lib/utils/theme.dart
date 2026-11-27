@@ -345,7 +345,29 @@ class MaterialTheme {
     ),
     scaffoldBackgroundColor: colorScheme.surface,
     canvasColor: colorScheme.surface,
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(side: focusRing(colorScheme.onSurface)),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(side: focusRing(colorScheme.onSurface)),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: ButtonStyle(side: focusRing(colorScheme.onSurface)),
+    ),
   );
+
+  /// A 2px ring around a button focused from the keyboard. Material 3 only
+  /// tints a focused button, which barely shows over the night sky. Mouse
+  /// and touch focus get no ring, so a clicked button doesn't stay outlined.
+  static WidgetStateProperty<BorderSide?> focusRing(Color color) =>
+      WidgetStateProperty.resolveWith(
+        (states) =>
+            states.contains(WidgetState.focused) &&
+                FocusManager.instance.highlightMode ==
+                    FocusHighlightMode.traditional
+            ? BorderSide(color: color, width: 2)
+            : null,
+      );
 
   List<ExtendedColor> get extendedColors => [];
 }

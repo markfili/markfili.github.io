@@ -11,9 +11,13 @@ String profileUrl() => kIsWeb
     ? Uri.base.resolve(Profile.profilePath).toString()
     : '${Profile.site}/${Profile.profilePath}';
 
+/// Address of the profile sheet; see [showContentSheet].
+const profileSheetName = '/fit';
+
 Future<void> showProfileSheet(BuildContext context) {
   return showModalBottomSheet<void>(
     context: context,
+    routeSettings: const RouteSettings(name: profileSheetName),
     isScrollControlled: true,
     useSafeArea: true,
     showDragHandle: true,

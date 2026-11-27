@@ -112,14 +112,18 @@
     <p lang="hr">obrt za informatičke usluge · vl. Marko Filipović · Zagreb</p>
     <p><a href="profile.md">Profile (Markdown, work-in-progress AI-generated draft)</a> · <a href="mailto:info@arilus.hr">info@arilus.hr</a></p>
   </noscript>
-  <div id="splash" aria-hidden="true">
+  <!-- Announced while the app loads; Flutter's own semantics take over
+       once it paints. -->
+  <div id="splash" role="status" aria-label="arilus is loading">
     <img src="assets/assets/images/logo.png" alt="">
-    <span>arilus</span>
+    <span aria-hidden="true">arilus</span>
   </div>
   <script>
     window.addEventListener('flutter-first-frame', function () {
       var splash = document.getElementById('splash');
       if (!splash) return;
+      splash.removeAttribute('role');
+      splash.setAttribute('aria-hidden', 'true');
       splash.style.opacity = '0';
       setTimeout(function () { splash.remove(); }, 1500);
     }, { once: true });

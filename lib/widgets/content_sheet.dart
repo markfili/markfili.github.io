@@ -15,14 +15,18 @@ class ContentAssets {
 }
 
 /// Opens [assets] (rendered one after another) in a tall bottom sheet, with
-/// an optional [footer] below them.
+/// an optional [footer] below them. On the web, [name] becomes the page's
+/// address while the sheet is open (`#/work`), so it can be linked to and
+/// the browser's back button closes it.
 Future<void> showContentSheet(
   BuildContext context, {
   required List<String> assets,
   Widget? footer,
+  String? name,
 }) {
   return showModalBottomSheet<void>(
     context: context,
+    routeSettings: RouteSettings(name: name),
     isScrollControlled: true,
     useSafeArea: true,
     showDragHandle: true,

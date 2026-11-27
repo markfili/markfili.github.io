@@ -200,6 +200,8 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - **Do** keep controls glassy and translucent, so the landscape stays the subject. The email pill is the only filled one.
 - **Do** use DM Mono for all text.
 - **Do** keep one moving element on the home screen: the offer line. The scene itself stays still.
+- **Do** show keyboard focus as a 2px Moon Ink ring that follows the control's shape (`MaterialTheme.focusRing`). Mouse and touch focus get no ring.
+- **Do** give every sheet an address (`#/modernise`, `#/stack`, `#/work`, `#/ai`, `#/fit`) so it can be linked to and the browser's back button closes it.
 
 ### Don't:
 - **Don't** add photography, stock illustration or image textures to the hero.

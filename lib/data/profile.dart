@@ -31,14 +31,12 @@ class Profile {
   ];
 
   /// Every offer as one sentence, for screen readers, which should hear the
-  /// list once rather than each rotation.
-  static String get offersSentence =>
-      offers.map((o) => '${o.verb} ${_joinTails(o.tails)}').join(' ');
-
-  static String _joinTails(List<String> tails) {
-    final bare = [for (final t in tails) t.substring(0, t.length - 1)];
-    return '${bare.sublist(0, bare.length - 1).join(', ')} and ${bare.last}.';
-  }
+  /// list once rather than each rotation. Written out, because the last
+  /// "I build" tail doesn't join the list grammatically.
+  static const offersSentence =
+      'I modernise legacy Django apps, Python 2 code bases, dated front ends '
+      'and apps nobody wants to touch. I build new Flutter apps and new '
+      'Django back ends, and keep building on what I modernise.';
 
   /// [role] for narrow layouts: words inside each "·" item never break
   /// apart, so lines wrap only between items.

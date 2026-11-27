@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/semantics.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,10 +22,18 @@ void main() {
   // DM Mono ships in assets/fonts, so never go to the network for it.
   GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MyApp());
+  // A canvas page is invisible to screen readers and to AI browsers until
+  // they find Flutter's hidden "Enable accessibility" button; this page is
+  // small enough to keep its semantics tree on from the start.
+  if (kIsWeb) SemanticsBinding.instance.ensureSemantics();
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  /// The address to open; defaults to the browser's (`#/work` opens the
+  /// Work sheet over the home page).
+  final String? initialRoute;
+
+  const MyApp({this.initialRoute, super.key});
 
   // This widget is the root of your application.
   @override
@@ -39,16 +49,30 @@ class MyApp extends StatelessWidget {
       darkTheme: theme.dark(),
       // The hero is a night scene; light sheets over it look out of place.
       themeMode: ThemeMode.dark,
-      // ?playground=mountains opens the mountain tuning page.
-      home: Uri.base.queryParameters['playground'] == 'mountains'
-          ? const MountainPlayground()
-          : const MyHomePage(),
+      initialRoute: initialRoute,
+      // Sheets aren't pages: a sheet's address opens the home page, which
+      // then opens the sheet itself.
+      onGenerateInitialRoutes: (route) => [_home(route)],
+      onGenerateRoute: (_) => _home(null),
     );
   }
 }
 
+/// The home page, opening [sheet] on arrival; `?playground=mountains`
+/// opens the mountain tuning page instead.
+Route<void> _home(String? sheet) => MaterialPageRoute<void>(
+  settings: const RouteSettings(name: '/'),
+  builder: (_) => Uri.base.queryParameters['playground'] == 'mountains'
+      ? const MountainPlayground()
+      : MyHomePage(initialSheet: sheet),
+);
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  /// Name of the sheet to open on arrival, such as `/work`; anything else
+  /// just shows the page.
+  final String? initialSheet;
+
+  const MyHomePage({this.initialSheet, super.key});
 
   /// Finds the footer's box (fade strip included) in tests.
   static const footerKey = ValueKey('who-i-am-footer');
@@ -72,10 +96,31 @@ class _MyHomePageState extends State<MyHomePage> {
     return _sites!;
   }
 
+  /// Every sheet by its address.
+  late final Map<String, VoidCallback> _sheets = {
+    '/modernise': _showModernise,
+    '/stack': _showStack,
+    '/work': _showWork,
+    '/ai': _showAi,
+    profileSheetName: () => showProfileSheet(context),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    final open = _sheets[widget.initialSheet];
+    if (open != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) open();
+      });
+    }
+  }
+
   void _showWork() {
     final title = Theme.of(context).textTheme.titleLarge;
     showContentSheet(
       context,
+      name: '/work',
       assets: const [ContentAssets.work],
       footer: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,10 +135,20 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showModernise() {
     showContentSheet(
       context,
+      name: '/modernise',
       assets: const [ContentAssets.modernise],
       footer: ModerniseActions(profileUrl: profileUrl()),
     );
   }
+
+  void _showStack() => showContentSheet(
+    context,
+    name: '/stack',
+    assets: const [ContentAssets.stack, ContentAssets.toolbox],
+  );
+
+  void _showAi() =>
+      showContentSheet(context, name: '/ai', assets: const [ContentAssets.ai]);
 
   Future<void> _email() async {
     if (!await openUrl('mailto:${Profile.email}') && mounted) {
@@ -132,10 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: FontAwesomeIcons.layerGroup,
         label: "Stack",
         description: "Stack: the languages and tools I use",
-        onPressed: () => showContentSheet(
-          context,
-          assets: const [ContentAssets.stack, ContentAssets.toolbox],
-        ),
+        onPressed: _showStack,
       ),
       ContactBadge(
         icon: FontAwesomeIcons.briefcase,
@@ -147,8 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: FontAwesomeIcons.wandMagicSparkles,
         label: "AI",
         description: "AI: how I work with AI coding agents",
-        onPressed: () =>
-            showContentSheet(context, assets: const [ContentAssets.ai]),
+        onPressed: _showAi,
       ),
     ];
     return Scaffold(
@@ -176,112 +227,141 @@ class _MyHomePageState extends State<MyHomePage> {
             const ring = MenuLayout.orbitRadius;
             // Scrolls only when the viewport is too short for the brand and
             // the footer (landscape phones).
-            return SingleChildScrollView(
-              physics: size.height > viewport.height
-                  ? null
-                  : const NeverScrollableScrollPhysics(),
-              child: SizedBox.fromSize(
-                size: size,
-                child: Stack(
-                  children: [
-                    Positioned.fill(child: HeroScene()),
-                    // Faint ring the bubbles orbit on; only on narrow screens.
-                    AnimatedPositioned(
-                      duration: move,
-                      curve: curve,
-                      left: logo.dx - ring,
-                      top: logo.dy - ring,
-                      width: ring * 2,
-                      height: ring * 2,
-                      child: IgnorePointer(
-                        child: AnimatedOpacity(
-                          duration: move,
-                          opacity: orbit ? 1 : 0,
-                          child: const DecoratedBox(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.fromBorderSide(
-                                BorderSide(color: Color(0x1FFFFFFF)),
+            return FocusTraversalGroup(
+              policy: OrderedTraversalPolicy(),
+              child: SingleChildScrollView(
+                physics: size.height > viewport.height
+                    ? null
+                    : const NeverScrollableScrollPhysics(),
+                child: SizedBox.fromSize(
+                  size: size,
+                  child: Stack(
+                    children: [
+                      Positioned.fill(child: HeroScene()),
+                      // Faint ring the bubbles orbit on; only on narrow screens.
+                      AnimatedPositioned(
+                        duration: move,
+                        curve: curve,
+                        left: logo.dx - ring,
+                        top: logo.dy - ring,
+                        width: ring * 2,
+                        height: ring * 2,
+                        child: IgnorePointer(
+                          child: AnimatedOpacity(
+                            duration: move,
+                            opacity: orbit ? 1 : 0,
+                            child: const DecoratedBox(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.fromBorderSide(
+                                  BorderSide(color: Color(0x1FFFFFFF)),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    AnimatedPositioned(
-                      duration: move,
-                      curve: curve,
-                      left: logo.dx - MenuLayout.logoRadius,
-                      top: logo.dy - MenuLayout.logoRadius,
-                      width: MenuLayout.logoRadius * 2,
-                      height: MenuLayout.logoRadius * 2,
-                      child: Image.asset(Assets.logo),
-                    ),
-                    AnimatedPositioned(
-                      duration: move,
-                      curve: curve,
-                      left: 0,
-                      right: 0,
-                      top: MenuLayout.wordmarkTop(size, orbit: orbit),
-                      child: Text(
-                        "arilus",
-                        textAlign: TextAlign.center,
-                        style: textTheme.displaySmall?.copyWith(
-                          fontSize: 56,
-                          fontWeight: FontWeight.w300,
-                          letterSpacing: -2,
-                          color: HeroScene.ink,
-                        ),
-                      ),
-                    ),
-                    Builder(
-                      builder: (context) {
-                        final ticker = MenuLayout.tickerRect(
-                          size,
-                          orbit: orbit,
-                        );
-                        return AnimatedPositioned(
-                          duration: move,
-                          curve: curve,
-                          left: 0,
-                          right: 0,
-                          top: ticker.top,
-                          height: ticker.height,
-                          child: Center(
-                            child: OfferTicker(
-                              wide: MenuLayout.wideTicker(size),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: _WhoIAm(
-                        key: MyHomePage.footerKey,
-                        small: small,
-                        onEmail: _email,
-                        onProfile: () => showProfileSheet(context),
-                      ),
-                    ),
-                    for (var i = 0; i < badges.length; i++)
                       AnimatedPositioned(
                         duration: move,
                         curve: curve,
-                        left: anchors[i].dx - ContactBadge.boxSize.width / 2,
-                        top: anchors[i].dy - ContactBadge.boxSize.height / 2,
-                        width: ContactBadge.boxSize.width,
-                        height: ContactBadge.boxSize.height,
-                        child: badges[i].withLabelSide(
-                          orbit
-                              ? MenuLayout.orbitLabelSide(
-                                  i,
-                                  count: badges.length,
-                                )
-                              : Alignment.topCenter,
+                        left: logo.dx - MenuLayout.logoRadius,
+                        top: logo.dy - MenuLayout.logoRadius,
+                        width: MenuLayout.logoRadius * 2,
+                        height: MenuLayout.logoRadius * 2,
+                        child: Image.asset(
+                          Assets.logo,
+                          excludeFromSemantics: true,
                         ),
                       ),
-                  ],
+                      AnimatedPositioned(
+                        duration: move,
+                        curve: curve,
+                        left: 0,
+                        right: 0,
+                        top: MenuLayout.wordmarkTop(size, orbit: orbit),
+                        child: Semantics(
+                          container: true,
+                          header: true,
+                          headingLevel: 1,
+                          sortKey: const OrdinalSortKey(0),
+                          child: Text(
+                            "arilus",
+                            textAlign: TextAlign.center,
+                            style: textTheme.displaySmall?.copyWith(
+                              fontSize: 56,
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: -2,
+                              color: HeroScene.ink,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Builder(
+                        builder: (context) {
+                          final ticker = MenuLayout.tickerRect(
+                            size,
+                            orbit: orbit,
+                          );
+                          return AnimatedPositioned(
+                            duration: move,
+                            curve: curve,
+                            left: 0,
+                            right: 0,
+                            top: ticker.top,
+                            height: ticker.height,
+                            child: Semantics(
+                              container: true,
+                              sortKey: const OrdinalSortKey(1),
+                              child: Center(
+                                child: OfferTicker(
+                                  wide: MenuLayout.wideTicker(size),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Semantics(
+                          container: true,
+                          sortKey: const OrdinalSortKey(20),
+                          child: _WhoIAm(
+                            key: MyHomePage.footerKey,
+                            small: small,
+                            onEmail: _email,
+                            onProfile: _sheets[profileSheetName]!,
+                          ),
+                        ),
+                      ),
+                      for (var i = 0; i < badges.length; i++)
+                        AnimatedPositioned(
+                          duration: move,
+                          curve: curve,
+                          left: anchors[i].dx - ContactBadge.boxSize.width / 2,
+                          top: anchors[i].dy - ContactBadge.boxSize.height / 2,
+                          width: ContactBadge.boxSize.width,
+                          height: ContactBadge.boxSize.height,
+                          // Screen readers and Tab go through the bubbles in
+                          // menu order, whatever their height on the ridge.
+                          child: Semantics(
+                            container: true,
+                            sortKey: OrdinalSortKey(2.0 + i),
+                            child: FocusTraversalOrder(
+                              order: NumericFocusOrder(i.toDouble()),
+                              child: badges[i].withLabelSide(
+                                orbit
+                                    ? MenuLayout.orbitLabelSide(
+                                        i,
+                                        count: badges.length,
+                                      )
+                                    : Alignment.topCenter,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -383,7 +463,10 @@ class _WhoIAm extends StatelessWidget {
                       spacing: Insets.large,
                       runSpacing: 0,
                       children: [
+                        // Its own node: without container the label merges
+                        // into the footer text and the button gets lost.
                         Semantics(
+                          container: true,
                           label: 'Email Marko at ${Profile.email}',
                           button: true,
                           excludeSemantics: true,

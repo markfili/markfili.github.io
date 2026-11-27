@@ -28,13 +28,11 @@ Future<void> pumpTicker(
 }
 
 void main() {
-  test('offers read as one sentence for screen readers', () {
-    expect(
-      Profile.offersSentence,
-      'I modernise legacy Django apps, Python 2 code bases, dated front ends '
-      'and apps nobody wants to touch. I build new Flutter apps, new Django '
-      'back ends and on what I modernise.',
-    );
+  test('the spoken sentence names every offer the line shows', () {
+    for (final line in OfferTicker.lines) {
+      final words = line.tail.substring(0, line.tail.length - 1);
+      expect(Profile.offersSentence, contains(words), reason: line.tail);
+    }
   });
 
   testWidgets('starts on the lead offer and rotates through every line', (
