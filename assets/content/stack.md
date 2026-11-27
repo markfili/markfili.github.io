@@ -18,7 +18,6 @@ What I build with, from 10 years of commits.
 | PHP | 2022 – 2023 | 2023 | 4 | B2B web shop | < 1% |
 | Docker | 2022 – now | 2026 | 17 | Containerised Django and Next.js deploys | < 1% |
 | Swift (iOS) | 2020 – now | 2026 | 28 | Flutter iOS integration | < 1% |
-| Terraform / AWS | 2022 | 2022 | 1 | Infrastructure for a Flutter web deploy | < 1% |
 | GLSL | 2026 | 2026 | 1 | Fragment shaders in Flutter (this site) | < 1% |
 
 \* Lines I authored, excluding documentation, generated code, lock files and

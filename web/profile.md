@@ -144,7 +144,6 @@ What I build with, from 10 years of commits.
 | PHP | 2022 – 2023 | 2023 | 4 | B2B web shop | < 1% |
 | Docker | 2022 – now | 2026 | 17 | Containerised Django and Next.js deploys | < 1% |
 | Swift (iOS) | 2020 – now | 2026 | 28 | Flutter iOS integration | < 1% |
-| Terraform / AWS | 2022 | 2022 | 1 | Infrastructure for a Flutter web deploy | < 1% |
 | GLSL | 2026 | 2026 | 1 | Fragment shaders in Flutter (this site) | < 1% |
 
 \* Lines I authored, excluding documentation, generated code, lock files and
@@ -195,7 +194,7 @@ Packages, patterns and practices I use.
 | Web front end | Next.js, React, Tailwind CSS, TypeScript, Vitest |
 | Content | Directus (headless CMS) |
 | Data | PostgreSQL, Supabase, SQLite, Firestore |
-| Infrastructure | Docker / Compose, GitHub Pages, AWS (Terraform), Railway |
+| Infrastructure | Docker / Compose, GitHub Pages, Railway |
 
 ### Architecture
 
@@ -213,12 +212,12 @@ Packages, patterns and practices I use.
   on every pull request, plus release and deploy pipelines. Some projects use
   GitLab CI.
 - **Mobile releases:** fastlane for Android and iOS, in-app updates.
-- **Deploys:** Docker images for Django and Next.js; GitHub Pages and AWS for web.
+- **Deploys:** Docker images for Django and Next.js; GitHub Pages for web.
 
 ### Quality
 
-- **Tests:** unit, widget and end-to-end tests. My larger apps have 100–250
-  test files.
+- **Tests:** unit, widget and end-to-end tests. The largest of my apps has
+  more than 300 test files.
 - **Test doubles:** mocks with mockito and mocktail, fake clocks, fake Firestore.
 - **Working method:** a short design doc first, then tests, then code.
 - **Code quality:** strict lints (flutter_lints, riverpod_lint, Ruff), and
