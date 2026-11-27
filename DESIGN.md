@@ -201,6 +201,12 @@ The shape language is circles on jagged ridges. The ring, the bubbles and the or
 - Blockquotes are italic on the tertiary container, with an 8px radius.
 - It follows the Night Ridge sheet colours above. Each sheet has its own address (see Do's).
 
+### Years Timeline
+- Horizontal bars on one shared year axis, drawn from the "Years" column of a page's tables (`lib/widgets/years_timeline.dart`). A `<!-- timeline -->` comment marks where it goes.
+- Bars are Sheet Accent, 6px, fully rounded; faint Outline Variant gridlines every year or every two; group titles from the `##` headings in Valley Mist.
+- Wide sheets put the label beside the bar; phones put it above.
+- It shows only years the repositories confirm, never shares or counts. It is hidden from screen readers because the table below carries the same facts.
+
 ### Loading Splash
 - The logo and the "arilus" wordmark on Night Sky (in `web/index.html`). It is removed about 1.5s after Flutter's first frame.
 

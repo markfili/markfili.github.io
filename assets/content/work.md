@@ -1,5 +1,7 @@
 # Work
 
+<!-- timeline -->
+
 ## Client & employer work
 
 Clients aren’t named here.

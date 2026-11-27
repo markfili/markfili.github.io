@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../data/profile.dart';
 import '../utils/widgets.dart';
+import 'years_timeline.dart';
 
 /// Content pages behind the menu bubbles, as markdown asset paths.
 class ContentAssets {
@@ -54,6 +55,9 @@ class ContentSheet extends StatefulWidget {
     this.bundle,
     super.key,
   });
+
+  /// Where a page wants the [YearsTimeline] of its tables drawn.
+  static const timelineMarker = '<!-- timeline -->';
 
   /// Drops `<!-- ... -->` notes, which are for editing, not for visitors.
   static String stripComments(String markdown) =>
@@ -126,13 +130,18 @@ class _ContentSheetState extends State<ContentSheet> {
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
           children: [
             for (final doc in snapshot.requireData) ...[
-              MarkdownBody(
-                data: ContentSheet.stripComments(doc),
-                styleSheet: styleSheet,
-                onTapLink: (text, href, title) {
-                  if (href != null) widget.onOpen(href);
-                },
-              ),
+              for (final (i, part)
+                  in doc.split(ContentSheet.timelineMarker).indexed) ...[
+                if (i > 0)
+                  YearsTimeline(parseTimeline(doc, now: DateTime.now().year)),
+                MarkdownBody(
+                  data: ContentSheet.stripComments(part),
+                  styleSheet: styleSheet,
+                  onTapLink: (text, href, title) {
+                    if (href != null) widget.onOpen(href);
+                  },
+                ),
+              ],
               const SizedBox(height: 40),
             ],
             if (widget.footer != null) widget.footer!,

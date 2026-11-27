@@ -2,6 +2,8 @@
 
 What I build with, from 10 years of commits.
 
+<!-- timeline -->
+
 | Technology | Years | Last used | Shipped to production |
 |---|---|---|---|
 | **Dart / Flutter** | 2020 – now | 2026 | Mobile apps (Play Store / App Store via fastlane), Flutter web, Dart backends |
